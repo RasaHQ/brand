@@ -100,6 +100,10 @@ When Söhne is unavailable (e.g., Google Slides), use **IBM Plex Sans** from Goo
 
 ### Primary Palette
 
+Purple is our primary brand color, but it should not dominate. Use it thoughtfully and balance it with other brand colors to maintain visual harmony. A strong Rasa Purple presence — such as the primary logo color or a prominent purple element in a gradient — is sufficient to satisfy the brand's purple presence requirement.
+
+On backgrounds where a gradient is not in use, **Rasa Navy** (dark) or **Rasa Light Grey** (light) are the recommended background colors.
+
 <table>
 <tr>
 <td><strong>Rasa Purple</strong><br>(Primary Brand Color)</td>
@@ -120,6 +124,15 @@ PMS: Black 6C
 </td>
 </tr>
 <tr>
+<td><strong>Rasa Light Grey</strong></td>
+<td>
+RGB: 239, 241, 255<br>
+HEX: <code>#EFF1FF</code><br>
+CMYK: 6, 5, 0, 0<br>
+PMS: 656C
+</td>
+</tr>
+<tr>
 <td><strong>Rasa Grey</strong></td>
 <td>
 RGB: 223, 232, 255<br>
@@ -132,14 +145,12 @@ PMS: 642C
 <td><strong>White</strong></td>
 <td>
 RGB: 255, 255, 255<br>
-HEX: <code>#eff1ff</code><br>
+HEX: <code>#ffffff</code><br>
 CMYK: 0, 0, 0, 0<br>
 PMS: 00C White
 </td>
 </tr>
 </table>
-
-**Usage Note:** Purple is our primary color, but it should not dominate. Use it thoughtfully and balance with other brand colors for visual harmony.
 
 ### Secondary Palette
 
@@ -147,15 +158,24 @@ Supporting colors for specific use cases:
 
 | Color | HEX | Use Case |
 |-------|-----|----------|
-| **Lighter Purple** | `#7d7aec` | Backgrounds, secondary elements, subtle emphasis |
-| **Orange** | `#FFD594` | Draw attention, highlight key points, optimism and energy |
-| **Aqua** | `#71EFF3` | Clarity and approachability, highlights, illustrations |
+| **Lighter Purple** | `#7e7af4` | Backgrounds, secondary elements, subtle emphasis |
+| **Orange** | `#FFD594` | Primary highlight color; draws attention, adds optimism and energy. Avoid using without a purple presence elsewhere in the asset. |
+| **Aqua** | `#71EFF3` | Secondary highlight color; conveys clarity and approachability; works well for highlights and illustrative elements |
+| **Lilac (Light)** | `#A6AAF3` | Works well on dark backgrounds and for ornamentation where additional colors would be excessive |
+| **Lilac (Pale)** | `#DADCFB` | Works well on dark backgrounds and for ornamentation where additional colors would be excessive |
+
+### Tertiary Palette
+
+The bright green and ruby red are used to signal positive and negative outcomes in marketing content. These colors can also supplement the Secondary Palette when additional color differentiation is required — for variety and for graphics or infographics.
+
+| Color | HEX | Use Case |
+|-------|-----|----------|
 | **Green** | `#20D58A` | Success outcomes, growth indicators, affirmative elements |
 | **Red** | `#CE3381` | Critical alerts, negative data points, emphasis |
 
 ### Product Neutrals
 
-Digital product use only—these neutrals provide visual balance:
+Digital product use only — these neutrals provide visual balance:
 
 | Color | RGB | HEX |
 |-------|-----|-----|
@@ -244,7 +264,7 @@ rasa-brand/
 1. **Logo:** Use PNG or SVG files from `logos/horizontal/` or `logos/square/`
 2. **Color:** Start with Rasa Purple (`#5a17ee`) balanced with neutral colors
 3. **Typography:** Use Söhne font family (IBM Plex Sans if unavailable)
-4. **Backgrounds:** Select from pre-made gradients in `backgrounds/`
+4. **Backgrounds:** Select from pre-made gradients in `backgrounds/`, or use Rasa Navy (`#080327`) for dark backgrounds and Rasa Light Grey (`#EFF1FF`) for light backgrounds
 
 ### For Print Production
 
