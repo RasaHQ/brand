@@ -1,0 +1,30 @@
+{
+  "name": "@rasahq/brand-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proposed Rasa brand system extracted 2026-09-28; local package, not an npm release.",
+  "type": "module",
+  "main": "./dist/tokens.mjs",
+  "types": "./dist/tokens.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.mjs"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./components.css": "./src/components.css",
+    "./tailwind-v4.css": "./dist/tailwind-v4.css",
+    "./tailwind-v3": "./dist/tailwind-v3.cjs",
+    "./fonts.css": "./src/fonts.css"
+  },
+  "files": [
+    "dist",
+    "src/components.css",
+    "src/fonts.css"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "reference": "python3 scripts/build-reference.py"
+  }
+}

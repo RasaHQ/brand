@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Main text",
+    "fg": "#181210",
+    "bg": "#FAF6F0",
+    "ratio": 17.22,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Muted text",
+    "fg": "#524A43",
+    "bg": "#FAF6F0",
+    "ratio": 8.06,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Accessible link",
+    "fg": "#AA1E54",
+    "bg": "#FAF6F0",
+    "ratio": 6.45,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Primary CTA",
+    "fg": "#FFFBF5",
+    "bg": "#181210",
+    "ratio": 17.98,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Pink CTA / ink text",
+    "fg": "#181210",
+    "bg": "#E85A91",
+    "ratio": 5.56,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Focus / cream",
+    "fg": "#AA1E54",
+    "bg": "#FAF6F0",
+    "ratio": 6.45,
+    "threshold": 3,
+    "result": "pass"
+  },
+  {
+    "name": "Input border / panel",
+    "fg": "#696157",
+    "bg": "#FFFBF5",
+    "ratio": 5.91,
+    "threshold": 3,
+    "result": "pass"
+  },
+  {
+    "name": "Success label",
+    "fg": "#2B5E47",
+    "bg": "#C6FEE1",
+    "ratio": 6.68,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Warning label",
+    "fg": "#7A6F1E",
+    "bg": "#FDFBE5",
+    "ratio": 4.88,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Error label",
+    "fg": "#AA1E54",
+    "bg": "#FCE7EF",
+    "ratio": 5.89,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Bright pink text on cream",
+    "fg": "#E85A91",
+    "bg": "#FAF6F0",
+    "ratio": 3.09,
+    "threshold": null,
+    "result": "reference only"
+  },
+  {
+    "name": "White text on pink",
+    "fg": "#FFFFFF",
+    "bg": "#E85A91",
+    "ratio": 3.33,
+    "threshold": null,
+    "result": "reference only"
+  },
+  {
+    "name": "Subtle text on cream",
+    "fg": "#888077",
+    "bg": "#FAF6F0",
+    "ratio": 3.61,
+    "threshold": null,
+    "result": "reference only"
+  },
+  {
+    "name": "Decorative border on panel",
+    "fg": "#C8C0B6",
+    "bg": "#FFFBF5",
+    "ratio": 1.75,
+    "threshold": null,
+    "result": "reference only"
+  }
+]

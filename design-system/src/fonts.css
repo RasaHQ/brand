@@ -1,0 +1,12 @@
+/* OPT IN only after supplying licensed files at these app-local URLs.
+   This file contains no font binaries and grants no font rights.
+   Override URLs to match your deployment. Do not hotlink rasa.com fonts. */
+@font-face {font-family:'STK Bureau Sans';src:url('/fonts/STKBureauSans-Book.woff2') format('woff2');font-weight:350;font-style:normal;font-display:swap;}
+@font-face {font-family:'STK Bureau Sans';src:url('/fonts/STKBureauSans-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face {font-family:'STK Bureau Sans';src:url('/fonts/STKBureauSans-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;}
+@font-face {font-family:'STK Bureau Sans';src:url('/fonts/STKBureauSans-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+@font-face {font-family:'STK Bureau Sans';src:url('/fonts/STKBureauSans-Italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;}
+@font-face {font-family:'STK Bureau Serif';src:url('/fonts/STKBureauSerif-Book.woff2') format('woff2');font-weight:350;font-style:normal;font-display:swap;}
+@font-face {font-family:'STK Bureau Serif';src:url('/fonts/STKBureauSerif-BookItalic.woff2') format('woff2');font-weight:350;font-style:italic;font-display:swap;}
+@font-face {font-family:'STK Bureau Serif';src:url('/fonts/STKBureauSerif-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face {font-family:'STK Bureau Sans Mono';src:url('/fonts/STKBureauSansMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}

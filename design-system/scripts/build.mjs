@@ -1,0 +1,41 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const t=JSON.parse(fs.readFileSync(path.join(base,'src/tokens.json'),'utf8'));
+const resolve=ref=>{const [f,s]=ref.split('.');return t.color[f][s];};
+const aliases={bg:'taupe.100',surface:'taupe.50',muted:'taupe.250',ink:'taupe.950','text-muted':'taupe.700','text-subtle':'taupe.500',border:'taupe.300',accent:'pink.400','accent-soft':'pink.100','accent-ink':'pink.600',link:t.accessible.link,focus:t.accessible.focus,'control-border':t.accessible['control-border'],white:'#FFFFFF'};
+const color=Object.fromEntries(Object.entries(aliases).map(([k,v])=>[k,v.startsWith('#')?v:resolve(v)]));
+const tokens={...t,ui:color};
+fs.mkdirSync(path.join(base,'dist'),{recursive:true});
+const write=(name,body)=>fs.writeFileSync(path.join(base,'dist',name),body+'\n');
+write('tokens.mjs','// Generated from src/tokens.json. Do not edit.\nexport const tokens = '+JSON.stringify(tokens,null,2)+';\nexport default tokens;');
+const type=v=>typeof v==='string'?JSON.stringify(v):typeof v==='number'?String(v):Array.isArray(v)?`readonly [${v.map(type).join(', ')}]`:'{'+Object.entries(v).map(([k,v])=>`readonly ${JSON.stringify(k)}: ${type(v)}`).join(';')+'}';
+write('tokens.d.ts','export declare const tokens: '+type(tokens)+';\nexport default tokens;');
+write('tokens.d.mts','export declare const tokens: '+type(tokens)+';\nexport default tokens;');
+const lines=[];
+for(const [f,scale] of Object.entries(t.color))for(const [s,val] of Object.entries(scale))lines.push(`--rasa-${f}-${s}: ${val};`);
+for(const [k,v] of Object.entries(t.semantic))lines.push(`--rasa-${k}: var(--rasa-${v.replace('.','-')});`);
+for(const [k,v] of Object.entries(color))lines.push(`--rasa-${k}: ${v};`);
+for(const [k,v] of Object.entries(t.illustration))lines.push(`--rasa-illustration-${k}: ${v};`);
+for(const [k,v] of Object.entries(t.font))lines.push(`--rasa-font-${k}: ${v};`);
+for(const [k,v] of Object.entries(t.space))lines.push(`--rasa-space-${k}: ${v/16}rem;`);
+for(const [k,v] of Object.entries(t.radius))lines.push(`--rasa-radius-${k}: ${v}px;`);
+for(const k of ['fast','standard','reveal','stagger'])lines.push(`--rasa-motion-${k}: ${t.motion[k]}ms;`);
+for(const [k,v] of Object.entries(t.layout)) lines.push(`--rasa-layout-${k}: ${v}px;`);
+for(const [name,recipe] of Object.entries(t.typography)) {
+  lines.push(`--rasa-type-${name}-weight: ${recipe.weight};`);
+  for(const size of ['desktop','tablet','mobile']) {const values=recipe[size]??recipe.desktop;for(const [k,v] of Object.entries(values))lines.push(`--rasa-type-${name}-${size}-${k}: ${v};`);}
+}
+lines.push(`--rasa-ease: cubic-bezier(${t.motion.ease.join(',')});`);
+write('tokens.css','/* Generated. Values apply without imposing a CSS reset. */\n:root {\n  '+lines.join('\n  ')+'\n}');
+let theme=[];
+for(const [f,scale] of Object.entries(t.color))for(const s of Object.keys(scale))theme.push(`--color-rasa-${f}-${s}: var(--rasa-${f}-${s});`);
+for(const k of Object.keys(color))theme.push(`--color-rasa-${k}: var(--rasa-${k});`);
+for(const k of Object.keys(t.font))theme.push(`--font-rasa-${k}: var(--rasa-font-${k});`);
+for(const k of Object.keys(t.radius))theme.push(`--radius-rasa-${k}: var(--rasa-radius-${k});`);
+theme.push('--font-weight-rasa-book: 350;','--breakpoint-rasa-tablet: 48rem;','--breakpoint-rasa-desktop: 62rem;');
+write('tailwind-v4.css','@import "./tokens.css";\n@theme inline {\n  '+theme.join('\n  ')+'\n}');
+const preset={theme:{extend:{colors:{rasa:{...t.color,...color}},fontFamily:Object.fromEntries(Object.entries(t.font).map(([k,v])=>['rasa-'+k,v.split(',').map(x=>x.trim())])),fontWeight:{'rasa-book':350},borderRadius:Object.fromEntries(Object.entries(t.radius).map(([k,v])=>['rasa-'+k,v+'px'])),screens:{'rasa-tablet':'768px','rasa-desktop':'992px'}}}};
+write('tailwind-v3.cjs','// Generated. Does not replace host content scanning or plugins.\nmodule.exports = '+JSON.stringify(preset,null,2)+';');
+console.log('Generated CSS, Tailwind 3/4, JavaScript, and TypeScript declarations.');

@@ -1,0 +1,71 @@
+base | .v2_type{font-family:var(--_brand--primitives---font--sans);color:var(--_color--semantic-tokens---text--fg);margin-top:0;margin-bottom:0;font-weight:350}
+base | .v2_type.is-serif-xl{font-family:var(--_brand--primitives---font--serif);letter-spacing:-.02em;text-wrap:balance;font-size:clamp(52px,5.56vw,80px);line-height:1.05}
+base | .v2_type.is-sans-xl{letter-spacing:-1.6px;font-size:80px;font-weight:500;line-height:90px}
+base | .v2_type.is-serif-l{font-family:var(--_brand--primitives---font--serif);letter-spacing:-1.2px;font-size:60px;line-height:64px}
+base | .v2_type.is-serif-l.is-cream{color:var(--_color--semantic-tokens---text--fg_inverted)}
+base | .v2_type.is-sans-l{letter-spacing:-.6px;font-size:60px;line-height:64px}
+base | .v2_type.is-serif-m{font-family:var(--_brand--primitives---font--serif);letter-spacing:-.4px;font-size:40px;line-height:44px}
+base | .v2_type.is-serif-m.is-on-dark{color:#fffbf5}
+base | .v2_type.is-sans-m{letter-spacing:-.4px;font-size:40px;line-height:44px}
+base | .v2_type.is-serif-s{font-family:var(--_brand--primitives---font--serif);letter-spacing:0;font-size:28px;font-weight:400;line-height:32px}
+base | .v2_type.is-sans-s{letter-spacing:-.3px;font-size:30px;line-height:32px}
+base | .v2_type.is-body-l{font-size:20px;line-height:24px}
+base | .v2_type.is-body-l.is-muted{color:var(--_color--semantic-tokens---text--fg_muted)}
+base | .v2_type.is-body-m{font-size:16px;line-height:22px}
+base | .v2_type.is-body-s{font-size:14px;line-height:18px}
+base | .v2_type.is-mono-m{font-family:var(--_brand--primitives---font--mono);text-transform:uppercase;font-size:14px;line-height:20px}
+base | .v2_type.is-mono-m.is-cream{color:var(--_brand--primitives---color--cream--100)}
+base | .v2_type.is-mono-s{font-family:var(--_brand--primitives---font--mono);text-transform:uppercase;font-size:12px;line-height:16px}
+base | .v2_type.is-mono-s.is-muted{color:var(--_color--semantic-tokens---text--fg_muted)}
+base | .v2_type.is-mono-index{font-family:var(--_brand--primitives---font--mono);letter-spacing:-1.2px;font-size:24px;line-height:21.6px}
+base | .v2_button{border-top-style:solid;border-top-width:1px;border-top-color:var(--_color--semantic-tokens---taupe--solid);border-right-style:solid;border-right-width:1px;border-right-color:var(--_color--semantic-tokens---taupe--solid);border-bottom-style:solid;border-bottom-width:1px;border-bottom-color:var(--_color--semantic-tokens---taupe--solid);border-left-style:solid;border-left-width:1px;border-left-color:var(--_color--semantic-tokens---taupe--solid);background-color:var(--_color--semantic-tokens---taupe--solid);height:48px;font-family:var(--_brand--primitives---font--sans);color:var(--_color--semantic-tokens---text--fg_inverted);text-transform:none;white-space:nowrap;border-radius:4px;flex-shrink:0;justify-content:center;align-items:center;padding:0 28px;font-size:16px;font-weight:500;line-height:19.2px;text-decoration:none;display:inline-flex}
+base | .v2_button:focus-visible,.v2_button[data-wf-focus-visible]{outline-color:var(--_brand--primitives---color--pink--500);outline-offset:2px;outline-width:2px;outline-style:solid}
+base | .v2_button.is-secondary{background-color:var(--_color--semantic-tokens---bg--bg);color:var(--_color--semantic-tokens---text--fg)}
+base | .v2_button.is-price-w200{width:200px}
+base | .v2_button.is-price-accent{color:#fffbf5;background-color:#181210;border-color:#181210;width:200px}
+base | .v2_button.is-pink{color:#181210;background-color:#e85a91;border-color:#e85a91}
+base | .v2_button.is-nav{border-radius:8px;height:36px;min-height:36px;padding-left:16px;padding-right:16px;font-size:14px;line-height:18px}
+base | .v2_hero{grid-row-gap:48px;background-color:var(--_color--semantic-tokens---bg--bg);flex-direction:column;align-items:center;padding-top:48px;padding-bottom:40px;display:flex}
+base | .v2_hero-inner{grid-column-gap:48px;justify-content:center;align-items:center;width:100%;max-width:1440px;padding-left:56px;padding-right:56px;display:flex}
+base | .v2_hero-content{grid-row-gap:32px;flex-direction:column;flex:0 600px;row-gap:32px;display:flex}
+base | .v2_hero-heading{grid-row-gap:12px;flex-direction:column;display:flex}
+base | .v2_hero-actions{grid-column-gap:12px;grid-row-gap:12px;flex-wrap:wrap;align-items:center;display:flex}
+base | .v2_hero-media{aspect-ratio:1;color:var(--_brand--primitives---color--white);text-align:center;background-color:#0000;flex:0 652px;justify-content:center;align-items:center;display:flex}
+base | .v2_section{grid-row-gap:48px;background-color:var(--_color--semantic-tokens---bg--bg);flex-direction:column;align-items:center;padding:92px 70px;display:flex}
+base | .v2_section.is-wins{padding:140px 0 100px}
+base | .v2_section.is-cta{grid-row-gap:32px;background-color:var(--_color--semantic-tokens---bg--bg_bright);row-gap:32px;padding-top:96px;padding-bottom:96px}
+base | .v2_section.is-cta.is-dark{background-color:#181210;background-image:url(https://cdn.prod.website-files.com/68e69c204ba0666edacc94b1/6ab6a13ce352bcec875a7ba1_v2-cta-bg-dark.webp);background-position:50%;background-repeat:no-repeat;background-size:cover}
+base | .v2_section.is-cta.is-light{background-color:var(--_color--semantic-tokens---bg--subtle);background-image:url(https://cdn.prod.website-files.com/68e69c204ba0666edacc94b1/6ab6a13d69584eb04dc05529_v2-cta-bg-light.webp);background-position:50%;background-repeat:no-repeat;background-size:cover}
+base | .v2_section.is-insights{background-color:var(--_color--semantic-tokens---bg--bg);color:var(--_color--semantic-tokens---text--fg);padding:100px 56px}
+base | .v2_section.is-features{background-color:var(--_brand--primitives---color--cream--100);padding-top:100px;padding-bottom:100px}
+base | .v2_section-title{grid-row-gap:12px;text-align:center;flex-direction:column;align-items:center;max-width:720px;display:flex}
+base | .v2_section-title.is-wide{max-width:744px}
+base | .v2_feature-card{grid-row-gap:16px;background-color:#ede8e0;border-radius:16px;flex-direction:column;padding:24px;display:flex}
+base | .v2_feature-card-1{min-width:0}
+base | .v2_hero-video{width:100%}
+base | .v2_hero-video-el{aspect-ratio:1;object-fit:cover;border-radius:12px;width:100%;height:auto;display:block}
+ screen and (max-width:991px) | .v2_type.is-serif-xl{letter-spacing:-1.1px;font-size:56px;line-height:60px}
+ screen and (max-width:991px) | .v2_type.is-sans-xl{letter-spacing:-1.1px;font-size:56px;line-height:62px}
+ screen and (max-width:991px) | .v2_type.is-serif-l{letter-spacing:-.9px;font-size:44px;line-height:48px}
+ screen and (max-width:991px) | .v2_type.is-sans-l{font-size:44px;line-height:48px}
+ screen and (max-width:991px) | .v2_type.is-serif-m,.v2_type.is-sans-m{font-size:34px;line-height:38px}
+ screen and (max-width:991px) | .v2_type.is-mono-index{display:none}
+ screen and (max-width:991px) | .v2_hero-inner{flex-direction:column;align-items:stretch;row-gap:40px;padding-left:32px;padding-right:32px}
+ screen and (max-width:991px) | .v2_hero-content{flex-basis:auto}
+ screen and (max-width:991px) | .v2_hero-media{flex-basis:auto;width:100%}
+ screen and (max-width:991px) | .v2_section{padding:72px 32px}
+ screen and (max-width:991px) | .v2_section.is-wins{padding-top:96px;padding-bottom:72px}
+ screen and (max-width:991px) | .v2_section.is-cta{padding-top:96px;padding-bottom:96px}
+ screen and (max-width:991px) | .v2_section.is-insights{padding:72px 32px}
+ screen and (max-width:991px) | .v2_section-title{padding-left:24px;padding-right:24px}
+ screen and (max-width:767px) | .v2_type.is-serif-xl,.v2_type.is-sans-xl{letter-spacing:-.8px;font-size:42px;line-height:46px}
+ screen and (max-width:767px) | .v2_type.is-serif-l{letter-spacing:-.7px;font-size:34px;line-height:38px}
+ screen and (max-width:767px) | .v2_type.is-sans-l{font-size:34px;line-height:38px}
+ screen and (max-width:767px) | .v2_type.is-serif-m,.v2_type.is-sans-m{font-size:28px;line-height:32px}
+ screen and (max-width:767px) | .v2_hero-inner,.v2_trust{padding-left:20px;padding-right:20px}
+ screen and (max-width:767px) | .v2_section{padding:56px 20px}
+ screen and (max-width:767px) | .v2_section.is-wins{padding-top:72px;padding-bottom:56px}
+ screen and (max-width:767px) | .v2_section.is-cta{padding-top:72px;padding-bottom:72px}
+ screen and (max-width:767px) | .v2_section.is-insights{padding:56px 20px}
+ screen and (max-width:767px) | .v2_section-title{padding-left:20px;padding-right:20px}
+ screen and (max-width:767px) | .v2_feature-card{padding:20px}

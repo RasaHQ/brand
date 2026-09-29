@@ -1,0 +1,75 @@
+{
+  "retrieved": "2026-09-28",
+  "homepage": "https://rasa.com/",
+  "stylesheet": "https://cdn.prod.website-files.com/68e69c204ba0666edacc94b1/css/rasa-staging-218923.shared.62ba45c93.min.css",
+  "stylesheet_sha256": "68cf8b0bda7a207a4d7a378842b05338f401050153bdb6d0ca6c76f0e204b900",
+  "brand_repo": "https://github.com/rasahq/brand",
+  "brand_repo_tree_sha": "28887dae9d0346f1ae94980389f8311f7c12d5ad",
+  "font_definitions": [
+    {
+      "font-family": "STK Bureau Serif",
+      "font-weight": "400",
+      "font-style": "normal"
+    },
+    {
+      "font-family": "STK Bureau Serif",
+      "font-weight": "400",
+      "font-style": "italic"
+    },
+    {
+      "font-family": "STK Bureau Sans",
+      "font-weight": "400",
+      "font-style": "normal"
+    },
+    {
+      "font-family": "STK Bureau Sans",
+      "font-weight": "400",
+      "font-style": "italic"
+    },
+    {
+      "font-family": "STK Bureau Sans",
+      "font-weight": "500",
+      "font-style": "normal"
+    },
+    {
+      "font-family": "STK Bureau Sans",
+      "font-weight": "500",
+      "font-style": "italic"
+    },
+    {
+      "font-family": "STK Bureau Sans",
+      "font-weight": "600",
+      "font-style": "normal"
+    },
+    {
+      "font-family": "STK Bureau Sans",
+      "font-weight": "600",
+      "font-style": "italic"
+    },
+    {
+      "font-family": "STK Bureau Sans Mono",
+      "font-weight": "400",
+      "font-style": "normal"
+    },
+    {
+      "font-family": "STK Bureau Sans Mono",
+      "font-weight": "400",
+      "font-style": "italic"
+    },
+    {
+      "font-family": "STK Bureau Sans",
+      "font-weight": "350",
+      "font-style": "normal"
+    },
+    {
+      "font-family": "STK Bureau Serif",
+      "font-weight": "350",
+      "font-style": "normal"
+    },
+    {
+      "font-family": "STK Bureau Serif",
+      "font-weight": "350",
+      "font-style": "italic"
+    }
+  ]
+}

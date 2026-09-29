@@ -1,0 +1,30 @@
+---
+import '../../design-system/dist/tokens.css';
+import '../../design-system/src/components.css';
+const events = [
+  {title:'Build with the community', detail:'Hands-on sessions for people building agents.'},
+  {title:'Learn from practitioners', detail:'Share techniques, questions and working examples.'},
+  {title:'Show what you built', detail:'Walk through the behavior and decisions behind your agent.'},
+];
+---
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>Rasa community brand specimen</title></head>
+  <body class="rasa-theme" style="margin:0">
+    <main>
+      <section class="rasa-container rasa-section">
+        <p class="rasa-eyebrow">Community · design example</p>
+        <h1 class="rasa-display">Build agents.<br /><em>Learn together.</em></h1>
+        <p class="rasa-lead">A proposed community layout using the shared Rasa tokens.</p>
+        <div class="rasa-actions"><a class="rasa-button" href="#sessions">Explore sessions</a><a class="rasa-button rasa-button--secondary" href="#about">About the community</a></div>
+      </section>
+      <section class="rasa-container rasa-section" id="sessions" aria-labelledby="sessions-title">
+        <h2 class="rasa-title" id="sessions-title">Make something useful</h2>
+        <div class="rasa-grid" style="margin-top:32px">
+          {events.map(event=><article class="rasa-card"><h3 class="rasa-card-title">{event.title}</h3><p class="rasa-body">{event.detail}</p></article>)}
+        </div>
+      </section>
+      <section class="rasa-container rasa-section" id="about"><h2 class="rasa-title">A place to exchange ideas</h2><p class="rasa-prose">This is a visual integration example, not a live event listing. Replace its content and routes with your site's existing content.</p></section>
+    </main>
+  </body>
+</html>
