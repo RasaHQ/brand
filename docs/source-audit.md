@@ -37,7 +37,7 @@ Every SVG's fills, strokes, radii, opacity values, dimensions and hash are recor
 
 ## Approval items before an official release
 
-- Supply the current approved ink/cream logo masters and any revised clear-space/minimum-size rules.
+- Confirm any revised clear-space/minimum-size rules and print specifications. The 29 September logo update now includes exact live horizontal geometry in ink, plus clearly labeled square/reverse adaptations; see `evidence/logo-sources/manifest.json`.
 - Confirm which licensed font files correspond to Book/Other packages and permitted use across web domains, desktop tools, rendered video and contractors. Do not infer rights from CDN accessibility.
 - Confirm public code licensing and asset/trademark permissions separately.
 - Approve proposed accessibility, motion, long-form and interaction extensions.

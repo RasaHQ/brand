@@ -1,11 +1,11 @@
 # Apply this update to rasahq/brand
 
-This directory is an overlay, not a clone or a published npm package. It contains a replacement README plus new documentation, tokens, examples and original reference artwork. Existing `logos/`, `backgrounds/` and `metaphor-illustrations/` are retained in the target repository.
+This directory is an overlay, not a clone or a published npm package. It contains a replacement README plus new documentation, tokens, examples and original reference artwork. The supplied original `logos/` are included unchanged, alongside new `logos/current/` exports. Retain existing `backgrounds/` and `metaphor-illustrations/` in the target repository.
 
 1. Create a branch in your current brand checkout, preserving any uncommitted work.
 2. Copy this directory's contents into the repository root. Review the README replacement and new paths; do not delete existing assets.
 3. Run `npm run build` and `npm run check` inside `design-system/`. `npm run reference` regenerates the color document, HTML specimen and SVG references using Python 3. Raster previews are convenience exports; rerender SVGs after design changes.
-4. Review `docs/source-audit.md` and `docs/validation.md`, supply approved logo/font deployment decisions, and choose a code license before treating the kit as a public open-source package.
+4. Review `docs/source-audit.md` and `docs/validation.md`, confirm font deployment and print/logo adaptation decisions, and choose a code license before treating the kit as a public open-source package.
 5. Commit through your existing review workflow. The package remains `private: true` to prevent accidental npm publication. Consumers can use a local path or copy the package into their own repository.
 
 No steps require a wholesale Webflow CSS import. Do not place licensed fonts in the public repository as part of this update.

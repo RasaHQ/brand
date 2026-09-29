@@ -6,7 +6,7 @@ The former purple-first palette, Söhne-led typography, fractals, refracted glas
 
 ## Status and sources
 
-This is an implementation-ready **proposed repository update**, extracted on 28 September 2026 from [rasa.com](https://rasa.com/), its current `v2` CSS, and six supplied Figma SVG exports. It is not a newly approved corporate identity manual. Font licensing, final logo masters, print specifications, and proposed component/motion conventions still need the brand owner's sign-off.
+This is an implementation-ready **proposed repository update**, extracted on 28 September 2026 from [rasa.com](https://rasa.com/), its current `v2` CSS, and six supplied Figma SVG exports. It is not a newly approved corporate identity manual. Font licensing, final print specifications, and proposed component/motion conventions still need the brand owner's sign-off.
 
 The guide uses three evidence levels:
 
@@ -39,20 +39,21 @@ The guide uses three evidence levels:
 
 ## Logo usage
 
-Use supplied logo artwork; never redraw the wordmark with a font. The current website shows the horizontal outlined speech-bubble Rasa mark in dark ink. Use the existing black horizontal asset as the interim repository default on cream/light backgrounds and the white variant on dark backgrounds. Keep the original geometry and aspect ratio.
-
-Existing assets:
+Use vector logo artwork; never redraw the wordmark with a font. The live website logo uses **Rasa Ink `#181210` (RGB 24, 18, 16)**, the same taupe-950 token as its text, rather than pure black. Verified again on 29 September 2026.
 
 | Configuration | SVG files | Purpose |
 | --- | --- | --- |
-| Horizontal | `logos/horizontal/svg/` | Default for websites, headers, covers and end cards |
-| Square | `logos/square/svg/` | Constrained placements, subject to legibility |
-| Historical purple | Existing purple variants | Legacy reproduction, not the default for new work |
-| Print/source | `logos/*/print-cmyk/`, `logos/original-ai/` | Existing masters; verify current suitability before print |
+| Current horizontal | `logos/current/horizontal/svg/` | Exact live homepage path geometry; default for websites, covers and end cards |
+| Recolored square | `logos/current/square/svg/` | Supplied square geometry in the new colors; adapted, not a newly observed website master |
+| Transparent PNGs | `logos/current/{horizontal,square}/png/` | 512, 1024 and 2048 pixel widths for slides and raster workflows |
+| Legacy digital | `logos/{horizontal,square}/{svg,png}/` | Original supplied black, white and purple assets, unchanged |
+| Print/source | `logos/*/print-cmyk/`, `logos/original-ai/` | Original supplied files; no new ink CMYK/Pantone specification is implied |
+
+Use `rasa_horizontal_ink.svg` on light surfaces. Cream (`#FFFBF5`) and white reverse variants are provided for dark surfaces as adaptations. `currentColor` SVGs are for inline markup; an SVG loaded through `<img>` does not inherit the page's text color. Preserve aspect ratio: the supplied “square” logo has a portrait viewBox and must not be stretched into a square. See [logo usage and provenance](logos/current/README.md).
 
 Maintain the existing clear-space instruction: at least the width of the speech-bubble line, measured from the bubble's outer edge. This is inherited from the previous guide, not a newly measured identity rule. Give the mark more breathing room when possible. No new minimum logo size is established by these sources: inspect at final output size rather than inventing a pixel minimum.
 
-Do not distort, rotate, crop, recolor to arbitrary accents, place over busy imagery, add effects, or rebuild the mark. An ink-colored master matching `#181210` should be supplied by the brand team rather than silently recoloring the existing black file. Preserve approved partner marks; monochrome customer strips in the exports do not authorize modifying every partner logo.
+Do not distort, rotate, crop, recolor to arbitrary accents, place over busy imagery, add effects, or rebuild the mark. The current horizontal was extracted from the live website; the square and reverse variants were adapted for this update at the owner’s request. Preserve approved partner marks; monochrome customer strips in the exports do not authorize modifying every partner logo.
 
 The previous guide's proportionate “X” pairing convention can remain for genuine joint-brand material until superseded. Do not use it to imply a partnership.
 
@@ -240,7 +241,7 @@ This update overlays the existing repository. It does not remove existing assets
 | `examples/` | Astro, Remotion and Anime.js integration examples |
 | `artwork/` | Editable original diagram starter and visual reference sheet |
 | `evidence/` | Extraction inventory, current CSS excerpts and source provenance |
-| `logos/` | Existing logo masters, retained in the parent brand repository |
+| `logos/` | Current digital logo exports plus unchanged supplied legacy masters |
 | `backgrounds/`, `metaphor-illustrations/` | Existing historical assets; no longer default creative direction |
 
 See `preview.html` for a self-contained visual specimen; it deliberately uses fallback fonts until licensed files are configured. It is a reference page, not a reskinned production community site.

@@ -1,0 +1,66 @@
+{
+  "checked": "2026-09-29",
+  "website": "https://rasa.com/",
+  "stylesheet": "https://cdn.prod.website-files.com/68e69c204ba0666edacc94b1/css/rasa-staging-218923.shared.07fb7c85b.min.css",
+  "ink": "#181210",
+  "rgb": [
+    24,
+    18,
+    16
+  ],
+  "selectors": [
+    ".v2_nav-logo",
+    ".v2_footer-logo"
+  ],
+  "color_chain": [
+    "color: var(--_color--semantic-tokens---text--fg)",
+    "--_color--semantic-tokens---text--fg: var(--_color--global-tokens---primary--taupe--950)",
+    "--_color--global-tokens---primary--taupe--950: #181210"
+  ],
+  "horizontal": "Exact path geometry and viewBox from live homepage navigation inline SVG; differs from legacy supplied horizontal.",
+  "square": "User-supplied square black SVG recolored; preserves original non-square viewBox 0 0 161.97 199.5. Not a newly observed website square master.",
+  "cream_white": "Reverse-color adaptations created for this request, not observed website masters.",
+  "original_archive_sha256": "ccc6bdb10343776f2e31c4fd9b5d7ab546b794cf896af984300b923fa1eef056",
+  "checks": [
+    {
+      "shape": "horizontal",
+      "variant": "ink",
+      "geometry_preserved": true
+    },
+    {
+      "shape": "horizontal",
+      "variant": "cream",
+      "geometry_preserved": true
+    },
+    {
+      "shape": "horizontal",
+      "variant": "white",
+      "geometry_preserved": true
+    },
+    {
+      "shape": "horizontal",
+      "variant": "currentColor",
+      "geometry_preserved": true
+    },
+    {
+      "shape": "square",
+      "variant": "ink",
+      "geometry_preserved": true
+    },
+    {
+      "shape": "square",
+      "variant": "cream",
+      "geometry_preserved": true
+    },
+    {
+      "shape": "square",
+      "variant": "white",
+      "geometry_preserved": true
+    },
+    {
+      "shape": "square",
+      "variant": "currentColor",
+      "geometry_preserved": true
+    }
+  ]
+}
