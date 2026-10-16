@@ -2,7 +2,7 @@
 
 Primary brand families: STK Bureau Serif (headlines), STK Bureau Sans (body/UI), STK Bureau Sans Mono (labels/code). Supplied fallback families: Newsreader, Inter, JetBrains Mono. The deck explicitly uses those fallbacks; use them for portable presentations and web builds without provisioned Bureau licenses.
 
-`assets/fonts/fallback/` contains the supplied TTF files and each family's OFL license. Copy the licenses with fonts. Optional `design-system/src/fallback-fonts.css` expects those files at `/brand/fonts/fallback/{family}/`; adjust URLs for your app base path. Simply naming a font in a stack does not load it. The static component specimen intentionally remains usable with system fallbacks.
+`assets/fonts/fallback/` contains the supplied TTF files and each family's OFL license. Copy the licenses with fonts. Optional `design-system/src/fallback-fonts.css` expects those files at `/brand/fonts/fallback/{family}/`; adjust URLs for your app base path. Simply naming a font in a stack does not load it. The component recipes remain usable with system fallbacks.
 
 `design-system/src/fonts.css` is opt-in for Bureau files at `/fonts/`. All referenced filenames are present in the supplied licensed archive, but those binaries are not distributed in this public-repo candidate. Provision them from `03 Fonts` in a deployment permitted by your license. Do not hotlink the Rasa website or assume possession grants unrestricted redistribution.
 

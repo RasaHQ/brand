@@ -26,7 +26,7 @@ Read `README.md` for the overall system and `design-system/src/tokens.json` for 
 | Task | Read |
 | --- | --- |
 | Newsletter / HubSpot | `docs/email.md`, `scripts/build-email.py`, `examples/email/` |
-| Logo / icon / background / print | `docs/assets.md`; query `scripts/brand.py find`; do not load SVG masters into context |
+| Logo / icon / background / print | `ASSETS.md`, the relevant `docs/asset-*.md`, and `docs/assets.md`; query `scripts/brand.py find`; do not load SVG masters into context |
 | Astro or community reskin | `docs/web.md`, `docs/community-migration.md`, `docs/components.md`, `examples/astro/BrandPage.astro` |
 | Tailwind/CSS components | `docs/components.md`, host package manifest, appropriate adapter in `design-system/dist/` |
 | Fonts | `docs/fonts.md`, optional `design-system/src/fonts.css` |
@@ -90,6 +90,7 @@ When changing the brand system itself, run from `BRAND_ROOT`:
 npm --prefix design-system run build
 npm --prefix design-system run check
 npm --prefix design-system run reference
+python3 scripts/build-catalog-docs.py
 python3 scripts/build-email.py
 python3 scripts/sync-agent-skills.py
 python3 scripts/validate-brand.py

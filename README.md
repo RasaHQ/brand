@@ -7,7 +7,7 @@
 
 Build Rasa community pages, newsletters, presentations, and artwork from the supplied brand assets. This checkout reconciles the 16 October 2026 handoff with the existing September implementation. It includes source masters, web derivatives, semantic tokens, examples, and a shared workflow for Codex and Claude Code.
 
-**Start visually:** open [asset-gallery.html](asset-gallery.html) for logos, icons, and backgrounds; [preview.html](preview.html) for the component specimen. **Start as an agent:** read [SKILL.md](SKILL.md), then use the catalog CLI rather than loading large SVG masters into context.
+**Start as an agent:** read [SKILL.md](SKILL.md), use [asset selection](ASSETS.md) to choose exact IDs, and consult the [component implementation reference](COMPONENTS.md) for code recipes. All reference pages render directly in GitHub; no HTML viewer is required.
 
 ## Quick start
 
@@ -29,7 +29,7 @@ The token package is local/private; do not assume it exists on npm. Install from
 | --- | --- |
 | Astro and Tailwind 4 or 3 | [Web integration](docs/web.md), [community migration](docs/community-migration.md) |
 | Newsletter or HubSpot content module | [Email recipe](docs/email.md), `examples/email/` |
-| Logo, icon, background, or print file | [Asset rules](docs/assets.md), `assets/catalog.json`, gallery |
+| Logo, icon, background, or print file | [Asset rules](docs/assets.md), `assets/catalog.json`, [Markdown index](ASSETS.md) |
 | Typography | [Fonts](docs/fonts.md), optional licensed and fallback CSS |
 | Color or accessibility | [Colors](docs/colors.md), `evidence/contrast.json` |
 | Slides or signatures | `assets/reference/presentations/`, `assets/reference/email/` |
@@ -59,7 +59,8 @@ The Templates and Social/Profile ZIPs are empty. The email file supplies signatu
 npm --prefix design-system run build
 npm --prefix design-system run check
 npm --prefix design-system run reference
-python3 scripts/build-assets.py           # Pillow required; regenerates WebP + gallery
+python3 scripts/build-assets.py           # Pillow required; regenerates WebP + Markdown references
+python3 scripts/build-catalog-docs.py    # regenerate Markdown only; no Pillow required
 python3 scripts/build-email.py           # deterministic inline HTML from shared tokens
 python3 scripts/sync-agent-skills.py
 python3 scripts/validate-brand.py

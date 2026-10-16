@@ -25,7 +25,7 @@ There are 60 pattern/tone combinations: four primary families and sixteen additi
 | Astro hero or CTA | `assets/patterns/{primary,additional}/web/*.webp` | Decorative image, solid text panel, no inline master |
 | Newsletter | Supplied PNG hosted at an absolute HTTPS URL | Optional decoration; message readable with images off |
 | Print/layout editing | Supplied SVG or PNG as production requires | Inspect raster/vector behavior in the chosen output workflow |
-| Background discovery | `asset-gallery.html` | Compare tones visually before selection |
+| Background discovery | [Asset selection](../ASSETS.md) | Compare tones visually before selection |
 
 The SVG masters total roughly 111 MB and contain extensive paths. Do not inline them into a page, use them as interactive DOM, or paste them into agent context. The generator creates bounded WebP derivatives from supplied PNGs; it never changes the masters. Do not tile unless the seams were checked: these are finite compositions, not certified seamless textures.
 

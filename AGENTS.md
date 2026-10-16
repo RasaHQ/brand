@@ -5,6 +5,7 @@ Use the root `SKILL.md` for Rasa implementation and review work. Read only the t
 ## Source of truth
 
 - `design-system/src/tokens.json`: shared web token values, reconciled with supplied JSON.
+- `ASSETS.md`, `docs/asset-*.md`: GitHub-readable selection rules and exact IDs.
 - `assets/catalog.json`: current/reference/archived asset metadata and exact IDs.
 - `evidence/source-coverage.json`: every supplied file disposition.
 - `docs/assets.md`, `docs/web.md`, `docs/email.md`: production recipes.
@@ -23,6 +24,7 @@ Do not commit licensed font binaries, private Figma boards or invented brand/cus
 npm --prefix design-system run build
 npm --prefix design-system run check
 npm --prefix design-system run reference
+python3 scripts/build-catalog-docs.py
 python3 scripts/build-email.py
 python3 scripts/sync-agent-skills.py
 python3 scripts/validate-brand.py

@@ -1,6 +1,6 @@
 # Components and interaction
 
-Use the visual specimen alongside this document. The package provides presentation styles, not a full interactive component library.
+Use the [component implementation reference](../COMPONENTS.md) alongside this document. The package provides presentation styles, not a full interactive component library.
 
 ## Page shell and navigation
 
