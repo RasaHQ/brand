@@ -1,6 +1,6 @@
 # Color reference
 
-Primary scales and semantic aliases below are extracted from the live v2 stylesheet. Illustration colors are observed separately. The package retains exact source HEX values rather than generating interpolated shades.
+Web primary scales and semantic aliases match the supplied October JSON. Secondary ramps are supplied brand colors for supporting use. Conflicting PDF neutral ramps are recorded in docs/source-audit.md. Illustration colors retain earlier observed values. The package retains exact source HEX values rather than generating interpolated shades.
 
 ## Taupe
 
@@ -35,7 +35,103 @@ Primary scales and semantic aliases below are extracted from the live v2 stylesh
 | 900 | `#3A1523` | 58, 21, 35 |
 | 950 | `#220E16` | 34, 14, 22 |
 
-## Live semantic mappings
+## Seafoam
+
+| Shade | HEX | RGB |
+| --- | --- | --- |
+| 50 | `#F7FCFB` | 247, 252, 251 |
+| 100 | `#EBF8F5` | 235, 248, 245 |
+| 200 | `#C8EBE4` | 200, 235, 228 |
+| 300 | `#9FDBD0` | 159, 219, 208 |
+| 400 | `#7FCFC0` | 127, 207, 192 |
+| 500 | `#4EBDA9` | 78, 189, 169 |
+| 600 | `#379181` | 55, 145, 129 |
+| 700 | `#296F62` | 41, 111, 98 |
+| 800 | `#1E5148` | 30, 81, 72 |
+| 900 | `#163933` | 22, 57, 51 |
+| 950 | `#0E221E` | 14, 34, 30 |
+
+## Coral
+
+| Shade | HEX | RGB |
+| --- | --- | --- |
+| 50 | `#FFF7F4` | 255, 247, 244 |
+| 100 | `#FFEDE4` | 255, 237, 228 |
+| 200 | `#FFCDB4` | 255, 205, 180 |
+| 300 | `#FFB28C` | 255, 178, 140 |
+| 400 | `#FF894F` | 255, 137, 79 |
+| 500 | `#ED631E` | 237, 99, 30 |
+| 600 | `#AA4C1E` | 170, 76, 30 |
+| 700 | `#7A3D1E` | 122, 61, 30 |
+| 800 | `#542E1B` | 84, 46, 27 |
+| 900 | `#3A2115` | 58, 33, 21 |
+| 950 | `#22150E` | 34, 21, 14 |
+
+## Periwinkle
+
+| Shade | HEX | RGB |
+| --- | --- | --- |
+| 50 | `#F4F6FF` | 244, 246, 255 |
+| 100 | `#E4EAFF` | 228, 234, 255 |
+| 200 | `#BBC9FF` | 187, 201, 255 |
+| 300 | `#87A0FF` | 135, 160, 255 |
+| 400 | `#4F73FF` | 79, 115, 255 |
+| 500 | `#1E49ED` | 30, 73, 237 |
+| 600 | `#1E3BAA` | 30, 59, 170 |
+| 700 | `#1E317A` | 30, 49, 122 |
+| 800 | `#1B2754` | 27, 39, 84 |
+| 900 | `#151D3A` | 21, 29, 58 |
+| 950 | `#0E1222` | 14, 18, 34 |
+
+## Sage
+
+| Shade | HEX | RGB |
+| --- | --- | --- |
+| 50 | `#F9FAF9` | 249, 250, 249 |
+| 100 | `#F1F3F0` | 241, 243, 240 |
+| 200 | `#D1D8CE` | 209, 216, 206 |
+| 300 | `#C0CABC` | 192, 202, 188 |
+| 400 | `#A3B19D` | 163, 177, 157 |
+| 500 | `#809378` | 128, 147, 120 |
+| 600 | `#5F6F59` | 95, 111, 89 |
+| 700 | `#495543` | 73, 85, 67 |
+| 800 | `#353E31` | 53, 62, 49 |
+| 900 | `#262C23` | 38, 44, 35 |
+| 950 | `#171B15` | 23, 27, 21 |
+
+## Orchid
+
+| Shade | HEX | RGB |
+| --- | --- | --- |
+| 50 | `#FCF6FB` | 252, 246, 251 |
+| 100 | `#F5DDF0` | 245, 221, 240 |
+| 200 | `#EEC5E5` | 238, 197, 229 |
+| 300 | `#E4A2D6` | 228, 162, 214 |
+| 400 | `#D777C3` | 215, 119, 195 |
+| 500 | `#C843AC` | 200, 67, 172 |
+| 600 | `#9A2D84` | 154, 45, 132 |
+| 700 | `#752364` | 117, 35, 100 |
+| 800 | `#541B48` | 84, 27, 72 |
+| 900 | `#3A1532` | 58, 21, 50 |
+| 950 | `#220E1E` | 34, 14, 30 |
+
+## Gold
+
+| Shade | HEX | RGB |
+| --- | --- | --- |
+| 50 | `#FEFDF4` | 254, 253, 244 |
+| 100 | `#FDFBE5` | 253, 251, 229 |
+| 200 | `#FBF3B8` | 251, 243, 184 |
+| 300 | `#F8EC8E` | 248, 236, 142 |
+| 400 | `#F6E668` | 246, 230, 104 |
+| 500 | `#EDD61E` | 237, 214, 30 |
+| 600 | `#AA9A1E` | 170, 154, 30 |
+| 700 | `#7A6F1E` | 122, 111, 30 |
+| 800 | `#544E1B` | 84, 78, 27 |
+| 900 | `#3A3615` | 58, 54, 21 |
+| 950 | `#221F0E` | 34, 31, 14 |
+
+## Supplied semantic mappings
 
 Normalized names preserve the observed group and role. Friendly UI aliases in the README sit above these mappings.
 
@@ -72,6 +168,13 @@ Normalized names preserve the observed group and role. Friendly UI aliases in th
 | `taupe-muted` | `taupe.200` |
 | `taupe-emphasized` | `taupe.300` |
 | `taupe-focusring` | `taupe.400` |
+| `accent-contrast` | `pink.950` |
+| `accent-fg` | `pink.400` |
+| `accent-subtle` | `pink.100` |
+| `accent-muted` | `pink.200` |
+| `accent-emphasized` | `pink.300` |
+| `accent-solid` | `pink.600` |
+| `accent-focusring` | `pink.400` |
 
 ## Illustration-only colors
 
@@ -121,4 +224,4 @@ Calculated from sRGB relative luminance with `(Llighter + 0.05) / (Ldarker + 0.0
 
 Use dark pink for text links and focus rings on light backgrounds. Use ink on bright pink. On inverse sections use pale pink links and focus indicators. Light taupe borders are decorative separators; use a stronger border for essential input boundaries. Never claim that all palette combinations are accessible.
 
-New print CMYK/Pantone values are intentionally not invented. Work from supplied production profiles and approved proofs.
+Supplied print CMYK recipes: Ink 71/68/67/84; Cream 0/2/4/2; Pink 0/78/13/0. No spot-color or printer-profile equivalence is implied. See docs/assets.md.

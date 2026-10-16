@@ -1,3 +1,7 @@
+# Validation
+
+October results are in `evidence/validation-results.json` and the audit. The following is retained historical evidence from the previous implementation; it is not a current acceptance claim.
+
 # Validation report
 
 Completed 28 September 2026.

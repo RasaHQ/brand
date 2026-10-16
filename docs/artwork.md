@@ -64,3 +64,7 @@ For exact product stories, implement the real controls and connectors in SVG/HTM
 - Does a still frame communicate the core meaning without motion?
 
 `artwork/diagram-starter.svg` is an original editable starter using the extracted colors. It is not a product screenshot or approved logo asset. The color reference sheet uses fallback fonts intentionally.
+
+## Supplied October backgrounds
+
+Use `docs/assets.md` and the catalog for the supplied primary Soundwave/Chladni and additional pattern families. These are distinct from retired purple/fractal assets. Prefer WebP derivatives for pages. Keep busy dot fields away from text, as the supplied deck instructs. Existing diagram recipes above remain adaptations, not the only available brand artwork.

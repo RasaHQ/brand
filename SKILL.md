@@ -1,6 +1,6 @@
 ---
 name: rasa-brand
-description: Apply the Rasa brand system when building or reskinning websites, Astro components, Tailwind interfaces, Remotion videos, Anime.js motion, diagrams or artwork. Use for Rasa brand reviews and token maintenance. Read the shared tokens and relevant recipes, implement the requested change, and verify visual and functional behavior.
+description: Apply the Rasa brand system when building or reskinning websites, Astro components, Tailwind interfaces, Remotion videos, Anime.js motion, diagrams, newsletters, email templates, backgrounds, or artwork. Use for Rasa brand reviews and token maintenance. Read the shared tokens and relevant recipes, implement the requested change, and verify visual and functional behavior.
 ---
 
 # Rasa brand implementation
@@ -19,11 +19,15 @@ Follow the user's task and applicable project instructions. This skill does not 
 
 ## Load only the relevant references
 
+Read `docs/source-audit.md` when source authority is in doubt. October supplied masters take precedence over historical `logos/current/` adaptations; JSON semantic roles govern web colors while conflicting PDF neutral ramps remain unresolved.
+
 Read `README.md` for the overall system and `design-system/src/tokens.json` for concrete values. Read the relevant references below, not every file in the repository.
 
 | Task | Read |
 | --- | --- |
-| Astro or community reskin | `docs/community-migration.md`, `docs/components.md`, `examples/astro/BrandPage.astro` |
+| Newsletter / HubSpot | `docs/email.md`, `scripts/build-email.py`, `examples/email/` |
+| Logo / icon / background / print | `docs/assets.md`; query `scripts/brand.py find`; do not load SVG masters into context |
+| Astro or community reskin | `docs/web.md`, `docs/community-migration.md`, `docs/components.md`, `examples/astro/BrandPage.astro` |
 | Tailwind/CSS components | `docs/components.md`, host package manifest, appropriate adapter in `design-system/dist/` |
 | Fonts | `docs/fonts.md`, optional `design-system/src/fonts.css` |
 | Color/contrast | `docs/colors.md`, `evidence/contrast.json` |
@@ -56,11 +60,13 @@ Use semantic tokens for surfaces, text, actions and borders. Use primitive scale
 Preserve these decisions:
 
 - Warm cream/taupe surfaces, dark ink and selective pink; no revival of purple-first gradients, fractals or refracted-glass backgrounds.
-- STK Bureau Serif for editorial headings, Sans for body/UI, Sans Mono for labels. Book is weight 350; “Other” is not a measured CSS family. Use only provisioned licensed fonts. Show and report fallbacks when files are absent; do not fetch binaries from the live website.
-- Use supplied logo masters. Do not regenerate, redraw or silently recolor the logo. Use a clearly labeled placeholder in a review draft if no approved asset is available.
+- STK Bureau Serif for editorial headings, Sans for body/UI, Sans Mono for labels. Book is weight 350; “Other” is not a measured CSS family. Use Newsreader/Inter/JetBrains Mono fallbacks when Bureau is not provisioned. Book TTF metadata is 300; the retained web CSS mapping is intentionally 350. Use only provisioned licensed fonts. Show and report fallbacks when files are absent; do not fetch binaries from the live website.
+- Query `python3 scripts/brand.py find QUERY --category logo|icon|pattern --format svg|png|webp` (choose one value per filter). Export exact IDs into the consumer with `scripts/brand.py export`. Prefer current assets; keep reference/archived files out of app defaults. Use WebP pattern derivatives, not multi-megabyte inline masters. Use supplied logo masters. Do not regenerate, redraw or silently recolor the logo. Use a clearly labeled placeholder in a review draft if no approved asset is available.
 - Use dark pink for normal text links on cream; bright pink is suitable for decoration and qualifying large text, not normal text. Use ink labels on bright pink buttons.
 - Keep illustration accent colors scoped to meaning. Pair status color with a word or icon. Do not invent customer results, compliance claims or product controls.
 - Preserve mobile hierarchy, readable prose, keyboard focus and reduced-motion behavior. Keep important content in accessible markup.
+
+For email, generate inline styles from tokens, preserve the 560px module constraint, use web-safe fallback fonts and absolute hosted PNG URLs, and retain the actual platform-managed footer. Treat newsletter recipes as adaptations, not supplied approved templates. Test through the sending platform before claiming inbox compatibility.
 
 For a missing design rule, implement a restrained local extension using existing tokens and record it as proposed. Do not silently promote a page-specific choice to a global brand rule. Do not change primary tokens merely to make one screen easier to style.
 
@@ -84,7 +90,9 @@ When changing the brand system itself, run from `BRAND_ROOT`:
 npm --prefix design-system run build
 npm --prefix design-system run check
 npm --prefix design-system run reference
+python3 scripts/build-email.py
 python3 scripts/sync-agent-skills.py
+python3 scripts/validate-brand.py
 python3 scripts/sync-agent-skills.py --check
 ```
 

@@ -68,3 +68,7 @@ Checked 28 September 2026:
 - [Codex AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md): repository instruction files.
 - [Claude Code skills](https://code.claude.com/docs/en/skills): project discovery under `.claude/skills/` and explicit skill invocation.
 - [Claude Code memory](https://code.claude.com/docs/en/memory): shared instructions through the `@AGENTS.md` import.
+
+## Asset and email tasks
+
+Use `scripts/brand.py find` for compact JSON results and `export` for selected assets. Read `docs/assets.md` for provenance and role constraints. For email use `docs/email.md`, regenerate inline HTML with `scripts/build-email.py`, and test the target platform. Source updates must pass `scripts/validate-brand.py`; never infer approval from an asset being present in an archive.

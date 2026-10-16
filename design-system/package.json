@@ -1,8 +1,8 @@
 {
   "name": "@rasahq/brand-tokens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Proposed Rasa brand system extracted 2026-09-28; local package, not an npm release.",
+  "description": "Rasa brand tokens reconciled with October 2026 exports; local package.",
   "type": "module",
   "main": "./dist/tokens.mjs",
   "types": "./dist/tokens.d.ts",
@@ -15,12 +15,14 @@
     "./components.css": "./src/components.css",
     "./tailwind-v4.css": "./dist/tailwind-v4.css",
     "./tailwind-v3": "./dist/tailwind-v3.cjs",
-    "./fonts.css": "./src/fonts.css"
+    "./fonts.css": "./src/fonts.css",
+    "./fallback-fonts.css": "./src/fallback-fonts.css"
   },
   "files": [
     "dist",
     "src/components.css",
-    "src/fonts.css"
+    "src/fonts.css",
+    "src/fallback-fonts.css"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",

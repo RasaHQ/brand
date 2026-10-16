@@ -14,7 +14,7 @@ This is a migration plan and reusable code, not a claim that rasa.community has 
 | Söhne body | STK Bureau Sans Book 350 | Reading adaptation may use longer line height |
 | Söhne Mono | STK Bureau Sans Mono Regular 400 | Labels and technical detail |
 | Fractal/gradient hero | Short editorial title + useful image/diagram | Recompose, do not merely recolor |
-| Purple logo default | `logos/current/horizontal/svg/rasa_horizontal_ink.svg` on cream | Exact live website geometry and ink color; preserve aspect ratio |
+| Purple logo default | `assets/logos/digital/rasa-logo-horizontal-ink.svg` on cream | Supplied October master and ink color; preserve aspect ratio |
 | Old orange/aqua emphasis | Pink plus scoped diagram accents | Preserve useful chart distinctions instead of remapping blindly |
 
 ## Implementation sequence

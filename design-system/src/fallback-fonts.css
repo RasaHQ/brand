@@ -1,0 +1,6 @@
+/* Optional OFL fallback faces. Copy assets/fonts/fallback/ to public/brand/fonts/fallback/. */
+@font-face {font-family:"Inter";src:url("/brand/fonts/fallback/Inter/Inter-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}
+@font-face {font-family:"Inter";src:url("/brand/fonts/fallback/Inter/Inter-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap;}
+@font-face {font-family:"Newsreader";src:url("/brand/fonts/fallback/Newsreader/Newsreader-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}
+@font-face {font-family:"Newsreader";src:url("/brand/fonts/fallback/Newsreader/Newsreader-Italic.ttf") format("truetype");font-weight:400;font-style:italic;font-display:swap;}
+@font-face {font-family:"JetBrains Mono";src:url("/brand/fonts/fallback/JetBrains Mono/JetBrainsMono-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}

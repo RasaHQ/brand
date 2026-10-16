@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-16",
+  "baseCommit": "d6de4b1",
+  "passed": [
+    "token generation",
+    "38 supplied semantic mappings and all primary web/secondary scales reconciled",
+    "10 intended accessible color pairs",
+    "catalog hashes and source coverage",
+    "SVG active-content/external-reference checks for current assets",
+    "agent copy synchronization",
+    "independent agent asset-selection/export task",
+    "OFL license auto-export",
+    "consumer file overwrite protection",
+    "Astro 7.4.0/Tailwind 4.3.3 consuming build",
+    "packaged Astro smoke fixture build",
+    "desktop/mobile Chromium preview checks"
+  ],
+  "browser": [
+    {
+      "file": "asset-gallery.html",
+      "width": 1440,
+      "overflow": false,
+      "failures": []
+    },
+    {
+      "file": "preview.html",
+      "width": 1440,
+      "overflow": false,
+      "failures": []
+    },
+    {
+      "file": "examples/email/newsletter.html",
+      "width": 1440,
+      "overflow": false,
+      "failures": []
+    },
+    {
+      "file": "consumer.html",
+      "width": 1440,
+      "overflow": false,
+      "failures": []
+    },
+    {
+      "file": "asset-gallery.html",
+      "width": 375,
+      "overflow": false,
+      "failures": []
+    },
+    {
+      "file": "preview.html",
+      "width": 375,
+      "overflow": false,
+      "failures": []
+    },
+    {
+      "file": "examples/email/newsletter.html",
+      "width": 375,
+      "overflow": false,
+      "failures": []
+    },
+    {
+      "file": "consumer.html",
+      "width": 375,
+      "overflow": false,
+      "failures": []
+    }
+  ],
+  "versions": {
+    "astro": "7.4.0",
+    "tailwindcss": "4.3.3",
+    "node": "24.19.0",
+    "pillow": "12.3.0"
+  },
+  "limitations": [
+    "No production rasa.community repository supplied or changed.",
+    "Tailwind 3 preset generated and structurally inspected; no Tailwind 3 consuming build in this run.",
+    "Email inspected in browser, not sent through HubSpot or tested in Outlook/Gmail/Apple Mail.",
+    "Bureau typography not rendered; system fallback specimen used.",
+    "Supplied presentation and signature source files preserved; no new slide/document layout certification.",
+    "Neutral PDF/JSON source conflict unresolved; established JSON-based web values retained."
+  ]
+}

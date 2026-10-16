@@ -30,7 +30,7 @@ Inputs need persistent labels, visible boundaries and validation messages linked
 
 ## Icons and diagrams
 
-The old guide named Phosphor. The new references show simple line icons, but outlined SVG paths do not prove a library or stroke-weight specification. Retain Phosphor as a compatibility option pending brand confirmation. Use one icon family/weight within a composition. Suggested starting point: 20–24px icons with roughly 1.5–2px strokes at that size; these are proposed values, not extracted universal rules.
+Use the supplied current icons in `assets/icons/svg/` and consult `docs/assets.md`. The source describes 24×24 pixel-fitted artwork; preserve its geometry and color. The earlier Phosphor reference is historical compatibility guidance, not the default for new work. Avoid mixing icon families within a composition.
 
 Use connectors only for actual relationships. Label branches and keep routing clean. In animated diagrams, respect dependency order; a passed check cannot appear before its evaluation. Decorative SVGs use `aria-hidden`; informative diagrams need a title/description and a text equivalent.
 

@@ -7,3 +7,7 @@ Install the matching dependencies in the consuming application. The brand packag
 - **Remotion 4:** install `react`, `react-dom`, `remotion`, `@remotion/cli` and optionally `@remotion/fonts`, keeping all Remotion packages on the same exact version. Run `npx remotion studio examples/remotion/index.tsx` from this overlay root. A render command is `npx remotion render examples/remotion/index.tsx RasaBrandScene out/brand.mp4`. The sample uses fallback fonts; production requires the optional licensed-font import and provisioned files.
 
 Example imports point to `../../design-system/dist/tokens.mjs` to keep the review overlay self-contained. After installation as a local package, use `@rasahq/brand-tokens`. The Remotion scene is intentionally not a product demo: it uses clearly illustrative copy and does not fabricate a Rasa logo.
+
+- **Astro/Tailwind smoke build:** `astro-smoke/` has a pinned consumer fixture.
+- **Supplied artwork hero:** `astro/BrandHero.astro`; see `docs/web.md`.
+- **Newsletter / HubSpot:** `email/`; see `docs/email.md`.

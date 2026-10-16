@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  action: string;
+  base?: string;
+}
+const { title, description, href, action, base = '/brand/' } = Astro.props;
+const asset = (path: string) => `${base.replace(/\/$/, '')}/${path}`;
+---
+<section class="brand-hero rasa-theme">
+  <div class="brand-hero__copy">
+    <img class="brand-hero__logo" src={asset('logos/digital/rasa-logo-horizontal-ink.svg')} alt="Rasa" width="144" />
+    <p class="rasa-eyebrow">Rasa community</p>
+    <h1 class="rasa-display">{title}</h1>
+    <p class="rasa-prose">{description}</p>
+    <a class="rasa-button" href={href}>{action}</a>
+  </div>
+  <img class="brand-hero__art" src={asset('patterns/primary/web/soundwave-01-light.webp')} alt="" width="1000" height="1000" />
+</section>
+<style>
+  .brand-hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); background:var(--rasa-bg); }
+  .brand-hero__copy { padding:clamp(24px,5vw,72px); align-self:center; min-width:0; display:flex; flex-direction:column; align-items:flex-start; gap:20px; }
+  .brand-hero__logo { height:auto; margin-bottom:12px; max-width:100%; }
+  .brand-hero__art { display:block; width:100%; height:100%; min-height:320px; object-fit:cover; }
+  h1 { overflow-wrap:break-word; }
+  h1, p { margin:0; }
+  @media(max-width:767px) { .brand-hero { grid-template-columns:1fr; } .brand-hero__art { height:240px; min-height:0; } }
+</style>
