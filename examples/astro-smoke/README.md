@@ -5,7 +5,7 @@ This fixture validates the actual example with Astro 7.4.0 and Tailwind 4.3.3 (l
 From the brand repository root:
 
 ```sh
-python3 scripts/brand.py export --id logos.digital.rasa-logo-horizontal-ink.svg --id patterns.primary.web.soundwave-01-light.webp --target /tmp/rasa-brand-smoke-public
+python3 scripts/brand.py export --id brand-2026.Logos.rasa-logo-full-taupe-dark.svg --id brand-2026.Textures.web.rasa-soundwave-01-subtle-light.webp --target /tmp/rasa-brand-smoke-public
 # Copy that selected brand folder into examples/astro-smoke/public/brand before visual inspection.
 npm ci --prefix examples/astro-smoke
 npm run build --prefix examples/astro-smoke

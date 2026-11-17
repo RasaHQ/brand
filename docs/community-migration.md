@@ -6,16 +6,16 @@ This is a migration plan and reusable code, not a claim that rasa.community has 
 
 | Previous default | New default | Notes |
 | --- | --- | --- |
-| Purple background/CTA `#5A17EE` | Cream page, ink CTA | Do not globally replace every purple pixel with pink |
-| Navy `#080327` | Ink `#181210` | Use for text, CTA, selective dark section |
-| Blue-tinted light gray `#EFF1FF` | Cream `#FAF6F0` | Warm page foundation |
-| Light blue-gray cards `#DFE8FF` | Taupe `#EDE8E0` or bright cream | Distinguish card and panel roles |
-| Söhne heading | STK Bureau Serif Book 350 | Editorial/page headings |
-| Söhne body | STK Bureau Sans Book 350 | Reading adaptation may use longer line height |
+| Purple background/CTA `#5A17EE` | Taupe Light page, Taupe Dark CTA | Do not globally replace every purple pixel with pink |
+| Navy `#080327` | Taupe Dark `#181210` | Use for text, CTA, selective dark section |
+| Blue-tinted light gray `#EFF1FF` | Taupe Light `#FAF6F0` | Warm page foundation |
+| Light blue-gray cards `#DFE8FF` | Taupe 50 `#FFFBF5` card, 1px Taupe 300 outline | Distinguish card and panel roles |
+| Söhne heading | STK Bureau Serif Book 300 | Editorial/page headings |
+| Söhne body | STK Bureau Sans Book 300 | Reading adaptation may use longer line height |
 | Söhne Mono | STK Bureau Sans Mono Regular 400 | Labels and technical detail |
-| Fractal/gradient hero | Short editorial title + useful image/diagram | Recompose, do not merely recolor |
-| Purple logo default | `assets/logos/digital/rasa-logo-horizontal-ink.svg` on cream | Supplied October master and ink color; preserve aspect ratio |
-| Old orange/aqua emphasis | Pink plus scoped diagram accents | Preserve useful chart distinctions instead of remapping blindly |
+| Fractal/gradient hero | Short serif statement + one texture or diagram | Recompose, do not merely recolor |
+| Purple logo default | `assets/brand-2026/Logos/rasa-logo-full-taupe-dark.svg` on Taupe Light | Logo Full; preserve aspect ratio |
+| Old orange/aqua emphasis | Rasa Pink for the one focus; secondary hues for categories in deck order | Preserve useful chart distinctions instead of remapping blindly |
 
 ## Implementation sequence
 
@@ -24,13 +24,13 @@ This is a migration plan and reusable code, not a claim that rasa.community has 
 3. Migrate shared navigation, footer, container, titles, links, CTAs and cards first. Replace global values by semantic purpose, not search-and-replace alone. Remove conflicting legacy rules as each component is migrated.
 4. Update homepage, events list, event detail, learning/article pages and community join flows. Keep route structure, SEO metadata, canonical URLs, forms, analytics and content access behavior intact.
 5. Restyle long-form markdown/MDX separately: body width/line height, heading spacing, underlined links, code blocks, tables and callouts. Avoid tiny mono text for normal prose.
-6. Update OG images, event covers, thumbnails, newsletter assets and Remotion templates with the same tokens. Third-party hosted widgets may need their own supported theme API; parent CSS does not cross iframe boundaries.
+6. Replace OG images, event covers, thumbnails and newsletter images with community cards (`skills/rasa-community-cards/`, one mode per series) and update Remotion templates with the same tokens. Third-party hosted widgets may need their own supported theme API; parent CSS does not cross iframe boundaries.
 7. Test a representative page for each template and interaction. Validate narrow viewport overflow, long event titles, keyboard operation, mobile navigation, RSVP forms, empty/loading/error states and reduced motion. Re-run visual checks with actual licensed fonts.
 8. Release through the site's existing deployment process. Review visual diffs and retire legacy imports after migration. Keep historic brand assets clearly labeled rather than deleting them without a usage check.
 
 ## Community-specific recipes — proposed
 
-Event cards: small mono date/category, sans event title or restrained serif heading, useful location/time information, one clear RSVP link. Never reduce essential time-zone details to decorative labels.
+Event cards: Mono uppercase date/category eyebrow in `fg-muted`, sans event title or restrained serif heading, useful location/time information, one clear RSVP link. Never reduce essential time-zone details to decorative labels.
 
 Learning pages: serif page title, readable sans prose, mono code, warm panels. Keep instructional diagrams precise and give them text alternatives. Use tables for exact values rather than rasterizing them into artwork.
 
@@ -38,7 +38,7 @@ Profiles/speakers: use real approved portraits and names. Do not apply generated
 
 Forms: use real labels, explicit error messages and dark enough control borders. Keep error and success feedback accessible and distinguishable by wording.
 
-Theme scope: no automatic dark mode is specified by the evidence. Do not invert the entire site by swapping two tokens. Dark sections need explicitly tested text, panel, link and focus colors. The package supplies a limited inverse-section helper, not a complete dark theme.
+Theme scope: the design system defines Taupe Light and Taupe Dark themes for slides; `rasa-dark` applies the dark roles to a section. No automatic site-wide dark mode is specified. Dark sections need tested text, panel, link (Pink 300) and focus colours.
 
 ## Integration boundaries
 

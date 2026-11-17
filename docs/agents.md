@@ -10,24 +10,25 @@ Use one versioned brand workflow for people and agents. Keep always-loaded instr
 | `AGENTS.md` | Repository rules, source locations and verification commands |
 | `CLAUDE.md` | Imports the shared rules with `@AGENTS.md` |
 | `.agents/skills/rasa-brand/SKILL.md` | Generated project skill for Codex |
-| `.agents/skills/rasa-brand/agents/openai.yaml` | Codex skill display metadata |
 | `.claude/skills/rasa-brand/SKILL.md` | Generated project skill for Claude Code |
 | `brand-root.txt` beside each discovered skill | Relative locator for the full brand checkout |
-| `scripts/sync-agent-skills.py` | Regenerates the two copies; `--check` detects drift |
+| `skills/rasa-community-cards/` | Canonical community-card skill (covers, newsletter images, showcase headers, diagrams) |
+| `.agents/skills/rasa-community-cards/`, `.claude/skills/rasa-community-cards/` | Generated copies (no font binaries) |
+| `scripts/sync-agent-skills.py` | Regenerates all copies; `--check` detects drift |
 | `scripts/install-agent-skill.py` | Installs the skill into another project without replacing its instruction files |
 
 The skill includes source resolution, task-specific reading, integration selection, implementation rules, visual/functional verification and a handoff format. It does not reproduce the entire brand manual or embed licensed assets.
 
 ## Work in the brand repository
 
-Keep the dot-directories when copying or extracting the package. They contain intentional discovery files. Edit the root skill and run:
+Keep the dot-directories when copying or extracting the package. They contain intentional discovery files. Edit the root `SKILL.md` or `skills/rasa-community-cards/`, never a copy, and run:
 
 ```sh
 python3 scripts/sync-agent-skills.py
 python3 scripts/sync-agent-skills.py --check
 ```
 
-Use Codex's skill selector to choose `rasa-brand`, or ask it to use the Rasa brand skill. In Claude Code, invoke `/rasa-brand`. A plain instruction to read the root `SKILL.md` also works when the client does not discover project skills.
+Use Codex's skill selector to choose `rasa-brand` or `rasa-community-cards`. In Claude Code, invoke `/rasa-brand` or `/rasa-community-cards`. A plain instruction to read the root `SKILL.md` also works when the client does not discover project skills.
 
 ## Use in a consumer repository
 
@@ -37,7 +38,7 @@ Keep a full checkout of the brand repository beside the consumer, or vendor a pi
 python3 scripts/install-agent-skill.py --target /absolute/path/to/community --agent both
 ```
 
-The script adds the two project skill files and relative brand locators. It never overwrites the consumer's `AGENTS.md` or `CLAUDE.md`. If a differing `rasa-brand` skill already exists, it stops before writing; review the difference and use `--replace-skill` only for an intentional update. It does not install global/personal skills, change tool permissions, install npm packages or copy fonts.
+The script adds both project skills (`rasa-brand` and `rasa-community-cards`) and relative brand locators. Font binaries are never copied; the card renderer finds them through `RASA_FONTS_DIR` or the brand checkout. It never overwrites the consumer's `AGENTS.md` or `CLAUDE.md`. If a differing `rasa-brand` skill already exists, it stops before writing; review the difference and use `--replace-skill` only for an intentional update. It does not install global/personal skills, change tool permissions, install npm packages or copy fonts.
 
 The full checkout must remain available at the recorded relative location. For a team/CI setup, prefer a pinned submodule or vendored directory inside the consumer so every checkout has the same sources. A sibling checkout works locally but needs the same relative layout on other machines. Re-run installation if paths change. Do not commit machine-specific absolute paths or a token-only npm dependency as the skill's source location.
 
@@ -48,7 +49,7 @@ If the consumer already has agent instructions, merge a short pointer into them 
 - “Use the Rasa brand skill to reskin the events index and event detail template. Preserve RSVP behavior, routes and metadata. Reuse the existing Astro components and show desktop/mobile results.”
 - “Use the Rasa brand skill to create a 1920×1080 Remotion explainer. Use shared tokens, frame-driven motion and the approved local fonts; deliver representative frames.”
 - “Use the Rasa brand skill to review this page. Identify visual drift and accessibility issues with concrete file references. Implement the fixes within the existing component architecture.”
-- “Use the Rasa brand skill to make a square event cover. Use a meaningful composition and supplied logo assets; report whether the final typography uses STK or fallbacks.”
+- “Use the rasa-community-cards skill to make the cover for this guide. Pick the panel by what the article proves; report whether the card used STK Bureau or the Google substitutes.”
 
 ## Expected handoff
 

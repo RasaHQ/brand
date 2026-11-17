@@ -207,3 +207,25 @@ marimo/_lsp/
 __marimo__/
 
 .DS_Store
+
+# --- Rasa brand: licensed fonts are provisioned locally, never committed ---
+# Treat them like a .env file: see design-system/rasa-brand-2026/fonts/README.md.
+STKBureau*.woff2
+STKBureau*.woff
+STKBureau*.ttf
+STKBureau*.otf
+design-system/rasa-brand-2026/fonts/*
+!design-system/rasa-brand-2026/fonts/README.md
+!design-system/rasa-brand-2026/fonts/fonts.lock.json
+skills/*/assets/fonts/*
+!skills/*/assets/fonts/README.md
+.env
+.env.*
+!.env.example
+
+# Generated outputs that consumers need from a checkout stay tracked.
+!design-system/dist/
+!design-system/dist/**
+# The design-system mirror vendors React under components/lib/; the Python "lib/" rule above must not hide it.
+!design-system/rasa-brand-2026/components/lib/
+!design-system/rasa-brand-2026/components/lib/**

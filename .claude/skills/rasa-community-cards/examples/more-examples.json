@@ -1,0 +1,4 @@
+[{"mode":"default-dark","eyebrow":"RASA COMMUNITY","headline":"Office hours are back","panel":{"type":"tiles"},"out":"tiles.png"},
+ {"mode":"community","eyebrow":"RASA COMMUNITY · NOV 2026","headline":"Build Day is back","panel":{"type":"geometric"},"out":"geo.png"},
+ {"mode":"casebook","eyebrow":"AI TEAM CASEBOOK","headline":"Measure prompt changes with tests","panel":{"type":"stacked","title":"TOOL PERMISSIONS","rows":[["lookup_order","auto",false],["check_status","auto",false],["issue_refund","ask first",true]]},"out":"stacked.png"},
+ {"mode":"tutorials","eyebrow":"TUTORIAL · CHAPTER 3","headline":"Test flight dates and landing weather","footer":"Build a voice agent that builds travel agents","panel":{"type":"route","steps":5,"current":2,"label_top":"STEP 3","label":"check landing weather"},"out":"footer.png"}]

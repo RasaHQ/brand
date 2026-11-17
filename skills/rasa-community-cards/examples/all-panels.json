@@ -1,0 +1,393 @@
+[
+ {
+  "mode": "guides",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the said vs did panel",
+  "panel": {
+   "type": "said_vs_did",
+   "said": "\u201cYour order is confirmed.\u201d",
+   "said_tag": "reply sounds right",
+   "did": "place_order(terms=v1)",
+   "did_tag": "terms changed to v2"
+  },
+  "out": "00-said_vs_did.png"
+ },
+ {
+  "mode": "casebook",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the timeline panel",
+  "panel": {
+   "type": "timeline",
+   "top_label": "AGENT",
+   "top_played": "\u201cConfirm the \u20ac500",
+   "top_cut": "transfer?\u201d",
+   "cut_tag": "never finished playing",
+   "bottom_label": "CALLER",
+   "bottom_text": "\u201cYes.\u201d",
+   "bottom_tag": "test passes anyway"
+  },
+  "out": "01-timeline.png"
+ },
+ {
+  "mode": "tutorials",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the ledger panel",
+  "panel": {
+   "type": "ledger",
+   "columns": [
+    "FACT",
+    "SAID",
+    "SAVED"
+   ],
+   "rows": [
+    [
+     "name",
+     "Ana",
+     "Ana",
+     "ok"
+    ],
+    [
+     "phone",
+     "+44 20\u2026",
+     "\u2014",
+     "fail"
+    ],
+    [
+     "plan",
+     "Pro",
+     "Pro",
+     "ok"
+    ]
+   ],
+   "tag": "facts said but not saved"
+  },
+  "out": "02-ledger.png"
+ },
+ {
+  "mode": "community",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the log panel",
+  "panel": {
+   "type": "log",
+   "title": "COMMAND LOG",
+   "rows": [
+    [
+     "14:02:07",
+     "user",
+     "restart my router"
+    ],
+    [
+     "14:02:08",
+     "tool",
+     "check_outage \u2192 none"
+    ],
+    [
+     "14:02:08",
+     "agent",
+     "\u201cRestarting now.\u201d"
+    ],
+    [
+     "14:02:09",
+     "command",
+     "no reboot"
+    ]
+   ],
+   "tag": "reply passed \u00b7 command missing"
+  },
+  "out": "03-log.png"
+ },
+ {
+  "mode": "default-light",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the window panel",
+  "panel": {
+   "type": "window",
+   "title": "TOOL PERMISSIONS",
+   "rows": [
+    [
+     "lookup_order",
+     "auto",
+     false
+    ],
+    [
+     "check_status",
+     "auto",
+     false
+    ],
+    [
+     "issue_refund",
+     "ask first",
+     true
+    ]
+   ],
+   "tag": "refund waits for approval"
+  },
+  "out": "04-window.png"
+ },
+ {
+  "mode": "default-dark",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the path panel",
+  "panel": {
+   "type": "path",
+   "steps": [
+    [
+     "Create the project",
+     "done"
+    ],
+    [
+     "Add a voice channel",
+     "done"
+    ],
+    [
+     "Write the booking flow",
+     "current"
+    ],
+    [
+     "Test a call",
+     "next"
+    ]
+   ]
+  },
+  "out": "05-path.png"
+ },
+ {
+  "mode": "guides",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the route panel",
+  "panel": {
+   "type": "route",
+   "steps": 5,
+   "current": 2,
+   "label_top": "STEP 3",
+   "label": "confirm new slot"
+  },
+  "out": "06-route.png"
+ },
+ {
+  "mode": "casebook",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the converge panel",
+  "panel": {
+   "type": "converge",
+   "items": [
+    "skill \u00b7 v1",
+    "skill \u00b7 edited",
+    "booking policy",
+    "user turn"
+   ],
+   "highlight": 1,
+   "tag": "confirmation kept after edit"
+  },
+  "out": "07-converge.png"
+ },
+ {
+  "mode": "tutorials",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the branch panel",
+  "panel": {
+   "type": "branch",
+   "items": [
+    "Visa \u00b7\u00b7 4417",
+    "Debit \u00b7\u00b7 0921",
+    "Credit \u00b7\u00b7 3380"
+   ],
+   "highlight": 1
+  },
+  "out": "08-branch.png"
+ },
+ {
+  "mode": "community",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the pipeline panel",
+  "panel": {
+   "type": "pipeline",
+   "title": "INSIDE A VOICE AGENT",
+   "input": "Speech",
+   "core": "Rasa",
+   "core_sub": "skills + flows",
+   "action": "Tool result",
+   "reply": "Response",
+   "caption": "INPUT \u2192 REASONING \u2192 ACTION \u2192 REPLY"
+  },
+  "out": "09-pipeline.png"
+ },
+ {
+  "mode": "default-light",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the trace panel",
+  "panel": {
+   "type": "trace",
+   "title": "INSPECTOR \u00b7 JUNIPER",
+   "chip": "TOOL-GROUNDED",
+   "user": "How many monstera do you have?",
+   "call": "check_stock(plant=\"monstera\")",
+   "result": "\u2192 found: true \u00b7 quantity: 7",
+   "agent": "We have 7 monstera in stock right now.",
+   "tag": "reply traces to a tool result"
+  },
+  "out": "10-trace.png"
+ },
+ {
+  "mode": "default-dark",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the terminal panel",
+  "panel": {
+   "type": "terminal",
+   "title": "quickstart \u2014 rasa pro",
+   "lines": [
+    "# download the starter project",
+    "$ uv sync --locked",
+    "$ uv run rasa train",
+    "$ uv run rasa inspect"
+   ],
+   "tag": "agent running locally"
+  },
+  "out": "11-terminal.png"
+ },
+ {
+  "mode": "guides",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the scorecard panel",
+  "panel": {
+   "type": "scorecard",
+   "title": "LOAN QUOTES \u00b7 WEB CHAT",
+   "rows": [
+    [
+     "CLAUDE",
+     20,
+     21
+    ],
+    [
+     "GPT",
+     21,
+     21
+    ],
+    [
+     "GEMINI",
+     15,
+     15
+    ]
+   ],
+   "highlight": 0,
+   "finding": "On Claude, the first web-chat turn fails."
+  },
+  "out": "12-scorecard.png"
+ },
+ {
+  "mode": "casebook",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the matrix panel",
+  "panel": {
+   "type": "matrix",
+   "columns": [
+    "auth",
+    "amount",
+    "consent",
+    "log"
+   ],
+   "rows": [
+    [
+     "p",
+     "p",
+     "p",
+     "p"
+    ],
+    [
+     "p",
+     "p",
+     "f",
+     "p"
+    ],
+    [
+     "p",
+     "p",
+     "p",
+     "n"
+    ],
+    [
+     "p",
+     "p",
+     "f",
+     "p"
+    ]
+   ],
+   "highlight": 2,
+   "tag": "consent fails on 2 cases"
+  },
+  "out": "13-matrix.png"
+ },
+ {
+  "mode": "tutorials",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the metric panel",
+  "panel": {
+   "type": "metric",
+   "title": "SILENCE BEFORE REPLY",
+   "unit": "MS",
+   "values": [
+    38,
+    52,
+    44,
+    60,
+    200,
+    48,
+    56
+   ],
+   "highlight": 4,
+   "value_label": "20 ms",
+   "caption": "one gap decides the turn"
+  },
+  "out": "14-metric.png"
+ },
+ {
+  "mode": "community",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the chat panel",
+  "panel": {
+   "type": "chat",
+   "user": "I can\u2019t cover rent and the payment this month.",
+   "agent": "Let\u2019s pause the repayment first and look at support options together."
+  },
+  "out": "15-chat.png"
+ },
+ {
+  "mode": "default-light",
+  "eyebrow": "GUIDES FOR AI TEAMS",
+  "headline": "Test card for the schedule panel",
+  "panel": {
+   "type": "schedule",
+   "left": "EVERY WEDNESDAY",
+   "right": "30 MIN \u00b7 ONLINE",
+   "rows": [
+    [
+     "London",
+     "12:00"
+    ],
+    [
+     "Central Europe",
+     "13:00"
+    ],
+    [
+     "Eastern",
+     "07:00"
+    ]
+   ],
+   "highlight": 0
+  },
+  "out": "16-schedule.png"
+ },
+ {
+  "type": "showcase",
+  "mode": "default-dark",
+  "category": "TEXT AND TOOLS",
+  "number": "15",
+  "steps": [
+   "Question",
+   "FAISS retrieval",
+   "Gemini answer"
+  ],
+  "caption": "Workflow sketch \u00b7 explore the code below",
+  "out": "showcase.png"
+ }
+]

@@ -4,9 +4,9 @@ from pathlib import Path
 import hashlib,json,html
 from PIL import Image
 R=Path(__file__).resolve().parents[1]
-p=R/'assets/catalog.json';catalog=json.loads(p.read_text());assets=[a for a in catalog['assets'] if not a.get('derivedFrom')]
+p=R/'assets/catalog.json';catalog=json.loads(p.read_text());assets=[a for a in catalog['assets'] if not a.get('derivedFrom') or a['path'].startswith('assets/brand-2026/')]  # Brand 2026 entries come from build-brand-2026-assets.py
 for a in list(assets):
- if a['category']!='pattern' or a['format']!='png':continue
+ if a['category']!='pattern' or a['format']!='png' or a['path'].startswith('assets/brand-2026/'):continue
  dest=Path(a['path'].replace('/png/','/web/')).with_suffix('.webp');(R/dest).parent.mkdir(parents=True,exist_ok=True)
  with Image.open(R/a['path']) as im:
   im=im.convert('RGB');im.thumbnail((1200,1200));im.save(R/dest,'WEBP',quality=86,method=6);w,h=im.size

@@ -1,0 +1,1237 @@
+{
+  "manifestVersion": 3,
+  "name": "Rasa Brand 2026",
+  "namespace": "RasaNewBrand",
+  "files": [
+    "assets/Backgrounds/README.md",
+    "assets/IconsGeneric/README.md",
+    "assets/Logos/README.md",
+    "assets/Textures/README.md",
+    "components/Attachment/README.md",
+    "components/AvatarStack/README.md",
+    "components/Badge/README.md",
+    "components/Button/README.md",
+    "components/Callout/README.md",
+    "components/CategoryTag/README.md",
+    "components/ChatBubble/README.md",
+    "components/ChatThread/README.md",
+    "components/Chip/README.md",
+    "components/CodeAnnotated/README.md",
+    "components/CodeBeforeAfter/README.md",
+    "components/CodeDiff/README.md",
+    "components/CodeWindow/README.md",
+    "components/CollabCursor/README.md",
+    "components/CommitRow/README.md",
+    "components/CompareStat/README.md",
+    "components/ConceptCard/README.md",
+    "components/Dashboard/README.md",
+    "components/DeployTarget/README.md",
+    "components/DeployTargets/README.md",
+    "components/DocGrid/README.md",
+    "components/DocThumb/README.md",
+    "components/DotGrid/README.md",
+    "components/EnvCard/README.md",
+    "components/FeatureCard/README.md",
+    "components/Field/README.md",
+    "components/FileCard/README.md",
+    "components/FileTree/README.md",
+    "components/Flow/README.md",
+    "components/FlowStation/README.md",
+    "components/Hub/README.md",
+    "components/InsightBar/README.md",
+    "components/InsightCard/README.md",
+    "components/Item/README.md",
+    "components/KpiTile/README.md",
+    "components/KvRow/README.md",
+    "components/Label/README.md",
+    "components/LayerStack/README.md",
+    "components/Marker/README.md",
+    "components/MemberRow/README.md",
+    "components/Metric/README.md",
+    "components/MiniVisual/README.md",
+    "components/Node/README.md",
+    "components/Notice/README.md",
+    "components/NumeralStat/README.md",
+    "components/NumeralStats/README.md",
+    "components/PageNumber/README.md",
+    "components/PhaseCard/README.md",
+    "components/Pill/README.md",
+    "components/PillCloud/README.md",
+    "components/Preview/README.md",
+    "components/ProductWindow/README.md",
+    "components/ProofCard/README.md",
+    "components/Quadrant/README.md",
+    "components/RampBars/README.md",
+    "components/RampTrack/README.md",
+    "components/RasaMark/README.md",
+    "components/ResourceChip/README.md",
+    "components/ResultRow/README.md",
+    "components/RuleList/README.md",
+    "components/RuleRow/README.md",
+    "components/RunCard/README.md",
+    "components/Skeleton/README.md",
+    "components/SkillProse/README.md",
+    "components/SkillStack/README.md",
+    "components/SlideButton/README.md",
+    "components/SlideCallToAction/README.md",
+    "components/SlideClosing/README.md",
+    "components/SlideCustomerProof/README.md",
+    "components/SlideGrid/README.md",
+    "components/SlideOpening/README.md",
+    "components/SlideQuote/README.md",
+    "components/SlideSectionDivider/README.md",
+    "components/SlideSingleIdea/README.md",
+    "components/SlideTextAndImage/README.md",
+    "components/SlideThreeColumns/README.md",
+    "components/SlideThreeColumnsWithPhoto/README.md",
+    "components/SlideTitleAndBody/README.md",
+    "components/SlideTitleAndWideVisual/README.md",
+    "components/SlideTwoColumns/README.md",
+    "components/StackBlock/README.md",
+    "components/Stat/README.md",
+    "components/StatusTag/README.md",
+    "components/StepTab/README.md",
+    "components/Strictness/README.md",
+    "components/StrictnessRow/README.md",
+    "components/StudioShell/README.md",
+    "components/TableRow/README.md",
+    "components/TeamLoop/README.md",
+    "components/TeamLoops/README.md",
+    "components/TerminalStep/README.md",
+    "components/TerminalSteps/README.md",
+    "components/ThreadEvent/README.md",
+    "components/TimelineStep/README.md",
+    "components/Toggle/README.md",
+    "components/Trace/README.md",
+    "components/TreeRow/README.md",
+    "components/Venn/README.md",
+    "components/VennOrbit/README.md",
+    "components/VisualContainer/README.md",
+    "components/VoiceCall/README.md",
+    "components/bundle.css",
+    "components/bundle.js",
+    "components/index.d.ts",
+    "components/lib/react-dom.production.min.js",
+    "components/lib/react.production.min.js",
+    "fonts/STKBureauSans-Book.woff2",
+    "fonts/STKBureauSans-BookItalic.woff2",
+    "fonts/STKBureauSans-Italic.woff2",
+    "fonts/STKBureauSans-Medium.woff2",
+    "fonts/STKBureauSans-MediumItalic.woff2",
+    "fonts/STKBureauSans-Regular.woff2",
+    "fonts/STKBureauSans-SemiBold.woff2",
+    "fonts/STKBureauSans-SemiBoldItalic.woff2",
+    "fonts/STKBureauSansMono-Regular.woff2",
+    "fonts/STKBureauSerif-Book.woff2",
+    "fonts/STKBureauSerif-BookItalic.woff2",
+    "tokens.css"
+  ],
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18.3.1",
+      "global": "React",
+      "file": "components/lib/react.production.min.js"
+    },
+    {
+      "name": "react-dom",
+      "version": "18.3.1",
+      "global": "ReactDOM",
+      "file": "components/lib/react-dom.production.min.js"
+    }
+  ],
+  "components": [
+    {
+      "name": "Button",
+      "group": "Visual layer",
+      "summary": "Button: primary and secondary actions inside product windows."
+    },
+    {
+      "name": "StatusTag",
+      "group": "Visual layer",
+      "summary": "Status tag: fixed-meaning states inside product windows and visuals."
+    },
+    {
+      "name": "CategoryTag",
+      "group": "Visual layer",
+      "summary": "Category tag: a team, role or product area in its legend color."
+    },
+    {
+      "name": "Chip",
+      "group": "Visual layer",
+      "summary": "Chip: a skill, tool, channel or attribute inside a visual."
+    },
+    {
+      "name": "ChatBubble",
+      "group": "Visual layer",
+      "summary": "Chat bubble: user and agent turns in chat windows and call timelines."
+    },
+    {
+      "name": "WindowBar"
+    },
+    {
+      "name": "ProductWindow",
+      "group": "Visual layer",
+      "summary": "Product window: a real product moment (runs, plans, settings, results)."
+    },
+    {
+      "name": "ConceptCard",
+      "group": "Visual layer",
+      "summary": "Concept card: storytelling about how something works or who owns what."
+    },
+    {
+      "name": "VisualContainer",
+      "group": "Visual layer",
+      "summary": "Visual container: the one home for a UI visual on a slide."
+    },
+    {
+      "name": "ResultRow",
+      "group": "Visual layer",
+      "summary": "One evaluation result (ui/result-row): name in UI/Code, level (Must / Should) in UI/Body 18 taupe 700, status tag."
+    },
+    {
+      "name": "ResultList"
+    },
+    {
+      "name": "Notice",
+      "group": "Visual layer",
+      "summary": "Notice (ui/notice): Approval (pink 50 fill, 8px pink 400 dot before the title: a decision waiting on someone, with actions), Blocked (coral 100 fill, coral 500…"
+    },
+    {
+      "name": "StepTab",
+      "group": "Visual layer",
+      "summary": "Pipeline step tab (ui/step-tab): Build, Evaluations, Simulation."
+    },
+    {
+      "name": "StepTabs"
+    },
+    {
+      "name": "Metric",
+      "group": "Visual layer",
+      "summary": "Metric tile (ui/metric): muted label (UI/Body 18, taupe 600) over a number (UI/Number, Sans Medium 26/30)."
+    },
+    {
+      "name": "TableRow",
+      "group": "Visual layer",
+      "summary": "Table row (ui/table-row), 4 columns (flex, 220, 96, 96): Header = taupe 100, UI/Label uppercase, taupe 600; Row = first cell UI/Action, the rest UI/Code (model…"
+    },
+    {
+      "name": "Table"
+    },
+    {
+      "name": "TimelineStep",
+      "group": "Visual layer",
+      "summary": "Timeline step (ui/timeline-step): year (UI/Number; taupe 500 for Past, taupe 950 for Now), a 12px dot on the line (hollow for Past, filled dark for Now), title…"
+    },
+    {
+      "name": "Badge",
+      "group": "Visual layer",
+      "summary": "Compact category or person: 2-letter initials in a color circle (32 px with Sans Medium 14, 28 px with Sans Medium 12)."
+    },
+    {
+      "name": "Label",
+      "group": "Visual layer",
+      "summary": "Light category label: color dot + UI/Label (Sans Medium 14), no fill."
+    },
+    {
+      "name": "MemberRow",
+      "group": "Visual layer",
+      "summary": "Person row (ui/member-row): initials badge (Dark), name (UI/Action), scope (UI/Body, muted, right), role tag (status Neutral)."
+    },
+    {
+      "name": "KvRow",
+      "group": "Visual layer",
+      "summary": "Definition list item (ui/kv-row): key (UI/Title, fixed 260) and value (UI/Body, muted, wraps)."
+    },
+    {
+      "name": "Stat",
+      "group": "Visual layer",
+      "summary": "Headline number with a short caption (ui/stat): UI/Number (Sans Medium 26) over UI/Meta."
+    },
+    {
+      "name": "Field",
+      "group": "Visual layer",
+      "summary": "Input (ui/field): Text area (multi-line prompt) or Select (with caret)."
+    },
+    {
+      "name": "Toggle",
+      "group": "Visual layer",
+      "summary": "Switch (ui/toggle): On = pink 400 (enabled), Off = Taupe 300."
+    },
+    {
+      "name": "Attachment",
+      "group": "Visual layer",
+      "summary": "Attached source (ui/attachment): small type label (UI/Micro: PDF, JSON, SKILL) + name (UI/Body)."
+    },
+    {
+      "name": "Item",
+      "group": "Visual layer",
+      "summary": "One capability inside a group (ui/item): UI/Body on a bordered Taupe 50 box (radius 10, padding 9/12)."
+    },
+    {
+      "name": "Node",
+      "group": "Visual layer",
+      "summary": "Node in a flow or architecture (ui/node): optional channel preview, Phosphor glyph and title (UI/Title), one-line description (UI/Body), owner as a CategoryTag."
+    },
+    {
+      "name": "InsightBar",
+      "group": "Visual layer",
+      "summary": "Insight bar (ui/insight-bar): a finding raised by Rasa (e.g."
+    },
+    {
+      "name": "CommitRow",
+      "group": "Visual layer",
+      "summary": "One commit on a history line (ui/commit-row): node (Studio = pink 400 ring on pink 100, other = gray ring), hash (UI/Code, muted), message (UI/Body, wraps; the…"
+    },
+    {
+      "name": "CodeWindow",
+      "group": "Visual layer",
+      "summary": "Dark code editor (ui/code-window): Taupe 950, radius 16, padding 18/24/24, three dots (pink 400, taupe 700, taupe 700) and an optional file title after them (M…"
+    },
+    {
+      "name": "Strictness",
+      "group": "Visual layer",
+      "summary": "How strict a skill is (ui/strictness), from Agent decides (1) to Exact steps (5): five 56 × 10 segments, radius 3, gap 6; filled ones graded Taupe 300 → 400 →…"
+    },
+    {
+      "name": "StrictnessRow",
+      "group": "Visual layer",
+      "summary": "A skill with its strictness (ui/strictness-row): icon tile (28), name (UI/Title), Strictness bar on the right."
+    },
+    {
+      "name": "PhaseCard",
+      "group": "Visual layer",
+      "summary": "Phase card (ui/phase-card) in a row of 3–4: phase label + duration tag, icon tile, title (UI/Heading), description (UI/Body), a mini visual (MiniVisual squares…"
+    },
+    {
+      "name": "EnvCard",
+      "group": "Visual layer",
+      "summary": "A place it runs or connects to (ui/env-card): icon tile, title (UI/Heading), one-line subtitle (UI/Body)."
+    },
+    {
+      "name": "FeatureCard",
+      "group": "Visual layer",
+      "summary": "Feature card (ui/feature-card): preview area (Taupe 100, radius 10, holds a MiniVisual or Preview) + title (UI/Feature, Serif 28, second part in black italic)…"
+    },
+    {
+      "name": "Marker",
+      "group": "Visual layer",
+      "summary": "Numbered moment in a sequence or timeline (ui/marker): pink numbered circle (28, UI/Action in Taupe 50) + label (UI/Title), gap 10."
+    },
+    {
+      "name": "Preview",
+      "group": "Visual layer",
+      "summary": "Tiny channel preview for an agent card (ui/preview)."
+    },
+    {
+      "name": "MiniVisual",
+      "group": "Visual layer",
+      "summary": "Mini previews (ui/mini/*), exported from Figma as exact drawings: flags (flagged conversations: three rows with a gray line and a colored flag, decorative not…"
+    },
+    {
+      "name": "PageNumber",
+      "group": "Slides",
+      "summary": "Slide page number (slides/page-number): Mono (Meta 20/26), bottom right, right edge at x 1840, bottom at y 1032."
+    },
+    {
+      "name": "Pill",
+      "group": "Slides",
+      "summary": "Industry or topic tag (slides/pill): Mono label 18/24, uppercase, 1–2 words."
+    },
+    {
+      "name": "SlideButton",
+      "group": "Slides",
+      "summary": "Slide button (slides/button): one per slide."
+    },
+    {
+      "name": "ProofCard",
+      "group": "Slides",
+      "summary": "Customer proof (slides/card/proof): sector (Mono 18, uppercase, 1–2 words) + industry pill."
+    },
+    {
+      "name": "RasaMark",
+      "group": "Diagrams",
+      "summary": "The Rasa R mark as an inline SVG for diagrams: Taupe 50 on Pink 400 by default; pass color for Taupe 950 on light."
+    },
+    {
+      "name": "FlowStation",
+      "group": "Diagrams",
+      "summary": "One stop on a linear flow (ui/flow-station): index (UI/Micro), 28px dot, label (UI/Title), one-line detail (UI/Meta), 220 wide."
+    },
+    {
+      "name": "Flow",
+      "group": "Diagrams",
+      "summary": "A linear flow (ui/flow) of 3–6 FlowStations on a 2px track: Taupe 950 up to the active station, Taupe 300 after."
+    },
+    {
+      "name": "Callout",
+      "group": "Diagrams",
+      "summary": "An annotation pointing into a visual (ui/callout): 8px pin, 56px Pink 400 leader, note card (Taupe 50, 1px Taupe 300, radius 12) with a UI/Label title of 2–5 w…"
+    },
+    {
+      "name": "Hub",
+      "group": "Diagrams",
+      "summary": "Hub and spoke (ui/hub): one Taupe 950 hub pill and 3–8 satellite cards (Taupe 50, 1px Taupe 300, UI/Title, optional team-tint dot), joined by orthogonal 1.5px…"
+    },
+    {
+      "name": "TeamLoop",
+      "group": "Diagrams",
+      "summary": "One team’s release loop (ui/team-loop), 480 × 160: Build → Test → Release → Improve and back."
+    },
+    {
+      "name": "TeamLoops",
+      "group": "Diagrams",
+      "summary": "Independent team loops inside one shared platform (ui/team-loops), sized for the Square container (layout 06, background None): 2–3 TeamLoops stacked 48 apart,…"
+    },
+    {
+      "name": "Venn",
+      "group": "Diagrams",
+      "summary": "Shared foundation (ui/venn), 760 × 720: four 1.5px Taupe 700 team circles overlapping on a centre, a dashed CoE circle around the overlap, and the overlap itse…"
+    },
+    {
+      "name": "VennOrbit",
+      "group": "Diagrams",
+      "summary": "Foundation as orbits (ui/venn · orbit), 760 × 720: a Pink 400 core with the Rasa mark and “PLATFORM”, a dashed Taupe 500 CoE ring carrying a dark “CoE team” pi…"
+    },
+    {
+      "name": "Quadrant",
+      "group": "Diagrams",
+      "summary": "2×2 positioning (ui/quadrant), sized for the Wide container (layout 14, content 1696 × 560, Filled): arrowed 1.5px Taupe 700 axes from the bottom left, dotted…"
+    },
+    {
+      "name": "LayerStack",
+      "group": "Diagrams",
+      "summary": "Prompt assembly (ui/layer-stack), sized for the Wide container (layout 14, Filled): a Taupe 50 card headed “System prompt / Top to bottom, in this order”, one…"
+    },
+    {
+      "name": "RampTrack",
+      "group": "Data",
+      "summary": "Progressive control as a dial track (ui/ramp-chart · track), Wide container (layout 14): end labels above (“The model decides” Taupe 700, “Rasa enforces” Pink…"
+    },
+    {
+      "name": "RampBars",
+      "group": "Data",
+      "summary": "Progressive control as rising bars (ui/ramp-chart · bars), Wide container (layout 14): one full-width bar per lever, each taller and stronger (Pink 50 → Pink 5…"
+    },
+    {
+      "name": "Trace",
+      "group": "Data",
+      "summary": "One call as a trace (ui/trace), Wide container (layout 14, content ≤ 580 tall): mono eyebrow + legend, a seconds scale with 1px Taupe 300 vertical gridlines fr…"
+    },
+    {
+      "name": "KpiTile",
+      "group": "Data",
+      "summary": "One KPI (ui/kpi-tile): label (UI/Meta), value (UI/Number), optional change on its own line under the value (UI/Meta, Seafoam 700 up, Coral 700 down)."
+    },
+    {
+      "name": "Dashboard",
+      "group": "Data",
+      "summary": "The analytics moment without browser chrome (ui/dashboard), Wide container, 1400 wide: breadcrumb + environment badge, filter buttons (Last 30 days, All versio…"
+    },
+    {
+      "name": "NumeralStat",
+      "group": "Data",
+      "summary": "Slide-layer proof stat card (ui/numeral-stat)."
+    },
+    {
+      "name": "NumeralStats",
+      "group": "Data",
+      "summary": "A row of 3–5 NumeralStat cards filling the 1760 content width with 40px gaps; the row size picks the variant."
+    },
+    {
+      "name": "CompareStat",
+      "group": "Data",
+      "summary": "Proof of a fix (ui/compare-stat): two equal cards, before (Taupe 100, version in Studio/Mono) and after (Seafoam 50 with a Seafoam 200 ring, value in Seafoam 7…"
+    },
+    {
+      "name": "DotGrid",
+      "group": "Data",
+      "summary": "A test run at a glance (ui/dot-grid): one dot per simulated customer (or per group: say so in the caption), pass Seafoam 300, fail Coral 200, 16px dots, 6px ga…"
+    },
+    {
+      "name": "CodeBeforeAfter",
+      "group": "Code and conversation",
+      "summary": "Two CodeWindows side by side (ui/code-before-after) with a 56px Taupe 950 arrow between: BEFORE and AFTER (Taupe 700 mono eyebrows, AFTER marked by a pink dot;…"
+    },
+    {
+      "name": "CodeAnnotated",
+      "group": "Code and conversation",
+      "summary": "A CodeWindow with up to 3 highlighted lines (Pink 400 at 28%, radius 4) and a Callout aligned to each (ui/code-annotated). notes: {line, title, detail}, line c…"
+    },
+    {
+      "name": "CodeDiff",
+      "group": "Code and conversation",
+      "summary": "A light code view showing a change (ui/code-diff): Taupe 100 block (radius 12, 1px Taupe 250), file path in Taupe 500, unchanged lines Taupe 950, added lines o…"
+    },
+    {
+      "name": "TreeRow",
+      "group": "Code and conversation",
+      "summary": "One row of a file tree (ui/tree-row): glyph (folder or file), name in UI/Code, optional right note (UI/Meta)."
+    },
+    {
+      "name": "FileTree",
+      "group": "Code and conversation",
+      "summary": "A project as plain files (ui/file-tree): TreeRows in a Taupe 50 card (radius 16, 1px Taupe 300, padding 24, 6px between rows)."
+    },
+    {
+      "name": "RuleRow",
+      "group": "Code and conversation",
+      "summary": "One numbered rule (ui/rule-row): pink number (UI/Number), rule (UI/Title), one-line detail (UI/Body), optional code tag (Pink 50, Pink 200 ring)."
+    },
+    {
+      "name": "RuleList",
+      "group": "Code and conversation",
+      "summary": "3–5 RuleRows stacked with no gap (ui/rule-list)."
+    },
+    {
+      "name": "StackBlock",
+      "group": "Code and conversation",
+      "summary": "One skill on the skill stack (ui/stack-block): mono name and status."
+    },
+    {
+      "name": "SkillStack",
+      "group": "Code and conversation",
+      "summary": "Topic change on the skill stack (ui/skill-stack), Wide container (layout 14): six columns (256 wide, 32 gap)."
+    },
+    {
+      "name": "ThreadEvent",
+      "group": "Code and conversation",
+      "summary": "An event line between chat turns (ui/thread-event): 1px Taupe 300 rules either side of a code tag, Pink for the event the slide is about, otherwise Taupe 200 (…"
+    },
+    {
+      "name": "ChatThread",
+      "group": "Code and conversation",
+      "summary": "A conversation with system events (ui/chat-thread) on a Taupe 100 card (padding 32, 24 between items): user Soft on the right, agent Light on the left, ThreadE…"
+    },
+    {
+      "name": "TerminalStep",
+      "group": "Code and conversation",
+      "summary": "One CLI step (ui/terminal-step): Taupe 950 command chip (pink $, UI/Code), title (UI/Title) and one-line detail (UI/Meta)."
+    },
+    {
+      "name": "TerminalSteps",
+      "group": "Code and conversation",
+      "summary": "3–5 TerminalSteps, 20px apart (ui/terminal-steps)."
+    },
+    {
+      "name": "VoiceCall",
+      "group": "Voice",
+      "summary": "A phone call over time (ui/voice-call), 1400 × 460, Wide container."
+    },
+    {
+      "name": "PillCloud",
+      "group": "Texture, files and targets",
+      "summary": "Named values as a wall of mono pills (ui/pill-cloud), 960 × 1080, for the right or left half of a slide at full height."
+    },
+    {
+      "name": "DocThumb",
+      "group": "Texture, files and targets",
+      "summary": "A document thumbnail (ui/doc-thumb): file name (UI/Micro) and 8 skeleton lines, 150 × 190. highlight outlines it in Pink 400 and tints the matching lines Pink…"
+    },
+    {
+      "name": "DocGrid",
+      "group": "Texture, files and targets",
+      "summary": "4–8 DocThumbs in a 4-column grid (ui/doc-grid), one matched doc highlighted."
+    },
+    {
+      "name": "DeployTarget",
+      "group": "Texture, files and targets",
+      "summary": "One place it runs (ui/deploy-target), 480 wide, centred: 120px icon circle (Phosphor Regular 48px; default Taupe 50 with 1px Taupe 300, focus Pink 400), mono i…"
+    },
+    {
+      "name": "DeployTargets",
+      "group": "Texture, files and targets",
+      "summary": "Where it runs (ui/deploy-targets), Wide container (layout 14, None): three DeployTargets spread across 1696, icon circles joined by a dotted 2px Taupe 700 line…"
+    },
+    {
+      "name": "Skeleton",
+      "group": "Studio",
+      "summary": "Placeholder UI for everything not relevant to the moment (ui/skeleton): line (8px Taupe 200 bar), row (icon square + line, for nav), text (three lines), card (…"
+    },
+    {
+      "name": "ResourceChip",
+      "group": "Studio",
+      "summary": "Something a skill uses (ui/resource-chip): tool (wrench, an API) or reference (file, a document)."
+    },
+    {
+      "name": "SkillProse",
+      "group": "Studio",
+      "summary": "A skill shown as what it is: plain language (ui/skill-prose)."
+    },
+    {
+      "name": "CollabCursor",
+      "group": "Studio",
+      "summary": "A teammate’s live cursor with a “Name · Role” tag (ui/collab-cursor), Studio/Tag."
+    },
+    {
+      "name": "AvatarStack",
+      "group": "Studio",
+      "summary": "Who is in the file (ui/avatar-stack): 32px initials circles overlapping by 8, 2px Taupe 50 ring, colours matching CollabCursor roles."
+    },
+    {
+      "name": "InsightCard",
+      "group": "Studio",
+      "summary": "What Studio found in live conversations (ui/insight-card): pink INSIGHT tag (Studio/Tag, Pink 50 fill, Pink 300 ring) and one sentence in Studio/Body L startin…"
+    },
+    {
+      "name": "RunCard",
+      "group": "Studio",
+      "summary": "A Copilot result in the side pane (ui/run-card): passed (check icon Seafoam 700, PASSED badge) for eval and test runs, edited (cube icon Periwinkle 600, “● Edi…"
+    },
+    {
+      "name": "StudioShell",
+      "group": "Studio",
+      "summary": "Simplified Rasa Studio with no browser chrome (ui/studio-shell). size wide (1440 × 580, layout 14): skeleton rail, Copilot pane (360) and workspace. square (73…"
+    },
+    {
+      "name": "FileCard",
+      "group": "Visual layer",
+      "summary": "A file in a repository, shown as plain language (ui/file-card): Taupe 50, 1px Taupe 300 border, radius 12."
+    },
+    {
+      "name": "SlideCallToAction",
+      "group": "Slides",
+      "summary": "Call to action: a closing ask with one button, on Taupe Dark."
+    },
+    {
+      "name": "SlideClosing",
+      "group": "Slides",
+      "summary": "Closing slide: thank you, Q&A and the presenter, on Taupe Dark."
+    },
+    {
+      "name": "SlideCustomerProof",
+      "group": "Slides",
+      "summary": "Customer proof: three proof cards, each with one big figure."
+    },
+    {
+      "name": "SlideGrid",
+      "group": "Foundations",
+      "summary": "The 1920 × 1080 slide grid every layout aligns to."
+    },
+    {
+      "name": "SlideOpening",
+      "group": "Slides",
+      "summary": "Opening slide: the deck title on Taupe Dark."
+    },
+    {
+      "name": "SlideQuote",
+      "group": "Slides",
+      "summary": "Quote: one customer quote, centered, with a pink quote mark."
+    },
+    {
+      "name": "SlideSectionDivider",
+      "group": "Slides",
+      "summary": "Section divider: a chapter title on Taupe Dark."
+    },
+    {
+      "name": "SlideSingleIdea",
+      "group": "Slides",
+      "summary": "Single idea: one centered statement with a short supporting line."
+    },
+    {
+      "name": "SlideTextAndImage",
+      "group": "Slides",
+      "summary": "Text and image: text centered on an 800 × 800 visual, image right or left."
+    },
+    {
+      "name": "SlideThreeColumns",
+      "group": "Slides",
+      "summary": "Three columns: a headline over three evenly weighted points divided by hairlines."
+    },
+    {
+      "name": "SlideThreeColumnsWithPhoto",
+      "group": "Slides",
+      "summary": "Three columns with photo: a headline and photo above three points."
+    },
+    {
+      "name": "SlideTitleAndBody",
+      "group": "Slides",
+      "summary": "Title and body: a top-anchored headline with a short paragraph."
+    },
+    {
+      "name": "SlideTitleAndWideVisual",
+      "group": "Slides",
+      "summary": "Title and wide visual: a one-line title over a wide visual."
+    },
+    {
+      "name": "SlideTwoColumns",
+      "group": "Slides",
+      "summary": "Two columns: a headline on the left and up to three points on the right."
+    },
+    {
+      "name": "TypeScale",
+      "group": "Foundations"
+    }
+  ],
+  "assetGroups": [
+    {
+      "name": "Logos",
+      "files": [
+        {
+          "path": "assets/Logos/rasa-logo-full-pink.svg",
+          "id": "8aff18b023cff9795eb251c440e43f30"
+        },
+        {
+          "path": "assets/Logos/rasa-logo-full-taupe-dark.svg",
+          "id": "7fe477773095324f04093fcdccf0523c"
+        },
+        {
+          "path": "assets/Logos/rasa-logo-full-taupe-light.svg",
+          "id": "d5163bcbfadcd2459376beeb18013866"
+        },
+        {
+          "path": "assets/Logos/rasa-logo-icon-pink.svg",
+          "id": "ed80da8d49b8b391709b740b82a8f44b"
+        },
+        {
+          "path": "assets/Logos/rasa-logo-icon-taupe-dark.svg",
+          "id": "43375421ef6f84a57f9224f9f9f193db"
+        },
+        {
+          "path": "assets/Logos/rasa-logo-icon-taupe-light.svg",
+          "id": "50a01b76a0191eaa27e7e4ef10649af9"
+        }
+      ]
+    },
+    {
+      "name": "IconsGeneric",
+      "tile": "s",
+      "files": [
+        {
+          "path": "assets/IconsGeneric/rasa-icon-agents.svg",
+          "id": "98620d6769a0e21fcb5e04558a00442b"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-approach.svg",
+          "id": "a41336c117d3d5f16ed55852547187a4"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-arrow.svg",
+          "id": "6b8a821713fe647fffa87f7387a02136"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-bell.svg",
+          "id": "b7aae001a84199e17c6f72e942ac5ac1"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-book.svg",
+          "id": "89b9757b2d328e24a2f8c63b14e5a165"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-challenge.svg",
+          "id": "a772151b91bf9840fed13233df94aa1d"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-check.svg",
+          "id": "43d1e7bed910bc8c4b3afd48fed3049c"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-chevron.svg",
+          "id": "565e9455a8d396ba594d30a849453f4f"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-clock.svg",
+          "id": "0023c4bfb1c2688e635d8cd8afe3c013"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-close.svg",
+          "id": "e2f44f2c45db13dd434668bdce33644b"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-customer-support.svg",
+          "id": "7d55529f89667f4abded23ba8fdbba93"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-developer-tools.svg",
+          "id": "720834d50568d864db066cb53fa06079"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-heart.svg",
+          "id": "1b651fca40c8326af41fdfa0ff5fd544"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-home.svg",
+          "id": "d42adb74137f0e90fe52936857dd8ed6"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-mail.svg",
+          "id": "2568afa3f58b0dc1af50400c10c52672"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-next.svg",
+          "id": "3fb003dee7a8ebd33c8c75b9e440b4ed"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-padlock.svg",
+          "id": "c0b04cc5a3e5101e799ac15f8a48c8eb"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-plus.svg",
+          "id": "46fd939a25874306b76ab4d1f74df3b4"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-results.svg",
+          "id": "b4ee179204f24cacb16d6c124046d6bb"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-search.svg",
+          "id": "2853825acddb98efd7fdfabe7c4b3549"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-skills.svg",
+          "id": "e684ab4f690be60a08bffac69b52e5f3"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-star.svg",
+          "id": "99471d21913dc6888797b92f2589696c"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-studio.svg",
+          "id": "f52020a89d68ec2d99b13b45bc20d748"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-tools.svg",
+          "id": "4e4a2838d5c05cae3fc363c4e56ecff4"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-user.svg",
+          "id": "df70dbff82bcf8237c3e5d1f1813b5cf"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-voice-connected.svg",
+          "id": "315a14988686043f6730040283e67616"
+        },
+        {
+          "path": "assets/IconsGeneric/rasa-icon-voice.svg",
+          "id": "ee6263db225f1ae12ba5b23bca031c41"
+        }
+      ]
+    },
+    {
+      "name": "Textures",
+      "tile": "l",
+      "files": [
+        {
+          "path": "assets/Textures/rasa-chladni-01-accent.svg",
+          "id": "30f653e0677a794193f1f7746b900255"
+        },
+        {
+          "path": "assets/Textures/rasa-chladni-01-subtle-dark.svg",
+          "id": "1c9d7fe61d1cf11ea3e3ebeeb1bccc81"
+        },
+        {
+          "path": "assets/Textures/rasa-chladni-01-subtle-light.svg",
+          "id": "64fc2fc8c41c5b7ba98685d7326370a0"
+        },
+        {
+          "path": "assets/Textures/rasa-chladni-02-accent.svg",
+          "id": "9bad58c50fb736ac636ec47e4a887f39"
+        },
+        {
+          "path": "assets/Textures/rasa-chladni-02-subtle-dark.svg",
+          "id": "5e628422b44c098c40932f9896d8601f"
+        },
+        {
+          "path": "assets/Textures/rasa-chladni-02-subtle-light.svg",
+          "id": "475906ec315b97a28519390fd47a1186"
+        },
+        {
+          "path": "assets/Textures/rasa-soundwave-01-accent.svg",
+          "id": "929c7a15256035086ff6cd5c314c97b3"
+        },
+        {
+          "path": "assets/Textures/rasa-soundwave-01-subtle-dark.svg",
+          "id": "08dff27aa3c7dd36a7885df0db581a6c"
+        },
+        {
+          "path": "assets/Textures/rasa-soundwave-01-subtle-light.svg",
+          "id": "61c70e6f3e74f5c8090606d9e77394dd"
+        },
+        {
+          "path": "assets/Textures/rasa-soundwave-02-accent.svg",
+          "id": "cb7eff75a469c7e195e1caf3f86eb2f9"
+        },
+        {
+          "path": "assets/Textures/rasa-soundwave-02-subtle-dark.svg",
+          "id": "39c53551126069b1c2e032f787140648"
+        },
+        {
+          "path": "assets/Textures/rasa-soundwave-02-subtle-light.svg",
+          "id": "700f2c0d763441db232d49e6db286bf3"
+        }
+      ]
+    },
+    {
+      "name": "Backgrounds",
+      "tile": "l",
+      "order": [
+        "rasa-bg-chladni-01-dark.svg",
+        "rasa-bg-chladni-01-light.svg",
+        "rasa-bg-chladni-02-dark.svg",
+        "rasa-bg-chladni-02-light.svg"
+      ],
+      "files": [
+        {
+          "path": "assets/Backgrounds/rasa-bg-chladni-01-dark.svg",
+          "id": "993469c9beba51e73df3a8e74b152ef0"
+        },
+        {
+          "path": "assets/Backgrounds/rasa-bg-chladni-01-light.svg",
+          "id": "dad91fd97cb93ee7e70cfb7c5b51b563"
+        },
+        {
+          "path": "assets/Backgrounds/rasa-bg-chladni-02-dark.svg",
+          "id": "19c8ea189afb0a78957219a2cdb7504d"
+        },
+        {
+          "path": "assets/Backgrounds/rasa-bg-chladni-02-light.svg",
+          "id": "1218ffbdc168acb1a28e76101546a36c"
+        }
+      ]
+    }
+  ],
+  "storage": {
+    "files": {
+      "assets/Backgrounds/rasa-bg-chladni-01-dark.svg": {
+        "store": "blob",
+        "id": "993469c9beba51e73df3a8e74b152ef0",
+        "bytes": 1888726,
+        "type": "image/svg+xml"
+      },
+      "assets/Backgrounds/rasa-bg-chladni-01-light.svg": {
+        "store": "blob",
+        "id": "dad91fd97cb93ee7e70cfb7c5b51b563",
+        "bytes": 1888726,
+        "type": "image/svg+xml"
+      },
+      "assets/Backgrounds/rasa-bg-chladni-02-dark.svg": {
+        "store": "blob",
+        "id": "19c8ea189afb0a78957219a2cdb7504d",
+        "bytes": 1952420,
+        "type": "image/svg+xml"
+      },
+      "assets/Backgrounds/rasa-bg-chladni-02-light.svg": {
+        "store": "blob",
+        "id": "1218ffbdc168acb1a28e76101546a36c",
+        "bytes": 1952420,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-agents.svg": {
+        "store": "blob",
+        "id": "98620d6769a0e21fcb5e04558a00442b",
+        "sha256": "db3e380a29a0cd83ed98238db5c4535320ab502d805863a7ea64881b601f2cba",
+        "bytes": 6922,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-approach.svg": {
+        "store": "blob",
+        "id": "a41336c117d3d5f16ed55852547187a4",
+        "sha256": "4bee95d966ead55ed50cf2df273574b53bdf452b15c803d44e6180d294a558c0",
+        "bytes": 994,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-arrow.svg": {
+        "store": "blob",
+        "id": "6b8a821713fe647fffa87f7387a02136",
+        "sha256": "d3a86ef86f33c1c2f26d655758fc01c5f0c21a05cb785b0738c1824a100a0463",
+        "bytes": 2748,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-bell.svg": {
+        "store": "blob",
+        "id": "b7aae001a84199e17c6f72e942ac5ac1",
+        "sha256": "08c1e134055b76575884df6e2c247075f57bc96fdce8ff67f9816647f439dec1",
+        "bytes": 4649,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-book.svg": {
+        "store": "blob",
+        "id": "89b9757b2d328e24a2f8c63b14e5a165",
+        "sha256": "895b6bf496aea6069a5783cdf98c5be00f574f62be111241808e73a012881e8a",
+        "bytes": 4715,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-challenge.svg": {
+        "store": "blob",
+        "id": "a772151b91bf9840fed13233df94aa1d",
+        "sha256": "b94833b55df432aadf740fbe4dd0ec53a618cc4ffa552c809345913024b5899d",
+        "bytes": 512,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-check.svg": {
+        "store": "blob",
+        "id": "43d1e7bed910bc8c4b3afd48fed3049c",
+        "sha256": "4e22366ba3fc845a32385cc405ed9b1327974fdb14c5cc3a85a3e9872bb9ef3c",
+        "bytes": 428,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-chevron.svg": {
+        "store": "blob",
+        "id": "565e9455a8d396ba594d30a849453f4f",
+        "sha256": "6ad88f7e04ab2db23188c4f9231311e48d212aa3f313e40790c3bb55e948aeaf",
+        "bytes": 398,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-clock.svg": {
+        "store": "blob",
+        "id": "0023c4bfb1c2688e635d8cd8afe3c013",
+        "sha256": "699b55c3d9afa3c83416d89432605c2bd8b1344b98c480b9148f71754221b233",
+        "bytes": 5000,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-close.svg": {
+        "store": "blob",
+        "id": "e2f44f2c45db13dd434668bdce33644b",
+        "sha256": "8d913f5323bbd4cbba20b656f46e98a56560ad6fac530c3d0ab85079646b0de8",
+        "bytes": 927,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-customer-support.svg": {
+        "store": "blob",
+        "id": "7d55529f89667f4abded23ba8fdbba93",
+        "sha256": "e6f17bb675d63f0267d7d2616e18b89d0ba273f216ecd4313284a6dc5e1da8a1",
+        "bytes": 4020,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-developer-tools.svg": {
+        "store": "blob",
+        "id": "720834d50568d864db066cb53fa06079",
+        "sha256": "f24a2fb669e79610652e999e7f45a0b63f28f654d45b83f32ec2de547e278f13",
+        "bytes": 334,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-heart.svg": {
+        "store": "blob",
+        "id": "1b651fca40c8326af41fdfa0ff5fd544",
+        "sha256": "5abb63b00c53b748774e74f0dacdc953fe33bb5802e074f40e5eb2188287c110",
+        "bytes": 4456,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-home.svg": {
+        "store": "blob",
+        "id": "d42adb74137f0e90fe52936857dd8ed6",
+        "sha256": "45bfd4dba328c998395dd7053b0d895b0031f5d5b36a1fb7c9723759d54e173b",
+        "bytes": 804,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-mail.svg": {
+        "store": "blob",
+        "id": "2568afa3f58b0dc1af50400c10c52672",
+        "sha256": "68ac90cf6efe9e24b92165b7b81d5d751aa568b9baaa28326171290071e88bcf",
+        "bytes": 2516,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-next.svg": {
+        "store": "blob",
+        "id": "3fb003dee7a8ebd33c8c75b9e440b4ed",
+        "sha256": "0d0e3a2ccc69dd17170de81290b1b871c5f71da2e718193f88750c4c621afad8",
+        "bytes": 419,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-padlock.svg": {
+        "store": "blob",
+        "id": "c0b04cc5a3e5101e799ac15f8a48c8eb",
+        "sha256": "5654c1ff16605aaeb77186267b06b21826077182c670bef4750fb029213f5db9",
+        "bytes": 6217,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-plus.svg": {
+        "store": "blob",
+        "id": "46fd939a25874306b76ab4d1f74df3b4",
+        "sha256": "5d6cd21b0c1c8af8f4d05269ebbc1af6c16c2d185d371faa2f7dff68c7e50bc0",
+        "bytes": 861,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-results.svg": {
+        "store": "blob",
+        "id": "b4ee179204f24cacb16d6c124046d6bb",
+        "sha256": "64662f331e498e788787a0181aa4e0e2dd065d4d83eaeed369a067c650dccb72",
+        "bytes": 440,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-search.svg": {
+        "store": "blob",
+        "id": "2853825acddb98efd7fdfabe7c4b3549",
+        "sha256": "0aeeb6742adff4627b612b6dbe86fbbeec2d9bc2b7ee215212b1b88391333608",
+        "bytes": 4984,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-skills.svg": {
+        "store": "blob",
+        "id": "e684ab4f690be60a08bffac69b52e5f3",
+        "sha256": "3dedd61dbce2613f79b699aeab430ca4106258122847977b16fe7adb2764e309",
+        "bytes": 3644,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-star.svg": {
+        "store": "blob",
+        "id": "99471d21913dc6888797b92f2589696c",
+        "sha256": "1a503b4f1588e6bc6349f4d85747a2a9efe4dc543fca131471a6ab756762eef6",
+        "bytes": 899,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-studio.svg": {
+        "store": "blob",
+        "id": "f52020a89d68ec2d99b13b45bc20d748",
+        "sha256": "d0914ba9a42d8c30ad8364a9f7521c12b9dabd8cf8bbab79c1a8926fad2f817d",
+        "bytes": 3590,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-tools.svg": {
+        "store": "blob",
+        "id": "4e4a2838d5c05cae3fc363c4e56ecff4",
+        "sha256": "7fdcd9f03fddab7613a04d7cf8446483ef92fa69b3bda662ae7973f6d7da5323",
+        "bytes": 2820,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-user.svg": {
+        "store": "blob",
+        "id": "df70dbff82bcf8237c3e5d1f1813b5cf",
+        "sha256": "09ae3fe694ba540e95a803b9bbb7d7afab379706984117112413ca16bf7376f5",
+        "bytes": 5064,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-voice-connected.svg": {
+        "store": "blob",
+        "id": "315a14988686043f6730040283e67616",
+        "sha256": "bf3a74ed846f3baa37e3709b10b082d95d7fdf9daca2a4509fa20a3704d6ce8e",
+        "bytes": 4788,
+        "type": "image/svg+xml"
+      },
+      "assets/IconsGeneric/rasa-icon-voice.svg": {
+        "store": "blob",
+        "id": "ee6263db225f1ae12ba5b23bca031c41",
+        "sha256": "8a04c2279342c8486d26c289a8080c118203822558359c191ac7bc48f6aa0734",
+        "bytes": 3483,
+        "type": "image/svg+xml"
+      },
+      "assets/Logos/rasa-logo-full-pink.svg": {
+        "store": "blob",
+        "id": "8aff18b023cff9795eb251c440e43f30",
+        "sha256": "17c901698c79b87db2c67596870d850ccf29c8937e32bf7a47cc01df1eeda198",
+        "bytes": 905,
+        "type": "image/svg+xml"
+      },
+      "assets/Logos/rasa-logo-full-taupe-dark.svg": {
+        "store": "blob",
+        "id": "7fe477773095324f04093fcdccf0523c",
+        "sha256": "a61bbdb1f0c8c8fa57938a42f65f7251a96b8e145fc17ae1d4cf86b1b73bacd1",
+        "bytes": 905,
+        "type": "image/svg+xml"
+      },
+      "assets/Logos/rasa-logo-full-taupe-light.svg": {
+        "store": "blob",
+        "id": "d5163bcbfadcd2459376beeb18013866",
+        "sha256": "5b3239d6696fe7892fe490570faf9409eb78f3844ee4292171ee789690e1fbd0",
+        "bytes": 905,
+        "type": "image/svg+xml"
+      },
+      "assets/Logos/rasa-logo-icon-pink.svg": {
+        "store": "blob",
+        "id": "ed80da8d49b8b391709b740b82a8f44b",
+        "sha256": "e0dafc8d990eebbaa7970bbfa5442c446da0745749e0460c4a681201e6b576ce",
+        "bytes": 329,
+        "type": "image/svg+xml"
+      },
+      "assets/Logos/rasa-logo-icon-taupe-dark.svg": {
+        "store": "blob",
+        "id": "43375421ef6f84a57f9224f9f9f193db",
+        "sha256": "4479290e42d0cb65e462259e1298c0207a66693bb0ca416898a12d907cb943a6",
+        "bytes": 329,
+        "type": "image/svg+xml"
+      },
+      "assets/Logos/rasa-logo-icon-taupe-light.svg": {
+        "store": "blob",
+        "id": "50a01b76a0191eaa27e7e4ef10649af9",
+        "sha256": "a7f8f0edd9d9f82c1035c9812584d44bc119afe0581cd8e18500ba324fedaccc",
+        "bytes": 329,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-chladni-01-accent.svg": {
+        "store": "blob",
+        "id": "30f653e0677a794193f1f7746b900255",
+        "sha256": "c0df15b7eadef61527705f1b53b1165c0725c34e9d74f635b89dbce0150b85e9",
+        "bytes": 912829,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-chladni-01-subtle-dark.svg": {
+        "store": "blob",
+        "id": "1c9d7fe61d1cf11ea3e3ebeeb1bccc81",
+        "sha256": "3fa68d03512383b1244a76805eefbada9737a01e6fc0682bf974d8c66b2e865e",
+        "bytes": 913589,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-chladni-01-subtle-light.svg": {
+        "store": "blob",
+        "id": "64fc2fc8c41c5b7ba98685d7326370a0",
+        "sha256": "2f0806f26e22e1de54bde7fce13724c369cc04b01e50cc39ea43d190dd281c98",
+        "bytes": 913593,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-chladni-02-accent.svg": {
+        "store": "blob",
+        "id": "9bad58c50fb736ac636ec47e4a887f39",
+        "sha256": "c03d920fa3a2308ee50e361f46c56dabd6723792ee930d176d66ce457b3cf531",
+        "bytes": 941789,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-chladni-02-subtle-dark.svg": {
+        "store": "blob",
+        "id": "5e628422b44c098c40932f9896d8601f",
+        "sha256": "7aa516b27b22141422c72b06e011537220fea97486d2e8f0abed3171dfd95135",
+        "bytes": 942817,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-chladni-02-subtle-light.svg": {
+        "store": "blob",
+        "id": "475906ec315b97a28519390fd47a1186",
+        "sha256": "37c3b2c3e6aaaaf70f4f9a52ab0bd28025a82ba0844e248ab1bd8e33ae28caae",
+        "bytes": 941657,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-soundwave-01-accent.svg": {
+        "store": "blob",
+        "id": "929c7a15256035086ff6cd5c314c97b3",
+        "sha256": "76a68aec23826487c9e33f000e4d34e832a216a478fb45625bef46df622c4bcc",
+        "bytes": 501425,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-soundwave-01-subtle-dark.svg": {
+        "store": "blob",
+        "id": "08dff27aa3c7dd36a7885df0db581a6c",
+        "sha256": "97302404f7c3e16fb7780d630a4b59786554790d28c71cda6a4f314fbe2d2870",
+        "bytes": 501421,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-soundwave-01-subtle-light.svg": {
+        "store": "blob",
+        "id": "61c70e6f3e74f5c8090606d9e77394dd",
+        "sha256": "d8e6af18fb7453aa29d955f231e286aaef4cad1afaa85f7aadd3d03b9472de25",
+        "bytes": 501425,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-soundwave-02-accent.svg": {
+        "store": "blob",
+        "id": "cb7eff75a469c7e195e1caf3f86eb2f9",
+        "sha256": "a44a22d4dbc74766aaf92e7ce8ea577fbcf91fd512e9ecd3faa551b3db5488c4",
+        "bytes": 500196,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-soundwave-02-subtle-dark.svg": {
+        "store": "blob",
+        "id": "39c53551126069b1c2e032f787140648",
+        "sha256": "7879d5863d212fd30736a2970dc2a84fe542fb6863de1477b0e3eb3d974471e7",
+        "bytes": 500196,
+        "type": "image/svg+xml"
+      },
+      "assets/Textures/rasa-soundwave-02-subtle-light.svg": {
+        "store": "blob",
+        "id": "700f2c0d763441db232d49e6db286bf3",
+        "sha256": "4df53cae85ad73c9de6189af8b08e54741e9d4da0e21f6816f2eb75934fafbdb",
+        "bytes": 500196,
+        "type": "image/svg+xml"
+      }
+    },
+    "blobBytesUsed": 16333759
+  }
+}

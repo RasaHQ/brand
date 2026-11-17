@@ -1,36 +1,36 @@
 # Rasa brand repository instructions
 
-Use the root `SKILL.md` for Rasa implementation and review work. Read only the task-relevant references it names. The same workflow is exposed as `rasa-brand` in both supported agent directories.
+Two project skills live here: `rasa-brand` (root `SKILL.md`: web, UI visuals, email, motion, artwork, reviews) and `rasa-community-cards` (`skills/rasa-community-cards/`: rasa.community covers, newsletter images, showcase headers, in-post diagrams). Both are exposed to Claude Code (`.claude/skills/`) and Codex (`.agents/skills/`). Read only the task-relevant references they name.
 
 ## Source of truth
 
-- `design-system/src/tokens.json`: shared web token values, reconciled with supplied JSON.
-- `ASSETS.md`, `docs/asset-*.md`: GitHub-readable selection rules and exact IDs.
-- `assets/catalog.json`: current/reference/archived asset metadata and exact IDs.
-- `evidence/source-coverage.json`: every supplied file disposition.
-- `docs/assets.md`, `docs/web.md`, `docs/email.md`: production recipes.
-- `design-system/src/components.css`: adapted opt-in component recipes.
-- `README.md` and `docs/`: brand guidance and consumer integration.
-- `docs/source-audit.md` and `evidence/`: measured sources and unresolved decisions.
-- Root `SKILL.md`: canonical agent workflow; platform copies are generated.
+- `design-system/rasa-brand-2026/`: byte-exact mirror of the **Rasa Brand 2026** design system. Its `README.md` is the brand guideline (foundation, slide, visual and content layers). Never edit these files by hand; update them only from a new design-system export and refresh `evidence/brand-2026/artifact-files.json`.
+- `skills/rasa-community-cards/`: the community card system (Figma *Rasa Community Designs*). Its `references/tokens.json` is the only source of card colours.
+- `design-system/src/tokens.json`: web token source, generated from the two above by `scripts/sync-tokens-from-design-system.py` plus hand-owned web sections (layout, breakpoints, motion, responsive typography, accessible pairs).
+- `assets/brand-2026/` and `assets/catalog.json`: current logos, icons and textures by exact ID; October masters are `reference`.
+- `docs/brand-2026.md`, `docs/source-audit.md`: how the repo applies the system, what is exact, derived or pending, and open questions.
 
-Current direction: warm cream/taupe, dark ink, selective pink, STK Bureau Serif/Sans/Sans Mono. Keep retired purple/gradient assets historical. Do not infer official rules from leftover website CSS. Preserve observed/adapted/proposed labels.
+Current direction: Taupe is the only neutral, Rasa Pink the one accent, STK Bureau Serif/Sans/Sans Mono with Book at weight 300, Logo Full, Chladni and Soundwave textures. Retired: the Ink scale, purple, gradients, the 350 weight mapping, pink fills, curved connectors, left-edge accent stripes. Keep observed / adapted / proposed labels.
 
-Do not commit licensed font binaries, private Figma boards or invented brand/customer claims. Existing approved logo geometry is authoritative. Do not publish or deploy merely because a skill is present; follow the user's task and repository workflow.
+## Licensed fonts are secrets
+
+Never commit STK Bureau files (`*.woff2` etc.) or a `.env`. They are provisioned per machine in `design-system/rasa-brand-2026/fonts/` or via `RASA_FONTS_DIR` (see `.env.example`), verified by `scripts/check-fonts.py`. `scripts/validate-brand.py` fails if any is tracked.
 
 ## Commands
 
 ```sh
+python3 scripts/check-fonts.py --soft
+python3 scripts/sync-tokens-from-design-system.py --check
 npm --prefix design-system run build
 npm --prefix design-system run check
 npm --prefix design-system run reference
+python3 scripts/build-brand-2026-assets.py --catalog-only
 python3 scripts/build-catalog-docs.py
 python3 scripts/build-email.py
 python3 scripts/sync-agent-skills.py
 python3 scripts/validate-brand.py
-python3 scripts/sync-agent-skills.py --check
 ```
 
-Edit token source before regeneration, not `dist/`. Edit root `SKILL.md`, not either platform copy. Review resulting diffs. Match testing to the change: use consumer builds and rendered inspection for UI/motion work; a documentation edit does not require unrelated application tests. State any checks not run and why.
+Edit token sources, not `dist/`. Edit the root `SKILL.md` or `skills/rasa-community-cards/`, never a platform copy. Review generated diffs. Match testing to the change: consumer builds and rendered inspection for UI, card renders for the card system; a documentation edit does not need unrelated app tests. State any check not run and why.
 
-When adding these instructions to an existing repository, merge with its instructions rather than replacing unrelated rules.
+Do not commit private Figma boards, invented brand or customer claims, or secrets. Do not publish or deploy because a skill is present. When adding these instructions to another repository, merge them with its instructions rather than replacing unrelated rules.

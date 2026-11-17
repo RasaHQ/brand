@@ -23,7 +23,7 @@ A proposed 8-second explainer can spend 0–1.5 seconds on the problem, 1.5–5 
 
 Use the concrete JS tokens for colors and geometry. Use `useCurrentFrame()` and `useVideoConfig()`; convert milliseconds through the actual fps. Do not use wall-clock timers, CSS animations or a live Anime.js timeline to drive exported frames. Randomness, if needed, must be seeded.
 
-The example composition runs at 1920×1080, 30fps, 240 frames. It uses frame-based ease curves derived from the shared token. Its `reducedMotion` prop supplies an intentional static version. React styles accept the font weight 350. The optional licensed-font helper uses `@remotion/fonts` and `staticFile()` so rendering waits for files; do not hotlink website fonts or render before readiness.
+The example composition runs at 1920×1080, 30fps, 240 frames. It uses frame-based ease curves derived from the shared token. Its `reducedMotion` prop supplies an intentional static version. Use font weight 300 for STK Bureau Book. The optional licensed-font helper uses `@remotion/fonts` and `staticFile()` so rendering waits for files; do not hotlink website fonts or render before readiness.
 
 The example works with system fallbacks by default. Production acceptance with STK fonts remains outstanding until authorized files are provisioned. Recheck wrapping after font installation. Test beginning, transition, middle and ending frames. Keep essential text on-screen long enough and provide a caption/transcript deliverable for narration.
 
