@@ -22,7 +22,12 @@ GENERATED = {
     "design-system/dist/tokens.mjs", "design-system/dist/tailwind-v3.cjs",
     "design-system/dist/tailwind-v4.css",
 }
-BRAND_SOURCES = GENERATED | {"design-system/scripts/build.mjs", "scripts/sync-tokens-from-design-system.py", "design-system/rasa-brand-2026/tokens.json", "skills/rasa-community-cards/references/tokens.json", "evidence/brand-2026/artifact-files.json"}
+COMMUNITY_EXPORTS = {
+    "design-system/src/tokens.json", "design-system/dist/tokens.css", "design-system/dist/tailwind-v4.css",
+    "design-system/src/components.css", "design-system/src/fonts.css",
+    "design-system/src/fallback-fonts.css", "design-system/rasa-brand-2026/fonts/fonts.lock.json",
+}
+BRAND_SOURCES = GENERATED | COMMUNITY_EXPORTS | {"assets/catalog.json"} | {"design-system/scripts/build.mjs", "scripts/sync-tokens-from-design-system.py", "design-system/rasa-brand-2026/tokens.json", "skills/rasa-community-cards/references/tokens.json", "evidence/brand-2026/artifact-files.json"}
 FONT_FAMILIES = {"STK Bureau Serif", "STK Bureau Sans", "STK Bureau Sans Medium", "STK Bureau Sans Mono"}
 
 
@@ -258,6 +263,58 @@ def check_card(root, binding, image_path, image_sha):
     need("NOTE: STK Bureau not provisioned" not in log, "fallback NOTE disqualifies card")
 
 
+def check_community_source(root, brand_root, source_binding, artifact_map, load_brand=git_blob):
+    """Receive the site's settled source.json; font catalog metadata never opens payloads."""
+    need(source_binding.get("path") in artifact_map, "site source record omitted from artifact inventory")
+    source = read_json(bound_file(root, source_binding))
+    need(source.get("repository") == "RasaHQ/brand" and source.get("commit") == BRAND_COMMIT,
+         "site source record is not pinned to required upstream brand")
+    need(source.get("tokensSource") == "design-system/src/tokens.json"
+         and source.get("tokensSha256") == digest(load_brand(brand_root, "design-system/src/tokens.json")),
+         "site source token identity differs from pinned upstream")
+    exports = source.get("generatedOutputs")
+    need(isinstance(exports, list) and len(exports) == len(COMMUNITY_EXPORTS),
+         "site source record must bind all seven settled exports")
+    need({item["source"] for item in exports} == COMMUNITY_EXPORTS
+         and len({item["path"] for item in exports}) == len(exports),
+         "site source exports are missing or duplicated")
+    for item in exports:
+        need(item["path"] in artifact_map, "site export omitted from artifact inventory")
+        raw = bound_file(root, artifact_map[item["path"]])
+        canonical = load_brand(brand_root, item["source"])
+        need(digest(raw) == item.get("sha256") == digest(canonical) and raw == canonical,
+             "site export differs from exact pinned upstream bytes")
+    catalog = read_json(load_brand(brand_root, "assets/catalog.json"))
+    entries = catalog.get("assets", [])
+    catalog_map = {item["id"]: item for item in entries}
+    need(len(catalog_map) == len(entries), "duplicate upstream catalog identifier")
+    assets = source.get("assets")
+    need(isinstance(assets, list) and assets and len({a["id"] for a in assets}) == len(assets),
+         "missing or duplicate site catalog inventory")
+    unopened_fonts = []
+    verified_nonfonts = []
+    for item in assets:
+        need(item["id"] in catalog_map, "site asset is not in pinned upstream catalog")
+        canonical = catalog_map[item["id"]]
+        need(canonical.get("status") == "current", "site source uses a reference or retired catalog asset")
+        need(item.get("source") == canonical.get("path") and item.get("sha256") == canonical.get("sha256"),
+             "site catalog metadata differs from pinned upstream")
+        path = item["file"]
+        if Path(path).suffix.lower() in {".woff", ".woff2", ".ttf", ".otf"}:
+            need(path not in artifact_map, "font payload cannot be a retained source-check input")
+            unopened_fonts.append({"id": item["id"], "payload_verified": False})
+            continue
+        need(path in artifact_map, "non-font catalog asset omitted from artifact inventory")
+        raw = bound_file(root, artifact_map[path])
+        need(digest(raw) == canonical["sha256"] and len(raw) == canonical["bytes"],
+             "site asset bytes differ from pinned catalog")
+        verified_nonfonts.append(item["id"])
+    return {"profile": "rasa-community-source-v1", "exports_bound": len(exports),
+            "catalog_entries_bound": len(assets), "nonfont_assets_byte_bound": verified_nonfonts,
+            "font_metadata_only": unopened_fonts, "font_payloads_opened": 0,
+            "scope": "Source and catalog custody only; no font-use, image-render, import/build or visual certification."}
+
+
 def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_tokens):
     findings = []
     def run(rule, path, action):
@@ -298,6 +355,16 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
             bound_file(root, item)
             artifact_map[path] = item
         run("artifact-binding", path, artifact)
+
+    source_receiving = None
+    if manifest.get("profile") == "rasa-community-source-v1":
+        def site_source():
+            nonlocal source_receiving
+            source_receiving = check_community_source(root, brand_root, manifest.get("source_record"), artifact_map, load_brand)
+        run("community-source-record", "manifest", site_source)
+    else:
+        run("source-profile", "manifest", lambda: need(
+            manifest.get("profile") in (None, "generic-retained-evidence-v1"), "unsupported consumer source profile"))
 
     generated = manifest.get("generated_tokens", [])
     run("generated-token-coverage", "manifest", lambda: need(isinstance(generated, list) and generated, "no generated token bindings"))
@@ -372,7 +439,7 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
             {"desktop", "narrow"} <= page_sizes.get(page, set()), "each declared page needs desktop and narrow observations"))
     return {"schema": "rasa-brand-consumer-result-v1", "brand_commit": BRAND_COMMIT,
             "machine_status": "FAIL" if findings else "PASS_EVIDENCE_ONLY", "findings": findings,
-            "independent_generation": generation_receipt,
+            "independent_generation": generation_receipt, "source_receiving": source_receiving,
             "operator_visual_verdict": "NOT_HELD", "release_authorized": False,
             "scope": "Retained evidence for declared artifacts and observed states; no whole-site or inbox certification."}
 

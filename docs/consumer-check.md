@@ -55,3 +55,13 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/tests/browser_consumer_integration.py 
 ```
 
 This intentionally provides no licensed fonts, captures real fallback glyph use and requires the checker to refuse it. It preserves original screenshots, observations and command outputs under the executing owner's receipt folder. It is a negative control, never a qualified positive render. No missing browser dependency is silently skipped or installed. Positive real-STK consumer qualification remains separately required.
+
+## Receive the community source record.
+
+The optional `rasa-community-source-v1` profile receives the site's settled `src/brand/source.json` interface from [theme candidate e4d9ab15](https://github.com/matorclawson/rasa-community/blob/e4d9ab1584a70aa0da42fd930b108c1b0cd9df1c/src/brand/source.json). Set manifest `profile` to that value and add `source_record` as a path/SHA256/size binding, also included in `artifacts`.
+
+Its seven `generatedOutputs` entries are classified accurately: three generated token outputs plus exact component CSS, licensed-font CSS, substitute-font CSS and the font-lock JSON. Every export must match pinned upstream bytes; the four static exports are not falsely called new generator executions. The source-sync/Node reproduction is still a separate actual step.
+
+Catalog entries bind exact current asset IDs, upstream paths and hashes. Non-font files also bind retained consumer bytes and size. Font-file entries are metadata only: their payloads must be omitted from the source-check packet. Listing an actual font payload as an input is refused. Catalog agreement never proves actual rendered font use or a community-cards image render. In particular, exact canonical logo custody grants no unapproved image-proof exemption; image policy remains strict until the operator's scoped rule settles that case. Unknown consumer source profiles fail.
+
+The receiver is authored and NOT_RUN. Seven new synthetic fixtures cover the settled exports, stale/missing metadata, changed static CSS, reference assets and attempted font-payload input. Intake metadata must not be presented as an application build, import-graph proof, browser result or visual approval.
