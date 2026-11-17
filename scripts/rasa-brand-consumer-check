@@ -263,6 +263,32 @@ def check_card(root, binding, image_path, image_sha):
     need("NOTE: STK Bureau not provisioned" not in log, "fallback NOTE disqualifies card")
 
 
+def check_image_proof(root, brand_root, image, artifact, load_brand=git_blob):
+    """Exactly two classes: unchanged official catalog image, or generated STK render."""
+    proof_class = image.get("proof_class", "generated")
+    if proof_class == "generated":
+        check_card(root, image.get("render_record"), image["path"], artifact["sha256"])
+        return {"class": "generated", "render_record_verified": True}
+    need(proof_class == "official-catalog", "unsupported image proof class")
+    claim = image.get("catalog", {})
+    catalog = read_json(load_brand(brand_root, "assets/catalog.json"))
+    entries = [item for item in catalog.get("assets", []) if item.get("id") == claim.get("id")]
+    need(len(entries) == 1, "official image identifier is missing or ambiguous in pinned catalog")
+    canonical = entries[0]
+    need(canonical.get("status") == "current" and isinstance(canonical.get("category"), str)
+         and canonical["category"], "only a current official catalog image can use unchanged source proof")
+    need(canonical.get("format") in {"svg", "png", "webp", "jpg", "jpeg", "gif", "avif"}
+         and Path(image["path"]).suffix.lower() == "." + canonical["format"],
+         "changed official image format requires generated render proof")
+    need(claim.get("category") == canonical["category"] and claim.get("path") == canonical["path"]
+         and claim.get("sha256") == canonical["sha256"], "official image catalog claim differs from pinned identity")
+    raw = bound_file(root, artifact)
+    need(digest(raw) == canonical["sha256"] and len(raw) == canonical["bytes"],
+         "official image bytes differ from pinned catalog")
+    return {"class": "official-catalog", "id": canonical["id"], "category": canonical["category"],
+            "render_record_required": False, "scope": "Unchanged official source asset; no render or font-use claim."}
+
+
 def check_community_source(root, brand_root, source_binding, artifact_map, load_brand=git_blob):
     """Receive the site's settled source.json; font catalog metadata never opens payloads."""
     need(source_binding.get("path") in artifact_map, "site source record omitted from artifact inventory")
@@ -380,11 +406,12 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
     images = manifest.get("images", [])
     run("image-inventory", "manifest", lambda: need(isinstance(images, list), "image inventory missing"))
     image_map = {}
+    image_proofs = {}
     for image in images if isinstance(images, list) else []:
         path = image.get("path", "invalid") if isinstance(image, dict) else "invalid"
         def media(image=image, path=path):
             need(path in artifact_map and path not in image_map, "image missing or duplicated in artifact inventory")
-            check_card(root, image.get("render_record"), path, artifact_map[path]["sha256"])
+            image_proofs[path] = check_image_proof(root, brand_root, image, artifact_map[path], load_brand)
             image_map[path] = image
         run("image-stk-render", path, media)
 
@@ -440,6 +467,7 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
     return {"schema": "rasa-brand-consumer-result-v1", "brand_commit": BRAND_COMMIT,
             "machine_status": "FAIL" if findings else "PASS_EVIDENCE_ONLY", "findings": findings,
             "independent_generation": generation_receipt, "source_receiving": source_receiving,
+            "image_proofs": image_proofs,
             "operator_visual_verdict": "NOT_HELD", "release_authorized": False,
             "scope": "Retained evidence for declared artifacts and observed states; no whole-site or inbox certification."}
 
