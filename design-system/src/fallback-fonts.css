@@ -1,6 +1,10 @@
-/* Optional OFL fallback faces. Copy assets/fonts/fallback/ to public/brand/fonts/fallback/. */
+/* Google substitutes for STK Bureau. Rasa Brand 2026: every page must load them, even when STK Bureau is
+   available, so text never falls back to Georgia, Arial or Courier New. Preferred: add to the page head
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,300;0,400;1,300;1,400&display=swap">
+   Offline / self-hosted alternative: the OFL files in assets/fonts/fallback/, copied to public/brand/fonts/fallback/. */
 @font-face {font-family:"Inter";src:url("/brand/fonts/fallback/Inter/Inter-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}
 @font-face {font-family:"Inter";src:url("/brand/fonts/fallback/Inter/Inter-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap;}
+@font-face {font-family:"Inter";src:url("/brand/fonts/fallback/Inter/Inter-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap;}
 @font-face {font-family:"Newsreader";src:url("/brand/fonts/fallback/Newsreader/Newsreader-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}
 @font-face {font-family:"Newsreader";src:url("/brand/fonts/fallback/Newsreader/Newsreader-Italic.ttf") format("truetype");font-weight:400;font-style:italic;font-display:swap;}
 @font-face {font-family:"JetBrains Mono";src:url("/brand/fonts/fallback/JetBrains Mono/JetBrainsMono-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;}

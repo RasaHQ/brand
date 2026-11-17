@@ -1,0 +1,106 @@
+{
+ "_note": "Expected STK Bureau web fonts from the Rasa Brand 2026 design system. The files are licensed and are NOT committed; provision them into this folder (or point RASA_FONTS_DIR at a folder that holds them). scripts/check-fonts.py verifies them against these hashes.",
+ "required_for": {
+  "community-cards": [
+   "STKBureauSerif-Book.woff2",
+   "STKBureauSans-Book.woff2",
+   "STKBureauSansMono-Regular.woff2"
+  ],
+  "slides": [
+   "STKBureauSerif-Book.woff2",
+   "STKBureauSans-Book.woff2",
+   "STKBureauSans-Medium.woff2",
+   "STKBureauSansMono-Regular.woff2"
+  ]
+ },
+ "fonts": [
+  {
+   "file": "STKBureauSans-Book.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 300,
+   "style": "normal",
+   "bytes": 42784,
+   "sha256": "33fca61d09a8372390397686e7b9a29f2da9bced04288ad3b24c312395319289"
+  },
+  {
+   "file": "STKBureauSans-BookItalic.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 300,
+   "style": "italic",
+   "bytes": 44612,
+   "sha256": "e82beffffd157e701efc1fdee304e0096ee7c24bda00fe39a2c40798c8671a4a"
+  },
+  {
+   "file": "STKBureauSans-Italic.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 400,
+   "style": "italic",
+   "bytes": 44752,
+   "sha256": "75ea9fb219ed8b5938a355ce70c2661352153f51c3fccf25fb781a453b3e6ecb"
+  },
+  {
+   "file": "STKBureauSans-Medium.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 500,
+   "style": "normal",
+   "bytes": 43296,
+   "sha256": "47677d940fa812b310deadc97d925de40be22b43ac9f7de88c03128e187c0699"
+  },
+  {
+   "file": "STKBureauSans-MediumItalic.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 500,
+   "style": "italic",
+   "bytes": 44976,
+   "sha256": "23f74592a58770f1051f28ca8d46ba54a73ffb4b58ccdf2d160982056a51fd38"
+  },
+  {
+   "file": "STKBureauSans-Regular.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 400,
+   "style": "normal",
+   "bytes": 42960,
+   "sha256": "69402862fc062ba975fbc2a492436220daf1ef15ff0ca8ca0c1268de0a0f2581"
+  },
+  {
+   "file": "STKBureauSans-SemiBold.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 600,
+   "style": "normal",
+   "bytes": 43536,
+   "sha256": "3145beeaf0669ecdae2668e1012a77a98ee34d154b2e7e83fd3f09fb87891569"
+  },
+  {
+   "file": "STKBureauSans-SemiBoldItalic.woff2",
+   "family": "STK Bureau Sans",
+   "weight": 600,
+   "style": "italic",
+   "bytes": 45000,
+   "sha256": "751d370c69513022fc421c2a1a70be7a62fcdd8a2ff4b8cf5b4cbb63af3da122"
+  },
+  {
+   "file": "STKBureauSansMono-Regular.woff2",
+   "family": "STK Bureau Sans Mono",
+   "weight": 400,
+   "style": "normal",
+   "bytes": 29644,
+   "sha256": "d068a2846a1f3bc5db3a11c16c64a65654e57529bc55e134079fe0ae56c1557e"
+  },
+  {
+   "file": "STKBureauSerif-Book.woff2",
+   "family": "STK Bureau Serif",
+   "weight": 300,
+   "style": "normal",
+   "bytes": 45880,
+   "sha256": "a9aeb507f99541b8be21e2d183a7a11b4dae1ac407091171f98a028ce597f878"
+  },
+  {
+   "file": "STKBureauSerif-BookItalic.woff2",
+   "family": "STK Bureau Serif",
+   "weight": 300,
+   "style": "italic",
+   "bytes": 47552,
+   "sha256": "f5584266c2d493b972e83ff460b9bf768e8ec38c18b92efe07bc75af790ee362"
+  }
+ ]
+}

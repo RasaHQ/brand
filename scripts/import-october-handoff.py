@@ -64,5 +64,5 @@ repositoryInput=dict(name='brand 2.zip',baseCommit='d6de4b1',sha256=sha(repo_inp
 save('evidence/source-coverage.json',(json.dumps(dict(date='2026-10-16',repositoryInput=repositoryInput,archives=archives,files=records),indent=2)+'\n').encode())
 save('assets/catalog.json',(json.dumps(dict(schemaVersion=1,assets=list(assets.values())),indent=2)+'\n').encode())
 # Retain existing September logos but make their status unambiguous in a separate entry point.
-(R/'logos/current/README.md').write_text('# September implementation assets\n\nHistorical compatibility paths. New work must use the supplied October masters in `assets/logos/digital/`. These old reverse variants use #FFFBF5; the supplied cream logo uses #FAF6F0. Do not silently replace deployed assets. See `docs/assets.md`.\n')
+(R/'logos/current/README.md').write_text('# September implementation assets\n\nHistorical compatibility paths. New work uses the Rasa Brand 2026 logos in `assets/brand-2026/Logos/`; the October masters in `assets/logos/digital/` are references. These old reverse variants use #FFFBF5; the supplied cream logo uses #FAF6F0. Do not silently replace deployed assets. See `docs/assets.md`.\n')
 print('Source records',len(records),'unique included assets',len(assets))

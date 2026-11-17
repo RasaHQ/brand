@@ -1,6 +1,6 @@
 [
   {
-    "name": "Main text",
+    "name": "Taupe Dark on Taupe Light (all text)",
     "fg": "#181210",
     "bg": "#FAF6F0",
     "ratio": 17.22,
@@ -8,7 +8,15 @@
     "result": "pass"
   },
   {
-    "name": "Muted text",
+    "name": "Rasa Pink on Taupe Dark (all text)",
+    "fg": "#E85A91",
+    "bg": "#181210",
+    "ratio": 5.56,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Muted text (fg-muted) on Taupe Light",
     "fg": "#524A43",
     "bg": "#FAF6F0",
     "ratio": 8.06,
@@ -16,39 +24,31 @@
     "result": "pass"
   },
   {
-    "name": "Accessible link",
-    "fg": "#AA1E54",
-    "bg": "#FAF6F0",
-    "ratio": 6.45,
-    "threshold": 4.5,
-    "result": "pass"
-  },
-  {
-    "name": "Primary CTA",
-    "fg": "#FFFBF5",
+    "name": "Dark theme muted text on Taupe Dark",
+    "fg": "#ABA49C",
     "bg": "#181210",
-    "ratio": 17.98,
+    "ratio": 7.52,
     "threshold": 4.5,
     "result": "pass"
   },
   {
-    "name": "Pink CTA / ink text",
-    "fg": "#181210",
-    "bg": "#E85A91",
-    "ratio": 5.56,
-    "threshold": 4.5,
-    "result": "pass"
-  },
-  {
-    "name": "Focus / cream",
+    "name": "Link / focus (pink 600) on Taupe Light",
     "fg": "#AA1E54",
     "bg": "#FAF6F0",
     "ratio": 6.45,
-    "threshold": 3,
+    "threshold": 4.5,
     "result": "pass"
   },
   {
-    "name": "Input border / panel",
+    "name": "Primary button label",
+    "fg": "#FAF6F0",
+    "bg": "#181210",
+    "ratio": 17.22,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Input border on Taupe 50",
     "fg": "#696157",
     "bg": "#FFFBF5",
     "ratio": 5.91,
@@ -56,23 +56,47 @@
     "result": "pass"
   },
   {
-    "name": "Success label",
-    "fg": "#2B5E47",
-    "bg": "#C6FEE1",
-    "ratio": 6.68,
+    "name": "Status success",
+    "fg": "#296F62",
+    "bg": "#EBF8F5",
+    "ratio": 5.44,
     "threshold": 4.5,
     "result": "pass"
   },
   {
-    "name": "Warning label",
+    "name": "Status danger",
+    "fg": "#AA4C1E",
+    "bg": "#FFEDE4",
+    "ratio": 4.91,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Status warning",
     "fg": "#7A6F1E",
-    "bg": "#FDFBE5",
-    "ratio": 4.88,
+    "bg": "#FBF3B8",
+    "ratio": 4.52,
     "threshold": 4.5,
     "result": "pass"
   },
   {
-    "name": "Error label",
+    "name": "Status info",
+    "fg": "#1E49ED",
+    "bg": "#E4EAFF",
+    "ratio": 5.42,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Status neutral",
+    "fg": "#524A43",
+    "bg": "#F3EEE7",
+    "ratio": 7.52,
+    "threshold": 4.5,
+    "result": "pass"
+  },
+  {
+    "name": "Status pink",
     "fg": "#AA1E54",
     "bg": "#FCE7EF",
     "ratio": 5.89,
@@ -80,35 +104,27 @@
     "result": "pass"
   },
   {
-    "name": "Bright pink text on cream",
+    "name": "Rasa Pink on Taupe Light",
     "fg": "#E85A91",
     "bg": "#FAF6F0",
     "ratio": 3.09,
     "threshold": null,
-    "result": "reference only"
+    "result": "restricted: 24px and above, and graphics only"
   },
   {
-    "name": "White text on pink",
-    "fg": "#FFFFFF",
-    "bg": "#E85A91",
-    "ratio": 3.33,
-    "threshold": null,
-    "result": "reference only"
-  },
-  {
-    "name": "Subtle text on cream",
+    "name": "fg-subtle (taupe 500) on Taupe Light",
     "fg": "#888077",
     "bg": "#FAF6F0",
     "ratio": 3.61,
     "threshold": null,
-    "result": "reference only"
+    "result": "restricted: secondary detail only, never body text"
   },
   {
-    "name": "Decorative border on panel",
+    "name": "Hairline (taupe 300) on Taupe 50",
     "fg": "#C8C0B6",
     "bg": "#FFFBF5",
     "ratio": 1.75,
     "threshold": null,
-    "result": "reference only"
+    "result": "restricted: decorative divider, not an essential boundary"
   }
 ]

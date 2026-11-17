@@ -1,11 +1,18 @@
-# Apply this repository update
+# Apply this update
 
-This is an updated checkout based on the uploaded `brand 2.zip`, commit `d6de4b1`. Copy its contents into your brand working tree, including dot-directories. The archive does not include `.git` or credentials. Preserve your checkout's `.git`, remote settings, and unrelated local work. Review the diff before committing.
+This is an updated checkout of `rasahq/brand` based on commit `a3b78c7`. It contains no `.git` folder, no font binaries and no secrets.
 
-Start with `docs/source-audit.md` and `README.md`. Generate/check with the commands in the README. `assets/` contains new supplied assets and derivatives; `logos/` retains compatibility paths. Do not copy all of `assets/` into a web app: use `scripts/brand.py export` for a selected set.
+1. On a new branch, copy the contents over your working tree, **including dot-files and dot-directories** (`.gitignore`, `.env.example`, `.claude/`, `.agents/`).
+2. Copying over a directory does not delete files; nothing needs deleting for this update (October assets stay as references).
+3. Provision the STK Bureau fonts locally (never commit them): copy the 11 `.woff2` files into `design-system/rasa-brand-2026/fonts/`, or set `RASA_FONTS_DIR` in a git-ignored `.env`. Check with `python3 scripts/check-fonts.py`.
+4. Verify:
 
-The supplied proprietary fonts are deliberately not part of this candidate; provision separately. The Templates and Social/Profile uploads were empty. This update does not deploy the community site, publish an npm package, or send email.
+   ```sh
+   npm --prefix design-system run build && npm --prefix design-system run check
+   python3 scripts/validate-brand.py
+   python3 skills/rasa-community-cards/scripts/render_card.py skills/rasa-community-cards/examples/more-examples.json /tmp/cards/
+   ```
 
-## Markdown reference migration
+5. Review `git status`: no `STKBureau*` file and no `.env` should appear. Commit.
 
-Delete the obsolete root `asset-gallery.html` and `preview.html` from your existing checkout when applying this update. Their replacements are `ASSETS.md`, `docs/asset-logos.md`, `docs/asset-icons.md`, `docs/asset-patterns.md`, and `COMPONENTS.md`. Copying an archive over an existing directory does not remove old files automatically. HTML in `examples/email/` remains intentional email output.
+Consumers of `@rasahq/brand-tokens` should read the *Deprecated* section of [CHANGELOG.md](CHANGELOG.md), in particular the meaning of `--rasa-surface`, and rebuild. This update does not deploy rasa.community, publish a package or send email.

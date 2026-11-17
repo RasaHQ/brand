@@ -13,18 +13,18 @@ const events = [
   <body class="rasa-theme" style="margin:0">
     <main>
       <section class="rasa-container rasa-section">
-        <p class="rasa-eyebrow">Community · design example</p>
-        <h1 class="rasa-display">Build agents.<br /><em>Learn together.</em></h1>
+        <p class="rasa-eyebrow">Community</p>
+        <h1 class="rasa-display">Build agents. <em class="rasa-emphasis">Learn together.</em></h1>
         <p class="rasa-lead">A proposed community layout using the shared Rasa tokens.</p>
         <div class="rasa-actions"><a class="rasa-button" href="#sessions">Explore sessions</a><a class="rasa-button rasa-button--secondary" href="#about">About the community</a></div>
       </section>
       <section class="rasa-container rasa-section" id="sessions" aria-labelledby="sessions-title">
-        <h2 class="rasa-title" id="sessions-title">Make something useful</h2>
+        <h2 class="rasa-title" id="sessions-title">Sessions this month.</h2>
         <div class="rasa-grid" style="margin-top:32px">
           {events.map(event=><article class="rasa-card"><h3 class="rasa-card-title">{event.title}</h3><p class="rasa-body">{event.detail}</p></article>)}
         </div>
       </section>
-      <section class="rasa-container rasa-section" id="about"><h2 class="rasa-title">A place to exchange ideas</h2><p class="rasa-prose">This is a visual integration example, not a live event listing. Replace its content and routes with your site's existing content.</p></section>
+      <section class="rasa-container rasa-section" id="about"><h2 class="rasa-title">Ask questions, share builds.</h2><p class="rasa-prose">This is a visual integration example, not a live event listing. Replace its content and routes with your site's existing content.</p></section>
     </main>
   </body>
 </html>

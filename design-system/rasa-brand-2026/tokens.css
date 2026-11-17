@@ -1,0 +1,957 @@
+/* Rasa Brand 2026 — generated from tokens.json */
+:root, [data-theme="light"] {
+  --taupe-50: #fffbf5; /* Taupe scale, Figma primary/taupe/50. */
+  --taupe-100: #faf6f0; /* Taupe Light. Ground of light slides and pages; text on dark. CMYK 0/2/4/2. */
+  --taupe-200: #f3eee7; /* Taupe scale, Figma primary/taupe/200. */
+  --taupe-250: #ede8e0; /* Taupe scale, Figma primary/taupe/250. */
+  --taupe-300: #c8c0b6; /* Taupe scale, Figma primary/taupe/300. */
+  --taupe-400: #aba49c; /* Taupe scale, Figma primary/taupe/400. */
+  --taupe-500: #888077; /* Taupe scale, Figma primary/taupe/500. */
+  --taupe-600: #696157; /* Taupe scale, Figma primary/taupe/600. */
+  --taupe-700: #524a43; /* Taupe scale, Figma primary/taupe/700. */
+  --taupe-800: #3a312c; /* Taupe scale, Figma primary/taupe/800. */
+  --taupe-900: #2b2523; /* Taupe scale, Figma primary/taupe/900. */
+  --taupe-950: #181210; /* Taupe Dark. Ground of dark slides; text on light. CMYK 71/68/67/84, Pantone Black 4 C. */
+  --pink-50: #fef5f8; /* Pink scale, Figma primary/pink/50. */
+  --pink-100: #fce7ef; /* Pink scale, Figma primary/pink/100. */
+  --pink-200: #f6bdd3; /* Pink scale, Figma primary/pink/200. */
+  --pink-300: #f096b9; /* Pink scale, Figma primary/pink/300. */
+  --pink-400: #e85a91; /* Rasa Pink, the one accent: emphasis, focus, key actions. CMYK 0/78/13/0, Pantone 7423 C. Never a background fill or body text; on Taupe Light only at 24px and up. */
+  --pink-500: #e12a71; /* Pink scale, Figma primary/pink/500. */
+  --pink-600: #aa1e54; /* Pink scale, Figma primary/pink/600. */
+  --pink-700: #7a1e42; /* Pink scale, Figma primary/pink/700. */
+  --pink-800: #541b31; /* Pink scale, Figma primary/pink/800. */
+  --pink-900: #3a1523; /* Pink scale, Figma primary/pink/900. */
+  --pink-950: #220e16; /* Pink scale, Figma primary/pink/950. */
+  --seafoam-50: #f7fcfb; /* Seafoam scale, Figma secondary/seafoam/50. Industry cue: Insurance. */
+  --seafoam-100: #ebf8f5; /* Seafoam scale, Figma secondary/seafoam/100. Industry cue: Insurance. */
+  --seafoam-200: #c8ebe4; /* Seafoam scale, Figma secondary/seafoam/200. Industry cue: Insurance. */
+  --seafoam-300: #9fdbd0; /* Seafoam scale, Figma secondary/seafoam/300. Industry cue: Insurance. */
+  --seafoam-400: #7fcfc0; /* Seafoam scale, Figma secondary/seafoam/400. Industry cue: Insurance. */
+  --seafoam-500: #4ebda9; /* Seafoam scale, Figma secondary/seafoam/500. Industry cue: Insurance. */
+  --seafoam-600: #379181; /* Seafoam scale, Figma secondary/seafoam/600. Industry cue: Insurance. */
+  --seafoam-700: #296f62; /* Seafoam scale, Figma secondary/seafoam/700. Industry cue: Insurance. */
+  --seafoam-800: #1e5148; /* Seafoam scale, Figma secondary/seafoam/800. Industry cue: Insurance. */
+  --seafoam-900: #163933; /* Seafoam scale, Figma secondary/seafoam/900. Industry cue: Insurance. */
+  --seafoam-950: #0e221e; /* Seafoam scale, Figma secondary/seafoam/950. Industry cue: Insurance. */
+  --coral-50: #fff7f4; /* Coral scale, Figma secondary/coral/50. Industry cue: Retail. */
+  --coral-100: #ffede4; /* Coral scale, Figma secondary/coral/100. Industry cue: Retail. */
+  --coral-200: #ffcdb4; /* Coral scale, Figma secondary/coral/200. Industry cue: Retail. */
+  --coral-300: #ffb28c; /* Coral scale, Figma secondary/coral/300. Industry cue: Retail. */
+  --coral-400: #ff894f; /* Coral scale, Figma secondary/coral/400. Industry cue: Retail. */
+  --coral-500: #ed631e; /* Coral scale, Figma secondary/coral/500. Industry cue: Retail. */
+  --coral-600: #aa4c1e; /* Coral scale, Figma secondary/coral/600. Industry cue: Retail. */
+  --coral-700: #7a3d1e; /* Coral scale, Figma secondary/coral/700. Industry cue: Retail. */
+  --coral-800: #542e1b; /* Coral scale, Figma secondary/coral/800. Industry cue: Retail. */
+  --coral-900: #3a2115; /* Coral scale, Figma secondary/coral/900. Industry cue: Retail. */
+  --coral-950: #22150e; /* Coral scale, Figma secondary/coral/950. Industry cue: Retail. */
+  --periwinkle-50: #f4f6ff; /* Periwinkle scale, Figma secondary/perriwinkle/50. Industry cue: Finance. */
+  --periwinkle-100: #e4eaff; /* Periwinkle scale, Figma secondary/perriwinkle/100. Industry cue: Finance. */
+  --periwinkle-200: #bbc9ff; /* Periwinkle scale, Figma secondary/perriwinkle/200. Industry cue: Finance. */
+  --periwinkle-300: #87a0ff; /* Periwinkle scale, Figma secondary/perriwinkle/300. Industry cue: Finance. */
+  --periwinkle-400: #4f73ff; /* Periwinkle scale, Figma secondary/perriwinkle/400. Industry cue: Finance. */
+  --periwinkle-500: #1e49ed; /* Periwinkle scale, Figma secondary/perriwinkle/500. Industry cue: Finance. */
+  --periwinkle-600: #1e3baa; /* Periwinkle scale, Figma secondary/perriwinkle/600. Industry cue: Finance. */
+  --periwinkle-700: #1e317a; /* Periwinkle scale, Figma secondary/perriwinkle/700. Industry cue: Finance. */
+  --periwinkle-800: #1b2754; /* Periwinkle scale, Figma secondary/perriwinkle/800. Industry cue: Finance. */
+  --periwinkle-900: #151d3a; /* Periwinkle scale, Figma secondary/perriwinkle/900. Industry cue: Finance. */
+  --periwinkle-950: #0e1222; /* Periwinkle scale, Figma secondary/perriwinkle/950. Industry cue: Finance. */
+  --sage-50: #f9faf9; /* Sage scale, Figma secondary/sage/50. Industry cue: Government. */
+  --sage-100: #f1f3f0; /* Sage scale, Figma secondary/sage/100. Industry cue: Government. */
+  --sage-200: #d1d8ce; /* Sage scale, Figma secondary/sage/200. Industry cue: Government. */
+  --sage-300: #c0cabc; /* Sage scale, Figma secondary/sage/300. Industry cue: Government. */
+  --sage-400: #a3b19d; /* Sage scale, Figma secondary/sage/400. Industry cue: Government. */
+  --sage-500: #809378; /* Sage scale, Figma secondary/sage/500. Industry cue: Government. */
+  --sage-600: #5f6f59; /* Sage scale, Figma secondary/sage/600. Industry cue: Government. */
+  --sage-700: #495543; /* Sage scale, Figma secondary/sage/700. Industry cue: Government. */
+  --sage-800: #353e31; /* Sage scale, Figma secondary/sage/800. Industry cue: Government. */
+  --sage-900: #262c23; /* Sage scale, Figma secondary/sage/900. Industry cue: Government. */
+  --sage-950: #171b15; /* Sage scale, Figma secondary/sage/950. Industry cue: Government. */
+  --orchid-50: #fcf6fb; /* Orchid scale, Figma secondary/orchid/50. Industry cue: Supporting accent. */
+  --orchid-100: #f5ddf0; /* Orchid scale, Figma secondary/orchid/100. Industry cue: Supporting accent. */
+  --orchid-200: #eec5e5; /* Orchid scale, Figma secondary/orchid/200. Industry cue: Supporting accent. */
+  --orchid-300: #e4a2d6; /* Orchid scale, Figma secondary/orchid/300. Industry cue: Supporting accent. */
+  --orchid-400: #d777c3; /* Orchid scale, Figma secondary/orchid/400. Industry cue: Supporting accent. */
+  --orchid-500: #c843ac; /* Orchid scale, Figma secondary/orchid/500. Industry cue: Supporting accent. */
+  --orchid-600: #9a2d84; /* Orchid scale, Figma secondary/orchid/600. Industry cue: Supporting accent. */
+  --orchid-700: #752364; /* Orchid scale, Figma secondary/orchid/700. Industry cue: Supporting accent. */
+  --orchid-800: #541b48; /* Orchid scale, Figma secondary/orchid/800. Industry cue: Supporting accent. */
+  --orchid-900: #3a1532; /* Orchid scale, Figma secondary/orchid/900. Industry cue: Supporting accent. */
+  --orchid-950: #220e1e; /* Orchid scale, Figma secondary/orchid/950. Industry cue: Supporting accent. */
+  --gold-50: #fefdf4; /* Gold scale, Figma secondary/gold/50. Industry cue: Healthcare. */
+  --gold-100: #fdfbe5; /* Gold scale, Figma secondary/gold/100. Industry cue: Healthcare. */
+  --gold-200: #fbf3b8; /* Gold scale, Figma secondary/gold/200. Industry cue: Healthcare. */
+  --gold-300: #f8ec8e; /* Gold scale, Figma secondary/gold/300. Industry cue: Healthcare. */
+  --gold-400: #f6e668; /* Gold scale, Figma secondary/gold/400. Industry cue: Healthcare. */
+  --gold-500: #edd61e; /* Gold scale, Figma secondary/gold/500. Industry cue: Healthcare. */
+  --gold-600: #aa9a1e; /* Gold scale, Figma secondary/gold/600. Industry cue: Healthcare. */
+  --gold-700: #7a6f1e; /* Gold scale, Figma secondary/gold/700. Industry cue: Healthcare. */
+  --gold-800: #544e1b; /* Gold scale, Figma secondary/gold/800. Industry cue: Healthcare. */
+  --gold-900: #3a3615; /* Gold scale, Figma secondary/gold/900. Industry cue: Healthcare. */
+  --gold-950: #221f0e; /* Gold scale, Figma secondary/gold/950. Industry cue: Healthcare. */
+  --lavender: var(--lavender-200); /* The lead lavender, same as lavender-200 (Figma secondary/lavender/200 — Primary hue). Industry cue: Telecommunications. */
+  --lavender-50: #f9f7fc; /* Lavender scale, Figma secondary/lavender/50. Industry cue: Telecommunications. */
+  --lavender-100: #f0ebf8; /* Lavender scale, Figma secondary/lavender/100. Industry cue: Telecommunications. */
+  --lavender-200: #c8b7e7; /* Lavender scale, Figma secondary/lavender/200 — Primary hue. The lead lavender. Industry cue: Telecommunications. */
+  --lavender-300: #baa5e1; /* Lavender scale, Figma secondary/lavender/300. Industry cue: Telecommunications. */
+  --lavender-400: #9a7bd3; /* Lavender scale, Figma secondary/lavender/400. Industry cue: Telecommunications. */
+  --lavender-500: #7449c2; /* Lavender scale, Figma secondary/lavender/500. Industry cue: Telecommunications. */
+  --lavender-600: #553296; /* Lavender scale, Figma secondary/lavender/600. Industry cue: Telecommunications. */
+  --lavender-700: #412672; /* Lavender scale, Figma secondary/lavender/700. Industry cue: Telecommunications. */
+  --lavender-800: #2f1c53; /* Lavender scale, Figma secondary/lavender/800. Industry cue: Telecommunications. */
+  --lavender-900: #22153a; /* Lavender scale, Figma secondary/lavender/900. Industry cue: Telecommunications. */
+  --lavender-950: #150e22; /* Lavender scale, Figma secondary/lavender/950. Industry cue: Telecommunications. */
+  --bg: var(--taupe-100); /* Semantic role, Figma bg/bg → primary/taupe/100. */
+  --bg-subtle: var(--taupe-200); /* Semantic role, Figma bg/subtle → primary/taupe/200. */
+  --bg-muted: var(--taupe-250); /* Semantic role, Figma bg/muted → primary/taupe/250. */
+  --bg-emphasized: var(--taupe-300); /* Semantic role, Figma bg/emphasized → primary/taupe/300. */
+  --bg-bright: var(--taupe-50); /* Semantic role, Figma bg/bg_bright → primary/taupe/50. */
+  --bg-inverted: var(--taupe-950); /* Semantic role, Figma bg/inverted → primary/taupe/950. */
+  --bg-inverted-subtle: var(--taupe-800); /* Semantic role, Figma bg/inverted_subtle → primary/taupe/800. */
+  --bg-panel: var(--taupe-50); /* Semantic role, Figma bg/panel → primary/taupe/50. */
+  --bg-panel-subtle: var(--taupe-300); /* Semantic role, Figma bg/panel_subtle → primary/taupe/300. */
+  --bg-panel-muted: var(--taupe-200); /* Semantic role, Figma bg/panel_muted → primary/taupe/200. */
+  --border-border: var(--taupe-400); /* Semantic role, Figma border/border → primary/taupe/400. */
+  --text-fg: var(--taupe-950); /* Semantic role, Figma text/fg → primary/taupe/950. */
+  --accent-contrast: var(--pink-950); /* Semantic role, Figma accent/contrast → primary/pink/950. */
+  --accent-fg: var(--pink-400); /* Semantic role, Figma accent/fg → primary/pink/400. */
+  --accent-subtle: var(--pink-100); /* Semantic role, Figma accent/subtle → primary/pink/100. */
+  --accent-muted: var(--pink-200); /* Semantic role, Figma accent/muted → primary/pink/200. */
+  --accent-emphasized: var(--pink-300); /* Semantic role, Figma accent/emphasized → primary/pink/300. */
+  --accent-solid: var(--pink-600); /* Semantic role, Figma accent/solid → primary/pink/600. */
+  --accent-focus-ring: var(--pink-400); /* Semantic role, Figma accent/focusRing → primary/pink/400. */
+  --taupe-contrast: var(--taupe-50); /* Semantic role, Figma taupe/contrast → primary/taupe/50. */
+  --taupe-fg: var(--taupe-800); /* Semantic role, Figma taupe/fg → primary/taupe/800. */
+  --taupe-subtle: var(--taupe-100); /* Semantic role, Figma taupe/subtle → primary/taupe/100. */
+  --taupe-muted: var(--taupe-200); /* Semantic role, Figma taupe/muted → primary/taupe/200. */
+  --taupe-emphasized: var(--taupe-300); /* Semantic role, Figma taupe/emphasized → primary/taupe/300. */
+  --taupe-solid: var(--taupe-950); /* Semantic role, Figma taupe/solid → primary/taupe/950. */
+  --taupe-focus-ring: var(--taupe-400); /* Semantic role, Figma taupe/focusRing → primary/taupe/400. */
+  --text-fg-subtle: var(--taupe-500); /* Semantic role, Figma text/fg_subtle → primary/taupe/500. */
+  --border-subtle: var(--taupe-300); /* Semantic role, Figma border/subtle → primary/taupe/300. */
+  --border-muted: var(--taupe-200); /* Semantic role, Figma border/muted → primary/taupe/200. */
+  --border-emphasized: var(--taupe-500); /* Semantic role, Figma border/emphasized → primary/taupe/500. */
+  --border-inverted: var(--taupe-950); /* Semantic role, Figma border/inverted → primary/taupe/950. */
+  --border-inverted-subtle: var(--taupe-700); /* Semantic role, Figma border/inverted_subtle → primary/taupe/700. */
+  --border-accent: var(--pink-300); /* Semantic role, Figma border/accent → primary/pink/300. */
+  --border-accent-emphasized: var(--pink-400); /* Semantic role, Figma border/accent_emphasized → primary/pink/400. */
+  --text-fg-muted: var(--taupe-700); /* Semantic role, Figma text/fg_muted → primary/taupe/700. */
+  --text-fg-inverted: var(--taupe-50); /* Semantic role, Figma text/fg_inverted → primary/taupe/50. */
+  --text-fg-inverted-subtle: var(--taupe-300); /* Semantic role, Figma text/fg_inverted_subtle → primary/taupe/300. */
+  --text-fg-accent: var(--pink-400); /* Semantic role, Figma text/fg_accent → primary/pink/400. */
+  --pink-contrast: var(--pink-50); /* Semantic role, Figma pink/contrast → primary/pink/50. */
+  --pink-fg: var(--pink-400); /* Semantic role, Figma pink/fg → primary/pink/400. */
+  --pink-subtle: var(--pink-100); /* Semantic role, Figma pink/subtle → primary/pink/100. */
+  --pink-muted: var(--pink-200); /* Semantic role, Figma pink/muted → primary/pink/200. */
+  --pink-emphasized: var(--pink-300); /* Semantic role, Figma pink/emphasized → primary/pink/300. */
+  --pink-solid: var(--pink-400); /* Semantic role, Figma pink/solid → primary/pink/400. */
+  --pink-focus-ring: var(--pink-600); /* Semantic role, Figma pink/focusRing → primary/pink/600. */
+  --gold-contrast: var(--gold-50); /* Semantic role, Figma gold/contrast → secondary/gold/50. */
+  --gold-fg: var(--gold-700); /* Semantic role, Figma gold/fg → secondary/gold/700. */
+  --gold-subtle: var(--gold-100); /* Semantic role, Figma gold/subtle → secondary/gold/100. */
+  --gold-muted: var(--gold-200); /* Semantic role, Figma gold/muted → secondary/gold/200. */
+  --gold-emphasized: var(--gold-300); /* Semantic role, Figma gold/emphasized → secondary/gold/300. */
+  --gold-solid: var(--gold-700); /* Semantic role, Figma gold/solid → secondary/gold/700. */
+  --gold-focus-ring: var(--gold-700); /* Semantic role, Figma gold/focusRing → secondary/gold/700. */
+  --gold-original: var(--gold-400); /* Semantic role, Figma gold/original → secondary/gold/400. */
+  --orchid-contrast: var(--orchid-50); /* Semantic role, Figma orchid/contrast → secondary/orchid/50. */
+  --orchid-fg: var(--orchid-600); /* Semantic role, Figma orchid/fg → secondary/orchid/600. */
+  --orchid-subtle: var(--orchid-100); /* Semantic role, Figma orchid/subtle → secondary/orchid/100. */
+  --orchid-muted: var(--orchid-200); /* Semantic role, Figma orchid/muted → secondary/orchid/200. */
+  --orchid-emphasized: var(--orchid-300); /* Semantic role, Figma orchid/emphasized → secondary/orchid/300. */
+  --orchid-solid: var(--orchid-600); /* Semantic role, Figma orchid/solid → secondary/orchid/600. */
+  --orchid-focus-ring: var(--orchid-600); /* Semantic role, Figma orchid/focusRing → secondary/orchid/600. */
+  --orchid-original: var(--orchid-100); /* Semantic role, Figma orchid/original → secondary/orchid/100. */
+  --sage-contrast: var(--sage-50); /* Semantic role, Figma sage/contrast → secondary/sage/50. */
+  --sage-fg: var(--sage-600); /* Semantic role, Figma sage/fg → secondary/sage/600. */
+  --sage-subtle: var(--sage-100); /* Semantic role, Figma sage/subtle → secondary/sage/100. */
+  --sage-muted: var(--sage-200); /* Semantic role, Figma sage/muted → secondary/sage/200. */
+  --sage-emphasized: var(--sage-300); /* Semantic role, Figma sage/emphasized → secondary/sage/300. */
+  --sage-solid: var(--sage-600); /* Semantic role, Figma sage/solid → secondary/sage/600. */
+  --sage-focus-ring: var(--sage-600); /* Semantic role, Figma sage/focusRing → secondary/sage/600. */
+  --sage-original: var(--sage-200); /* Semantic role, Figma sage/original → secondary/sage/200. */
+  --periwinkle-contrast: var(--periwinkle-50); /* Semantic role, Figma periwinkle/contrast → secondary/perriwinkle/50. */
+  --periwinkle-fg: var(--periwinkle-500); /* Semantic role, Figma periwinkle/fg → secondary/perriwinkle/500. */
+  --periwinkle-subtle: var(--periwinkle-100); /* Semantic role, Figma periwinkle/subtle → secondary/perriwinkle/100. */
+  --periwinkle-muted: var(--periwinkle-200); /* Semantic role, Figma periwinkle/muted → secondary/perriwinkle/200. */
+  --periwinkle-emphasized: var(--periwinkle-300); /* Semantic role, Figma periwinkle/emphasized → secondary/perriwinkle/300. */
+  --periwinkle-solid: var(--periwinkle-500); /* Semantic role, Figma periwinkle/solid → secondary/perriwinkle/500. */
+  --periwinkle-focus-ring: var(--periwinkle-500); /* Semantic role, Figma periwinkle/focusRing → secondary/perriwinkle/500. */
+  --periwinkle-original: var(--periwinkle-200); /* Semantic role, Figma periwinkle/original → secondary/perriwinkle/200. */
+  --coral-contrast: var(--coral-50); /* Semantic role, Figma coral/contrast → secondary/coral/50. */
+  --coral-fg: var(--coral-600); /* Semantic role, Figma coral/fg → secondary/coral/600. */
+  --coral-subtle: var(--coral-100); /* Semantic role, Figma coral/subtle → secondary/coral/100. */
+  --coral-muted: var(--coral-200); /* Semantic role, Figma coral/muted → secondary/coral/200. */
+  --coral-emphasized: var(--coral-300); /* Semantic role, Figma coral/emphasized → secondary/coral/300. */
+  --coral-solid: var(--coral-600); /* Semantic role, Figma coral/solid → secondary/coral/600. */
+  --coral-focus-ring: var(--coral-600); /* Semantic role, Figma coral/focusRing → secondary/coral/600. */
+  --coral-original: var(--coral-300); /* Semantic role, Figma coral/original → secondary/coral/300. */
+  --seafoam-contrast: var(--seafoam-50); /* Semantic role, Figma seafoam/contrast → secondary/seafoam/50. */
+  --seafoam-fg: var(--seafoam-700); /* Semantic role, Figma seafoam/fg → secondary/seafoam/700. */
+  --seafoam-subtle: var(--seafoam-100); /* Semantic role, Figma seafoam/subtle → secondary/seafoam/100. */
+  --seafoam-muted: var(--seafoam-200); /* Semantic role, Figma seafoam/muted → secondary/seafoam/200. */
+  --seafoam-emphasized: var(--seafoam-300); /* Semantic role, Figma seafoam/emphasized → secondary/seafoam/300. */
+  --seafoam-solid: var(--seafoam-700); /* Semantic role, Figma seafoam/solid → secondary/seafoam/700. */
+  --seafoam-focus-ring: var(--seafoam-700); /* Semantic role, Figma seafoam/focusRing → secondary/seafoam/700. */
+  --seafoam-original: var(--seafoam-300); /* Semantic role, Figma seafoam/original → secondary/seafoam/300. */
+  --pillar-telecommunications: var(--lavender); /* Semantic role, Figma pillar/telecommunications → secondary/lavender/200. */
+  --surface: var(--taupe-100); /* Slide or page ground for the theme. */
+  --fg: var(--taupe-950); /* Primary text on surface. */
+  --fg-muted: var(--taupe-700); /* Supporting text on surface: subtitles, body, eyebrows, page numbers. */
+  --accent: var(--pink-400); /* Rasa Pink: the single italic emphasis, quote mark, Q&A label, focus. */
+  --hairline: var(--taupe-300); /* 1px column dividers and card outlines on slides. */
+  --panel: var(--taupe-200); /* Visual container, Filled background (slides/visual-container). */
+  --card: var(--taupe-50); /* Surface of concept cards and product windows inside visuals. */
+}
+[data-theme="dark"] {
+  --lavender: var(--lavender-200);
+  --bg: var(--taupe-100);
+  --bg-subtle: var(--taupe-200);
+  --bg-muted: var(--taupe-250);
+  --bg-emphasized: var(--taupe-300);
+  --bg-bright: var(--taupe-50);
+  --bg-inverted: var(--taupe-950);
+  --bg-inverted-subtle: var(--taupe-800);
+  --bg-panel: var(--taupe-50);
+  --bg-panel-subtle: var(--taupe-300);
+  --bg-panel-muted: var(--taupe-200);
+  --border-border: var(--taupe-400);
+  --text-fg: var(--taupe-950);
+  --accent-contrast: var(--pink-950);
+  --accent-fg: var(--pink-400);
+  --accent-subtle: var(--pink-100);
+  --accent-muted: var(--pink-200);
+  --accent-emphasized: var(--pink-300);
+  --accent-solid: var(--pink-600);
+  --accent-focus-ring: var(--pink-400);
+  --taupe-contrast: var(--taupe-50);
+  --taupe-fg: var(--taupe-800);
+  --taupe-subtle: var(--taupe-100);
+  --taupe-muted: var(--taupe-200);
+  --taupe-emphasized: var(--taupe-300);
+  --taupe-solid: var(--taupe-950);
+  --taupe-focus-ring: var(--taupe-400);
+  --text-fg-subtle: var(--taupe-500);
+  --border-subtle: var(--taupe-300);
+  --border-muted: var(--taupe-200);
+  --border-emphasized: var(--taupe-500);
+  --border-inverted: var(--taupe-950);
+  --border-inverted-subtle: var(--taupe-700);
+  --border-accent: var(--pink-300);
+  --border-accent-emphasized: var(--pink-400);
+  --text-fg-muted: var(--taupe-700);
+  --text-fg-inverted: var(--taupe-50);
+  --text-fg-inverted-subtle: var(--taupe-300);
+  --text-fg-accent: var(--pink-400);
+  --pink-contrast: var(--pink-50);
+  --pink-fg: var(--pink-400);
+  --pink-subtle: var(--pink-100);
+  --pink-muted: var(--pink-200);
+  --pink-emphasized: var(--pink-300);
+  --pink-solid: var(--pink-400);
+  --pink-focus-ring: var(--pink-600);
+  --gold-contrast: var(--gold-50);
+  --gold-fg: var(--gold-700);
+  --gold-subtle: var(--gold-100);
+  --gold-muted: var(--gold-200);
+  --gold-emphasized: var(--gold-300);
+  --gold-solid: var(--gold-700);
+  --gold-focus-ring: var(--gold-700);
+  --gold-original: var(--gold-400);
+  --orchid-contrast: var(--orchid-50);
+  --orchid-fg: var(--orchid-600);
+  --orchid-subtle: var(--orchid-100);
+  --orchid-muted: var(--orchid-200);
+  --orchid-emphasized: var(--orchid-300);
+  --orchid-solid: var(--orchid-600);
+  --orchid-focus-ring: var(--orchid-600);
+  --orchid-original: var(--orchid-100);
+  --sage-contrast: var(--sage-50);
+  --sage-fg: var(--sage-600);
+  --sage-subtle: var(--sage-100);
+  --sage-muted: var(--sage-200);
+  --sage-emphasized: var(--sage-300);
+  --sage-solid: var(--sage-600);
+  --sage-focus-ring: var(--sage-600);
+  --sage-original: var(--sage-200);
+  --periwinkle-contrast: var(--periwinkle-50);
+  --periwinkle-fg: var(--periwinkle-500);
+  --periwinkle-subtle: var(--periwinkle-100);
+  --periwinkle-muted: var(--periwinkle-200);
+  --periwinkle-emphasized: var(--periwinkle-300);
+  --periwinkle-solid: var(--periwinkle-500);
+  --periwinkle-focus-ring: var(--periwinkle-500);
+  --periwinkle-original: var(--periwinkle-200);
+  --coral-contrast: var(--coral-50);
+  --coral-fg: var(--coral-600);
+  --coral-subtle: var(--coral-100);
+  --coral-muted: var(--coral-200);
+  --coral-emphasized: var(--coral-300);
+  --coral-solid: var(--coral-600);
+  --coral-focus-ring: var(--coral-600);
+  --coral-original: var(--coral-300);
+  --seafoam-contrast: var(--seafoam-50);
+  --seafoam-fg: var(--seafoam-700);
+  --seafoam-subtle: var(--seafoam-100);
+  --seafoam-muted: var(--seafoam-200);
+  --seafoam-emphasized: var(--seafoam-300);
+  --seafoam-solid: var(--seafoam-700);
+  --seafoam-focus-ring: var(--seafoam-700);
+  --seafoam-original: var(--seafoam-300);
+  --pillar-telecommunications: var(--lavender);
+  --surface: var(--taupe-950);
+  --fg: var(--taupe-100);
+  --fg-muted: var(--taupe-400);
+  --accent: var(--pink-400);
+  --hairline: var(--taupe-700);
+  --panel: var(--taupe-800);
+  --card: var(--taupe-900);
+}
+:root {
+  --space-0-5: 2px; /* Figma Spacing/0_5 (2px). */
+  --space-1: 4px; /* Figma Spacing/1 (4px). */
+  --space-1-5: 6px; /* Figma Spacing/1_5 (6px). */
+  --space-2: 8px; /* Figma Spacing/2 (8px). */
+  --space-2-5: 10px; /* Figma Spacing/2_5 (10px). */
+  --space-3: 12px; /* Figma Spacing/3 (12px). */
+  --space-3-5: 14px; /* Figma Spacing/3_5 (14px). */
+  --space-4: 16px; /* Figma Spacing/4 (16px). */
+  --space-5: 20px; /* Figma Spacing/5 (20px). */
+  --space-6: 24px; /* Figma Spacing/6 (24px). */
+  --space-7: 28px; /* Figma Spacing/7 (28px). */
+  --space-8: 32px; /* Figma Spacing/8 (32px). */
+  --space-9: 36px; /* Figma Spacing/9 (36px). */
+  --space-10: 40px; /* Figma Spacing/10 (40px). */
+  --space-12: 48px; /* Figma Spacing/12 (48px). */
+  --space-14: 56px; /* Figma Spacing/14 (56px). */
+  --space-16: 64px; /* Figma Spacing/16 (64px). */
+  --space-20: 80px; /* Figma Spacing/20 (80px). */
+  --space-24: 96px; /* Figma Spacing/24 (96px). */
+  --space-30: 120px; /* Figma Spacing/30 (120px). */
+  --space-32: 128px; /* Figma Spacing/32 (128px). */
+  --space-40: 160px; /* Figma Spacing/40 (160px). */
+  --slide-margin: 80px; /* Slides: outer margin; logo and content left edge (x 80). */
+  --slide-top: 48px; /* Slides: logo top (y 48); safe area y 48–1032. */
+  --slide-title-line: 160px; /* Slides: eyebrow line on top-anchored layouts (y 160). */
+  --slide-column: 110px; /* Slides: one of 12 grid columns. */
+  --slide-gutter: 40px; /* Slides: grid gutter. */
+  --visual-margin: 32px; /* Visuals: inner margin of a Filled visual container; panel edge margin. */
+  --visual-to-text: 100px; /* Slides: space between the 800 × 800 visual and the text block (Text and image). */
+  --header-height: 56px; /* Visuals: card header and window bar height. */
+  --card-padding: 24px; /* Visuals: concept-card and window content padding. */
+  --row-gap: 8px; /* Visuals: gap between chips and items. */
+  --radius-none: 0px; /* Figma Radii none. */
+  --radius-xs: 2px; /* Figma Radii xs. */
+  --radius-sm: 4px; /* Figma Radii sm. Buttons (slides and UI). */
+  --radius-md: 6px; /* Figma Radii md. */
+  --radius-lg: 8px; /* Figma Radii lg. Tags, small chips. */
+  --radius-xl: 12px; /* Figma Radii xl. Chips, inner panels, fields, tables. */
+  --radius-2xl: 16px; /* Figma Radii 2xl. Concept cards and product windows. */
+  --radius-3xl: 24px; /* Figma Radii 3xl. */
+  --radius-4xl: 32px; /* Figma Radii 4xl. Slide cards, photos, visual containers. */
+  --radius-full: 9999px; /* Figma Radii full. Pills, badges, toggles. */
+  --radius-l1: 4px; /* Figma semantic radius l1. */
+  --radius-l2: 8px; /* Figma semantic radius l2. */
+  --radius-l3: 16px; /* Figma semantic radius l3. */
+  --border-xs: 0.5px; /* Figma Borders/xs. */
+  --border-sm: 1px; /* Figma Borders/sm. */
+  --border-md: 2px; /* Figma Borders/md. */
+  --border-lg: 4px; /* Figma Borders/lg. */
+  --border-xl: 6px; /* Figma Borders/xl. */
+  --font-serif: "STK Bureau Serif", "Newsreader", Georgia, serif;
+  --font-sans: "STK Bureau Sans", "Inter", Arial, sans-serif;
+  --font-mono: "STK Bureau Sans Mono", "JetBrains Mono", "Courier New", monospace;
+  --text-display-xl: 300 120px/126px var(--font-serif); /* Slides: opening title, closing. One pink italic emphasis. */
+  --text-display-lg: 300 100px/105px var(--font-serif); /* Slides: section divider, single idea, proof title, CTA. */
+  --text-display-md: 300 80px/88px var(--font-serif); /* Slides: content slide titles. */
+  --text-quote: 300 64px/72px var(--font-serif); /* Slides: customer quotes, max 30 words. */
+  --text-statement: 300 40px/48px var(--font-serif); /* Slides: column headings, card names. */
+  --text-display-emphasis: italic 300 80px/88px var(--font-serif); /* The pink italic emphasis inside slide titles (size follows the title). */
+  --text-big-number: 500 160px/160px var(--font-sans); /* Slides: metrics on proof cards, max 4 characters. */
+  --text-subtitle: 300 36px/46px var(--font-sans); /* Slides: one line under opening and divider titles. */
+  --text-body-lg: 300 28px/40px var(--font-sans); /* Slides: intro and supporting copy (max 60 words on Title and body, 40 on Text and image). */
+  --text-body: 300 24px/34px var(--font-sans); /* Slides: column copy and card labels (max 20 words per column). */
+  --text-small: 300 18px/26px var(--font-sans); /* Slides: footnotes, legal. */
+  --text-action: 500 22px/28px var(--font-sans); /* Slides: buttons, sentence case. */
+  --text-eyebrow: 400 18px/24px var(--font-mono); /* Slides: section label above a title, always Mono. Uppercase. */
+  --text-meta: 400 20px/26px var(--font-mono); /* Slides: page numbers with a full stop (4.), dates. */
+  --text-attribution: 400 22px/28px var(--font-mono); /* Slides: quote attribution, NAME · TITLE, COMPANY. Uppercase. */
+  --text-ui-title: 500 20px/26px var(--font-sans); /* Visuals: card and window titles, row titles, node names. */
+  --text-ui-heading: 500 26px/32px var(--font-sans); /* Visuals: titles of concept cards in a row of 2–4. */
+  --text-ui-body: 300 18px/24px var(--font-sans); /* Visuals: row text, instructions, chips, descriptions. */
+  --text-ui-action: 500 16px/20px var(--font-sans); /* Visuals: buttons, names, step labels. */
+  --text-ui-label: 500 14px/18px var(--font-sans); /* Visuals: tags, status badges, section labels, table headers. +4% tracking. Uppercase. */
+  --text-ui-micro: 500 12px/16px var(--font-sans); /* Visuals: secondary metadata and small initials only. Uppercase. */
+  --text-ui-meta: 300 14px/18px var(--font-sans); /* Visuals: small secondary detail (trained, 7 of 9). */
+  --text-ui-code: 400 16px/20px var(--font-mono); /* Visuals: code-like names (test cases, skills, models, branches, paths). Mono only means code. */
+  --text-ui-code-block: 400 16px/26px var(--font-mono); /* Visuals: multi-line code in the dark code window. */
+  --text-ui-number: 500 26px/30px var(--font-sans); /* Visuals: every number inside a card or visual; never Serif. */
+  --text-ui-feature: 300 28px/32px var(--font-serif); /* Visuals: feature-card titles; the second part in black italic. */
+  --text-web-serif-xl: 300 80px/84px var(--font-serif); /* Web: hero headline (Web V1 Serif/XL, Serif/Hero). */
+  --text-web-serif-l: 300 60px/64px var(--font-serif); /* Web: section headline (Serif/L, Serif/Section). */
+  --text-web-serif-m: 300 40px/44px var(--font-serif); /* Web: sub-section and step headline (Serif/M, Serif/Step). */
+  --text-web-serif-s: 300 30px/34px var(--font-serif); /* Web: small headline, card 30 (Serif/S, Serif/Card 30). */
+  --text-web-serif-card: 300 28px/32px var(--font-serif); /* Web: card headline (Serif/Card). */
+  --text-web-serif-xl-italic: italic 300 80px/84px var(--font-serif); /* Web: hero emphasis (Serif/XL Italic, Serif/Hero Emphasis). */
+  --text-web-serif-l-italic: italic 300 60px/64px var(--font-serif); /* Web: section and CTA emphasis (Serif/L Italic, Section and CTA Emphasis). */
+  --text-web-serif-m-italic: italic 300 40px/44px var(--font-serif); /* Web: step emphasis (Serif/M Italic, Step Emphasis). */
+  --text-web-sans-xl: 500 80px/90px var(--font-sans); /* Web: large Sans headline and statistics (Sans/XL, Sans/Statistic). */
+  --text-web-sans-l: 500 60px/64px var(--font-sans); /* Web: Sans/L. */
+  --text-web-sans-m: 500 40px/44px var(--font-sans); /* Web: Sans/M. */
+  --text-web-sans-s: 500 30px/32px var(--font-sans); /* Web: Sans/S. */
+  --text-web-sans-card: 300 28px/32px var(--font-sans); /* Web: Sans card title (Sans/Card). */
+  --text-web-sans-medium-14: 500 14px/18px var(--font-sans); /* Web: small Medium label (Sans/Medium 14–18). */
+  --text-web-button: 500 16px/20px var(--font-sans); /* Web: buttons (Sans/Button). */
+  --text-web-body-xl: 300 24px/28px var(--font-sans); /* Web: large body, testimonials (Body/XL, Body/Testimonial). */
+  --text-web-body-l: 300 20px/24px var(--font-sans); /* Web: Body/L. */
+  --text-web-body-l-emphasis: 500 20px/24px var(--font-sans); /* Web: Body/L Emphasis. */
+  --text-web-body-m: 300 16px/20px var(--font-sans); /* Web: default body (Body/M). */
+  --text-web-body-m-relaxed: 300 16px/22px var(--font-sans); /* Web: supporting copy and action links (Body/Supporting, Body/Action Link). */
+  --text-web-body-m-medium: 500 16px/22px var(--font-sans); /* Web: Body/M Medium. */
+  --text-web-body-m-emphasis: 600 16px/22px var(--font-sans); /* Web: Body/M Emphasis. */
+  --text-web-body-s: 300 14px/18px var(--font-sans); /* Web: Body/S. */
+  --text-web-doc-body: 400 16px/24px var(--font-sans); /* Web: documentation body (Documentation/Body 16–24). */
+  --text-web-doc-heading: 500 20px/28px var(--font-sans); /* Web: documentation heading (Documentation/Heading 20–28). */
+  --text-web-mono-index: 400 24px/28px var(--font-mono); /* Web: large index numbers (Mono/Index). */
+  --text-web-mono-m: 400 14px/18px var(--font-mono); /* Web: Mono/M labels. Uppercase. */
+  --text-web-mono-s: 400 12px/16px var(--font-mono); /* Web: Mono/S and Mono/Label. Uppercase. */
+  --text-studio-label: 500 14px/20px var(--font-sans); /* Studio product UI: pane titles, Copilot, active tab, toggle labels. */
+  --text-studio-body: 300 14px/20px var(--font-sans); /* Studio product UI: messages, tabs, chips, subtitles, details. */
+  --text-studio-body-lg: 300 15px/22px var(--font-sans); /* Studio product UI: insight text, simulated customer lines. */
+  --text-studio-tag: 500 12px/16px var(--font-sans); /* Studio product UI: tags, badges, initials, cursor names. */
+  --text-studio-mono-sm: 400 12px/16px var(--font-mono); /* Studio product UI: skill eyebrow, YAML toggle. */
+  --text-studio-mono: 400 14px/22px var(--font-mono); /* Studio product UI: versions, branch names, code views. */
+  --text-studio-card-title: 500 17px/22px var(--font-sans); /* Studio product UI: result card titles. */
+  --text-studio-panel-title: 600 24px/30px var(--font-sans); /* Studio product UI: workspace titles (Skills, Eval run). */
+  --text-studio-prose: 300 24px/32px var(--font-sans); /* Studio product UI: a skill shown as plain language. */
+  --text-studio-stat: 500 44px/48px var(--font-sans); /* Studio product UI: before/after values in ui/compare-stat. */
+}
+.display-xl {
+  font-family: var(--font-serif);
+  font-size: 120px;
+  line-height: 126px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.display-lg {
+  font-family: var(--font-serif);
+  font-size: 100px;
+  line-height: 105px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.display-md {
+  font-family: var(--font-serif);
+  font-size: 80px;
+  line-height: 88px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.quote {
+  font-family: var(--font-serif);
+  font-size: 64px;
+  line-height: 72px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.statement {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.display-emphasis {
+  font-family: var(--font-serif);
+  font-size: 80px;
+  line-height: 88px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+.big-number {
+  font-family: var(--font-sans);
+  font-size: 160px;
+  line-height: 160px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 36px;
+  line-height: 46px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.small {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.action {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.attribution {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.ui-title {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.ui-heading {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.ui-body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.ui-action {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.ui-label {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.ui-micro {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.ui-meta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.ui-code {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.ui-code-block {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.ui-number {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.ui-feature {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.web-serif-xl {
+  font-family: var(--font-serif);
+  font-size: 80px;
+  line-height: 84px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.web-serif-l {
+  font-family: var(--font-serif);
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.web-serif-m {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.web-serif-s {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  line-height: 34px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.web-serif-card {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.web-serif-xl-italic {
+  font-family: var(--font-serif);
+  font-size: 80px;
+  line-height: 84px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+.web-serif-l-italic {
+  font-family: var(--font-serif);
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+.web-serif-m-italic {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+.web-sans-xl {
+  font-family: var(--font-sans);
+  font-size: 80px;
+  line-height: 90px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.web-sans-l {
+  font-family: var(--font-sans);
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.web-sans-m {
+  font-family: var(--font-sans);
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.web-sans-s {
+  font-family: var(--font-sans);
+  font-size: 30px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.web-sans-card {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+.web-sans-medium-14 {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.web-button {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.web-body-xl {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.web-body-l {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.web-body-l-emphasis {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.web-body-m {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.web-body-m-relaxed {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.web-body-m-medium {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.web-body-m-emphasis {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.web-body-s {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.web-doc-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.web-doc-heading {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.web-mono-index {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+.web-mono-m {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.web-mono-s {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.studio-label {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.studio-body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.studio-body-lg {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.studio-tag {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.studio-mono-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.studio-mono {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.studio-card-title {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.studio-panel-title {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.studio-prose {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.studio-stat {
+  font-family: var(--font-sans);
+  font-size: 44px;
+  line-height: 48px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+@font-face {
+  font-family: "STK Bureau Serif";
+  src: url("fonts/STKBureauSerif-Book.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Serif";
+  src: url("fonts/STKBureauSerif-BookItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-Book.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-BookItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans";
+  src: url("fonts/STKBureauSans-SemiBoldItalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "STK Bureau Sans Mono";
+  src: url("fonts/STKBureauSansMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

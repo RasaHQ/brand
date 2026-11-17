@@ -1,8 +1,8 @@
 {
   "name": "@rasahq/brand-tokens",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "Rasa brand tokens reconciled with October 2026 exports; local package.",
+  "description": "Rasa Brand 2026 tokens, web recipes and the design-system mirror; local package.",
   "type": "module",
   "main": "./dist/tokens.mjs",
   "types": "./dist/tokens.d.ts",
@@ -16,13 +16,29 @@
     "./tailwind-v4.css": "./dist/tailwind-v4.css",
     "./tailwind-v3": "./dist/tailwind-v3.cjs",
     "./fonts.css": "./src/fonts.css",
-    "./fallback-fonts.css": "./src/fallback-fonts.css"
+    "./fallback-fonts.css": "./src/fallback-fonts.css",
+    "./brand-2026/tokens.css": "./rasa-brand-2026/tokens.css",
+    "./brand-2026/tokens.json": "./rasa-brand-2026/tokens.json",
+    "./brand-2026/components.css": "./rasa-brand-2026/components/bundle.css",
+    "./brand-2026/components.js": "./rasa-brand-2026/components/bundle.js",
+    "./brand-2026/components.d.ts": "./rasa-brand-2026/components/index.d.ts",
+    "./brand-2026/react.js": "./rasa-brand-2026/components/lib/react.production.min.js",
+    "./brand-2026/react-dom.js": "./rasa-brand-2026/components/lib/react-dom.production.min.js",
+    "./tokens.json": "./src/tokens.json"
   },
   "files": [
     "dist",
+    "src/tokens.json",
     "src/components.css",
     "src/fonts.css",
-    "src/fallback-fonts.css"
+    "src/fallback-fonts.css",
+    "rasa-brand-2026/README.md",
+    "rasa-brand-2026/tokens.css",
+    "rasa-brand-2026/tokens.json",
+    "rasa-brand-2026/manifest.json",
+    "rasa-brand-2026/components",
+    "rasa-brand-2026/fonts/README.md",
+    "rasa-brand-2026/fonts/fonts.lock.json"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",

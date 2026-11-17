@@ -1,43 +1,64 @@
-# October 2026 source audit
+# Source audit
 
-This audit reconciles ten supplied asset ZIPs and `brand 2.zip` (the existing repository at commit `d6de4b1`). Archive names, SHA-256 values, per-file dispositions, and source-to-repository mappings are in `evidence/source-coverage.json`. Existing repository content is preserved except for documented implementation/guidance updates; `.git` history and Finder metadata are excluded from the distribution ZIP.
+## November 2026: Rasa Brand 2026 becomes the source of truth
 
-## Findings and decisions
+Two sources now govern this repository:
+
+1. **Rasa Brand 2026 design system** (artifact *Rasa Brand 2026*, version `1794906029-af7f`, last changed 9 November 2026; Figma *Rasa Brand Relaunch — Working File*, tokens synced 16 October 2026). Mirrored byte-for-byte in `design-system/rasa-brand-2026/`; every file and asset is locked by SHA-256 in `evidence/brand-2026/artifact-files.json`.
+2. **Rasa Community cards** (Figma *Rasa Community Designs*, `YaKH4J4ahfvSba27RU1Pnu`), vendored as `skills/rasa-community-cards/` with three changes: the font lookup in `scripts/render_card.py` (fonts are not committed), the Google substitutes added to its font stacks, and the scorecard panel rebuilt to the Brand 2026 visual layer.
+
+### Decisions this update settles
+
+| Earlier open point (October audit) | Resolution |
+| --- | --- |
+| PDF neutral ramps disagree with JSON; Ink vs Taupe | **Taupe is the only neutral; the Ink scale is retired** (design system, Color). The JSON Taupe ramp the web package already used is the design-system ramp. The October PDF/ASE/AI files stay as historical references. |
+| STK Book weight: TTF 300 vs web CSS 350 | **300 everywhere** (design-system tokens and `@font-face`). The 350 mapping is removed. |
+| Cream logo `#FAF6F0` vs `#FFFBF5` | Logo inks are Taupe Dark `#181210`, Taupe Light `#FAF6F0`, Rasa Pink `#E85A91`. |
+| Logo forms | Logo Full (speech bubble) and the icon (R). The square lock-up is not part of the design system; kept as reference only. Community cards always use Logo Full. |
+| Error colour "not established" | States are fixed: danger = coral, success = seafoam, warning = gold, info = periwinkle, neutral = taupe, pink = must/focus. The `illustration` colour group (mint, success-ink, …) is removed. |
+| Phosphor "historical" | Phosphor Regular is the icon set **inside UI visuals**; the 27 brand icons are for pages and slides. |
+| Curved thin connectors in the old artwork recipe | Connectors are orthogonal with 12px rounded corners; never curved. |
+| Pink CTA button | Removed: Pink is never a background fill. |
+| Patterns: 4 primary + 16 additional families | The design system defines **two** patterns (Chladni, Soundwave) in three treatments. The 16 additional families are kept as `reference`; the subtle-light treatment uses Taupe 300 dots (`#C8C0B6`), not the October `#E7DED2`. |
+| Templates and Social/Profile archives were empty | Slides now come from the design system's slide layer (13 layouts) and the `rasa-slides` skill; social covers from the community card system. |
+
+### What is exact and what is derived
+
+| Item | State |
+| --- | --- |
+| Design-system README, tokens.json, tokens.css, manifest.json, components/bundle.js, bundle.css, index.d.ts, React 18.3.1 libs, Cover preview | **Exact** (SHA-256 matches the lock) |
+| `design-system/src/tokens.json` | Generated from the mirror by `scripts/sync-tokens-from-design-system.py`; `npm --prefix design-system run check` fails on drift |
+| `assets/brand-2026/` logos, icons, textures | **Derived** from the October masters under the design-system names and inks (`designSystem.parity: derived` in the catalog). Accepted as the current set: byte-identical exports are not required |
+| Slide Backgrounds (4) | **Pending**: not derivable, not included |
+| STK Bureau fonts (11) | **Not committed**: provisioned locally, verified against `fonts.lock.json` |
+| Per-component READMEs, previews and `api/` cards; `design-system.json` | Not mirrored: generated views of data that is mirrored (`manifest.json`, `index.d.ts`, the README index) |
+
+### Where the community card system differs from Brand 2026
+
+Scoped to cards; documented in [community-cards.md](community-cards.md#where-cards-differ-from-the-slide-and-web-rules): headline without a full stop, accent per series mode, separator in the newsletter eyebrow, Mono panel labels, sage for pass. The scorecard panel's finding box used a left-edge accent bar, which Brand 2026 forbids; the renderer now draws it as a notice (fill + accent dot) with Sans labels and Sans Medium counts.
+
+## October 2026 audit (historical)
+
+The October package reconciled ten supplied asset ZIPs with the September repository. Archive names, SHA-256 values and per-file dispositions remain in `evidence/source-coverage.json`, and `scripts/validate-brand.py` still checks them. Findings that remain true:
 
 | Finding | Decision |
 | --- | --- |
-| Both Graphics and Patterns archives have identical file paths and hashes | Include once; retain both provenance links |
-| Templates and Social/Profile archives contain no files | Record as gaps; do not claim those assets were supplied |
-| Supplied semantic JSON agrees with the existing web mappings | Retain web roles; add the missing seven accent roles |
-| Global JSON has secondary ramps and a `perriwinkle` typo | Expose canonical `periwinkle`; preserve untouched source spelling in evidence |
-| Secondary export marks primary hue in some shade keys | Preserve exact raw file; use canonical numeric shades from global export; cross-check values |
-| Primary PDF disagrees with JSON neutral ramps | Preserve both; retain existing JSON-based web palette pending source reconciliation |
-| Official cream logo is #FAF6F0; previous adaptation was #FFFBF5 | New work uses October masters; old paths remain historical compatibility files |
-| Digital logo source says trademark symbols removed at Karl's request | Copy supplied bytes; do not reconstruct or add symbols |
-| Print specs are now supplied | Record process CMYK recipes, without inventing ICC or spot-color equivalence |
-| Icon README says 23; current SVG directory has 27 | Index actual 27 files; retain source README unchanged |
-| 60 SVG pattern masters total about 111 MB | Preserve originals; generate web derivatives from PNGs |
-| Slide 13 prescribes Newsreader, Inter, JetBrains Mono | Bundle supplied OFL fallbacks and update stacks |
-| Bureau Book TTF metadata reports weight 300; observed web CSS uses 350 | Retain intentional web mapping at 350, document difference; do not modify binaries |
-| Signatures DOCX is not a newsletter template | Preserve signature source; create labeled newsletter adaptation |
-| Earlier README referred to background directories absent from this snapshot | Remove misleading coverage claims; index the assets actually supplied |
-| Agent discovery copies and token dist were absent in the ZIP | Generate and track required outputs; narrow ignore exceptions |
-
-## Neutral color conflict
-
-The PDF titled “COLOUR PRIMITIVES (APPROVED PRIMARY RAMPS)” is rasterized artwork, not an extractable text table. Visual inspection shows PDF ink 950 **#181210**, whereas global JSON primary.ink.950 is **#1B1716**. PDF taupe 950 is **#1B1815**, whereas JSON primary.taupe.950 and the semantic text color are **#181210**. Other neutral shades also differ (for example, PDF taupe 100 #F3F1F0 versus JSON #FAF6F0). The logo README explicitly specifies #181210 Ink and #FAF6F0 Cream.
-
-For web continuity this package uses semantic JSON plus its matching taupe/pink ramps. It does not expose conflicting raw ink/cream ramps as new defaults. The exact original PDF, JSON exports, AI and ASE sources remain available. A brand owner can reconcile the source files later; agents should not silently promote one conflicting primitive ramp into the web implementation.
+| Graphics and Patterns archives were identical | Included once; both provenance links retained |
+| Global JSON spells `perriwinkle` | Canonical `periwinkle`; source spelling preserved in evidence (the design system notes the same Figma token name) |
+| Digital logo README: trademark symbols removed at the brand owner's request | Do not add symbols |
+| Print CMYK recipes | Taupe Dark 71/68/67/84 (Pantone Black 4 C), Taupe Light 0/2/4/2, Rasa Pink 0/78/13/0 (Pantone 7423 C) |
+| Icon README says 23; folder has 27 | 27 icons; the design system confirms 27 |
+| 60 SVG pattern masters ≈ 111 MB | Masters preserved; never inline them |
+| Signatures DOCX is not a newsletter | Signatures preserved; newsletter recipe is an adaptation |
 
 ## Evidence levels
 
-- **Supplied:** exact digital/print assets, JSON exports, fallback fonts/licenses, slide/signature source files.
-- **Observed:** previous September website component/type recipes and illustration fills, retained with original evidence.
-- **Adapted:** semantic aliases for accessibility, web pattern derivatives, application recipes, email layout, asset tooling.
-- **Proposed:** composition choices, motion timing, and any new product-specific UI beyond those sources.
-
-These distinctions do not block ordinary implementation. Use the settled web roles and supplied assets, label local additions, and escalate only a source conflict that actually changes the task's outcome.
+- **Design system:** anything in `design-system/rasa-brand-2026/` and values generated from it.
+- **Community cards:** `skills/rasa-community-cards/`.
+- **Supplied (October):** masters, print files, fallback fonts, slide and signature references.
+- **Adapted:** web aliases, responsive recipes, layout and motion tokens, email layout, asset tooling, derived asset files.
+- **Proposed:** anything new that neither source covers; label it and confirm with the brand owner.
 
 ## Scope of verification
 
-Coverage, file hashes, token correspondence, SVG safety, contrast pairs, generation consistency, and skill synchronization are checked by repository commands. Source reference files are retained unchanged. Presentation and signature text were inspected, and pattern/color references visually inspected. This is not a certification of every slide layout, email client, or production site. See `evidence/validation-results.json` for actual checks run and remaining integration limits.
+Hashes, token correspondence, palette membership of card colours, contrast pairs, SVG safety, catalog coverage, skill synchronisation and the absence of tracked font binaries are checked by repository commands. They do not certify a deployed site, an email client or every rendered slide.
