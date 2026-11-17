@@ -56,7 +56,9 @@ class ConsumerEvidenceTests(unittest.TestCase):
 
     def result(self):
         return checker.check(self.root, self.root, self.manifest,
-                             load_brand=lambda _root, _path: self.token_bytes)
+                             load_brand=lambda _root, _path: self.token_bytes,
+                             regenerate=lambda _: ({name: self.token_bytes for name in checker.GENERATED},
+                                                   {"synthetic": True, "not_a_real_execution": True}))
 
     def assertFails(self, rule):
         result = self.result()
@@ -78,6 +80,21 @@ class ConsumerEvidenceTests(unittest.TestCase):
         self.artifacts[0] = self.bind('tokens.json', b'{"stale":true}')
         self.snapshots()
         self.assertFails('generated-token-origin')
+
+    def test_independent_generation_failure_fails(self):
+        def refused(_):
+            raise checker.Refusal('synthetic generator failure')
+        result = checker.check(self.root, self.root, self.manifest,
+                               load_brand=lambda _root, _path: self.token_bytes, regenerate=refused)
+        self.assertEqual(result['machine_status'], 'FAIL')
+        self.assertIn('independent-token-generation', {f['rule'] for f in result['findings']})
+
+    def test_incomplete_independent_generation_fails(self):
+        result = checker.check(self.root, self.root, self.manifest,
+                               load_brand=lambda _root, _path: self.token_bytes,
+                               regenerate=lambda _: ({}, {'synthetic': True}))
+        self.assertEqual(result['machine_status'], 'FAIL')
+        self.assertIn('independent-token-generation', {f['rule'] for f in result['findings']})
 
     def test_missing_generated_origin_fails(self):
         self.manifest['generated_tokens'] = []

@@ -8,7 +8,10 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
+import shutil
+import signal
 import subprocess
+import tempfile
 import sys
 
 BRAND_COMMIT = "f63584cd419e326eca4b7f74ff0b3bad4ab00c86"
@@ -19,7 +22,7 @@ GENERATED = {
     "design-system/dist/tokens.mjs", "design-system/dist/tailwind-v3.cjs",
     "design-system/dist/tailwind-v4.css",
 }
-BRAND_SOURCES = GENERATED | {"design-system/scripts/build.mjs", "scripts/sync-tokens-from-design-system.py", "design-system/rasa-brand-2026/tokens.json", "skills/rasa-community-cards/references/tokens.json"}
+BRAND_SOURCES = GENERATED | {"design-system/scripts/build.mjs", "scripts/sync-tokens-from-design-system.py", "design-system/rasa-brand-2026/tokens.json", "skills/rasa-community-cards/references/tokens.json", "evidence/brand-2026/artifact-files.json"}
 FONT_FAMILIES = {"STK Bureau Serif", "STK Bureau Sans", "STK Bureau Sans Medium", "STK Bureau Sans Mono"}
 
 
@@ -81,6 +84,56 @@ def git_blob(root, path):
                             capture_output=True, timeout=15)
     need(result.returncode == 0, "pinned brand object is unavailable locally")
     return result.stdout
+
+
+def reproduce_tokens(brand_root, load_brand=git_blob):
+    """Run only the pinned pure generators in isolated scratch, with no inherited secrets."""
+    node = shutil.which("node")
+    need(node is not None, "existing Node runtime required; checker never installs it")
+    inputs = ("design-system/src/tokens.json", "design-system/rasa-brand-2026/tokens.json",
+              "skills/rasa-community-cards/references/tokens.json",
+              "evidence/brand-2026/artifact-files.json",
+              "scripts/sync-tokens-from-design-system.py", "design-system/scripts/build.mjs")
+    receipt = {"brand_commit": BRAND_COMMIT, "inputs": {}, "executions": [], "outputs": {}}
+    with tempfile.TemporaryDirectory(prefix="rasa-brand-reproduce-") as folder:
+        stage = Path(folder)
+        for name in inputs:
+            data = load_brand(brand_root, name)
+            target = stage / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
+            receipt["inputs"][name] = digest(data)
+        environment = {"PATH": os.defpath, "HOME": str(stage), "LANG": "C.UTF-8",
+                       "PYTHONDONTWRITEBYTECODE": "1", "PYTHONNOUSERSITE": "1"}
+        def execute(argv, label):
+            process = subprocess.Popen(argv, cwd=stage, env=environment, start_new_session=True,
+                                       stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            try:
+                stdout, stderr = process.communicate(timeout=30)
+            except BaseException:
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                process.communicate(timeout=3)
+                raise
+            need(process.returncode == 0, "pinned token generator failed")
+            receipt["executions"].append({"command": label, "exit": process.returncode,
+                                           "stdout_sha256": digest(stdout), "stderr_sha256": digest(stderr)})
+            return stdout
+        version = execute([node, "--version"], "node --version").decode("ascii").strip()
+        need(re.fullmatch(r"v[0-9]+\.[0-9]+\.[0-9]+", version), "unrecognized Node version")
+        receipt["node_version"] = version
+        execute([sys.executable, "-I", "scripts/sync-tokens-from-design-system.py", "--check"],
+                "python3 -I scripts/sync-tokens-from-design-system.py --check")
+        execute([node, "design-system/scripts/build.mjs"], "node design-system/scripts/build.mjs")
+        outputs = {}
+        for name in sorted(GENERATED):
+            data = (stage / name).read_bytes()
+            need(data == load_brand(brand_root, name), "pinned generated output is not reproducible")
+            outputs[name] = data
+            receipt["outputs"][name] = digest(data)
+    return outputs, receipt
 
 
 def canonical_stack(value):
@@ -205,12 +258,12 @@ def check_card(root, binding, image_path, image_sha):
     need("NOTE: STK Bureau not provisioned" not in log, "fallback NOTE disqualifies card")
 
 
-def check(root, brand_root, manifest, load_brand=git_blob):
+def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_tokens):
     findings = []
     def run(rule, path, action):
         try:
             action()
-        except (Refusal, ValueError, TypeError, KeyError, OSError, subprocess.SubprocessError) as exc:
+        except (Refusal, ValueError, TypeError, KeyError, AttributeError, OSError, subprocess.SubprocessError) as exc:
             # Never echo file contents, browser text, URLs or credentials in an error.
             findings.append({"rule": rule, "path": path, "reason": str(exc) if isinstance(exc, Refusal) else "invalid or unavailable evidence"})
 
@@ -226,6 +279,14 @@ def check(root, brand_root, manifest, load_brand=git_blob):
         return {"schema": "rasa-brand-consumer-result-v1", "machine_status": "FAIL",
                 "findings": [{"rule": "brand-source", "path": "manifest", "reason": "pinned brand tokens unavailable"}],
                 "operator_visual_verdict": "NOT_HELD", "release_authorized": False}
+
+    reproduced = {}
+    generation_receipt = None
+    def generation():
+        nonlocal reproduced, generation_receipt
+        reproduced, generation_receipt = regenerate(brand_root)
+        need(isinstance(reproduced, dict) and GENERATED <= set(reproduced), "incomplete independent token generation")
+    run("independent-token-generation", "manifest", generation)
 
     artifacts = manifest.get("artifacts", [])
     run("artifact-coverage", "manifest", lambda: need(isinstance(artifacts, list) and artifacts, "empty consumer artifact inventory"))
@@ -245,7 +306,7 @@ def check(root, brand_root, manifest, load_brand=git_blob):
         def token(item=item, path=path):
             need(path in artifact_map, "token output omitted from artifact inventory")
             need(item.get("brand_source") in GENERATED, "unsupported generated token output")
-            need(bound_file(root, artifact_map[path]) == load_brand(brand_root, item["brand_source"]),
+            need(item["brand_source"] in reproduced and bound_file(root, artifact_map[path]) == reproduced[item["brand_source"]],
                  "consumer token bytes differ from pinned generated brand output")
         run("generated-token-origin", path, token)
 
@@ -299,6 +360,7 @@ def check(root, brand_root, manifest, load_brand=git_blob):
     run("viewport-coverage", "manifest", lambda: need({"desktop", "narrow"} <= sizes, "desktop and narrow observations both required"))
     return {"schema": "rasa-brand-consumer-result-v1", "brand_commit": BRAND_COMMIT,
             "machine_status": "FAIL" if findings else "PASS_EVIDENCE_ONLY", "findings": findings,
+            "independent_generation": generation_receipt,
             "operator_visual_verdict": "NOT_HELD", "release_authorized": False,
             "scope": "Retained evidence for declared artifacts and observed states; no whole-site or inbox certification."}
 
