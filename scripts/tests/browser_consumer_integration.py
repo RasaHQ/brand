@@ -35,7 +35,10 @@ class ActualBrowserNegativeControl(unittest.TestCase):
         css = checker.git_blob(ROOT, 'design-system/dist/tokens.css')
         page = b'''<!doctype html><html><head><link rel="stylesheet" href="/tokens.css"><style>
 body { background:var(--rasa-bg); color:var(--rasa-fg); font-family:var(--rasa-font-sans); }
-</style></head><body><p>Unprovisioned font negative fixture.</p></body></html>'''
+</style></head><body><p>Unprovisioned font negative fixture.</p>
+<details><summary>Outer disclosure</summary><details><summary>Inner disclosure</summary>
+<p style="color:rgb(255,0,0)">Hidden nonpalette negative fixture.</p>
+</details></details></body></html>'''
         artifacts = [put('tokens.json', tokens),
                      {**put('tokens.css', css), 'url_path': '/tokens.css'},
                      {**put('page.html', page), 'url_path': '/'},
@@ -68,14 +71,26 @@ body { background:var(--rasa-bg); color:var(--rasa-fg); font-family:var(--rasa-f
         put('capture-exit.json', json.dumps({'exit': process.returncode, 'font_files_provided': False}))
         self.assertEqual(process.returncode, 0, 'capture failed; inspect retained private stderr')
         observed = json.loads((packet / 'observed/manifest.json').read_text())
-        self.assertEqual(len(observed['browser_records']), 3)
+        self.assertGreater(len(observed['browser_records']), 3)
         all_fonts = []
+        default_widths, opened_widths = set(), set()
+        hidden_hash = hashlib.sha256(b'Hidden nonpalette negative fixture.').hexdigest()
         for binding in observed['browser_records']:
             record = checker.read_json(checker.bound_file(packet, binding))
             self.assertEqual(record['page'], '/')
             checker.bound_file(packet, record['screenshot'])
+            texts = {node['source_text_sha256'] for node in record['font_observation']['nodes']}
+            if record['state']['kind'] == 'default' and not record['state']['open_details']:
+                self.assertNotIn(hidden_hash, texts, 'closed disclosure content must not count as painted')
+                default_widths.add(record['viewport']['width'])
+            if len(record['state']['open_details']) == 2:
+                self.assertIn(hidden_hash, texts, 'nested disclosure content must be captured when opened')
+                self.assertTrue(any('rgb(255, 0, 0)' in node['colors'].values() for node in record['nodes']))
+                opened_widths.add(record['viewport']['width'])
             for node in record['font_observation']['nodes']:
                 all_fonts.extend(node['platform_fonts'])
+        self.assertEqual(default_widths, {375, 768, 1440})
+        self.assertEqual(opened_widths, {375, 768, 1440})
         self.assertTrue(all_fonts, 'actual font observation cannot be empty')
         self.assertTrue(any(f['family'] not in checker.FONT_FAMILIES or not f['custom'] for f in all_fonts))
         result = checker.check(packet, ROOT, observed)

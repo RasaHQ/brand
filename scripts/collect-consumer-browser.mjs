@@ -116,13 +116,26 @@ try {
         const cdp = await context.newCDPSession(page);
         try {
           await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
-          const selectors = await page.locator('a[href],button,input,select,textarea,summary,[tabindex]').evaluateAll(elements => elements.filter(el => el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden' && !el.disabled).map(el => {
-            const parts=[]; for(let n=el;n?.nodeType===1;n=n.parentElement) { const siblings=Array.from(n.parentElement?.children??[]);parts.unshift(`${n.localName}:nth-child(${siblings.indexOf(n)+1||1})`); } return parts.join(' > ');
+          const disclosures = await page.locator('details').evaluateAll(elements => elements.map(el => {
+            const selector=node=>{const parts=[];for(let n=node;n?.nodeType===1;n=n.parentElement){const siblings=Array.from(n.parentElement?.children??[]);parts.unshift(`${n.localName}:nth-child(${siblings.indexOf(n)+1||1})`);}return parts.join(' > ');};
+            const ancestors=[];for(let n=el.parentElement;n;n=n.parentElement)if(n.localName==='details')ancestors.push(selector(n));
+            return {selector:selector(el),open:el.open,ancestors};
           }));
-          assert(selectors.length <= 100, 'interactive state limit exceeded');
-          const states = [{kind:'default'}, ...selectors.flatMap(selector => [{kind:'hover',selector},{kind:'focus',selector}])];
+          assert(disclosures.length<=10,'disclosure state limit exceeded; split the declared scope');
+          const configurations=[disclosures.filter(d=>d.open).map(d=>d.selector),[],...disclosures.map(d=>[...d.ancestors,d.selector]),disclosures.map(d=>d.selector)]
+            .map(items=>[...new Set(items)].sort()).filter((items,i,all)=>all.findIndex(other=>JSON.stringify(other)===JSON.stringify(items))===i);
+          const states=[];
+          for(const openDetails of configurations) {
+            await page.evaluate(open=>{for(const el of document.querySelectorAll('details'))el.open=false;for(const selector of open)document.querySelector(selector).open=true;},openDetails);
+            const selectors = await page.locator('a[href],button,input,select,textarea,summary,[tabindex]').evaluateAll(elements => elements.filter(el => el.checkVisibility() && getComputedStyle(el).visibility !== 'hidden' && !el.disabled).map(el => {
+            const parts=[]; for(let n=el;n?.nodeType===1;n=n.parentElement) { const siblings=Array.from(n.parentElement?.children??[]);parts.unshift(`${n.localName}:nth-child(${siblings.indexOf(n)+1||1})`); } return parts.join(' > ');
+            }));
+            assert(selectors.length <= 100, 'interactive state limit exceeded');
+            states.push({kind:openDetails.length?'disclosure-open':'default',open_details:openDetails},...selectors.flatMap(selector=>[{kind:'hover',selector,open_details:openDetails},{kind:'focus',selector,open_details:openDetails}]));
+          }
           for (let stateIndex=0;stateIndex<states.length;stateIndex++) {
             const state = states[stateIndex];
+            await page.evaluate(open=>{for(const el of document.querySelectorAll('details'))el.open=false;for(const selector of open)document.querySelector(selector).open=true;},state.open_details);
             await page.mouse.move(0,0); await page.evaluate(() => document.activeElement?.blur());
             if (state.kind==='hover') await page.locator(state.selector).hover({force:true});
             if (state.kind==='focus') await page.locator(state.selector).focus();
@@ -134,7 +147,8 @@ try {
               const selector=el=>{const parts=[];for(let n=el;n?.nodeType===1;n=n.parentElement){const s=Array.from(n.parentElement?.children??[]);parts.unshift(`${n.localName}:nth-child(${s.indexOf(n)+1||1})`);}return parts.join(' > ');};
               for(const el of elements.slice(0,2500)) {
                 const style=getComputedStyle(el);
-                if(style.display==='none'||style.visibility==='hidden'||!el.getClientRects().length) continue;
+                if(!el.checkVisibility()||style.visibility==='hidden'||!el.getClientRects().length) continue;
+                if(el.localName==='details'&&el.hasAttribute('name'))unsupported.push('exclusive-disclosure-group-needs-separate-state-plan');
                 if(el.shadowRoot||['iframe','canvas','video'].includes(el.localName)) unsupported.push('unobserved-embedded-surface');
                 if(el.localName==='svg') unsupported.push('inline-svg-needs-image-record-binding');
                 if(style.filter!=='none'||Number(style.opacity)!==1||style.mixBlendMode!=='normal') unsupported.push('unreviewed-compositing');
