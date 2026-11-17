@@ -139,15 +139,23 @@ try {
                 if(el.localName==='svg') unsupported.push('inline-svg-needs-image-record-binding');
                 if(style.filter!=='none'||Number(style.opacity)!==1||style.mixBlendMode!=='normal') unsupported.push('unreviewed-compositing');
                 for(const pseudo of ['::before','::after']) {const p=getComputedStyle(el,pseudo);if(!['none','normal','""'].includes(p.content)) unsupported.push('generated-text-needs-platform-font-coverage');}
-                const colors={};
-                for(const key of ['color','background-color','border-top-color','border-right-color','border-bottom-color','border-left-color','outline-color','text-decoration-color','column-rule-color']) colors[key]=style.getPropertyValue(key);
+                let text=Array.from(el.childNodes).filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();
+                if(['input','textarea'].includes(el.localName))text=el.value||el.placeholder||text;
+                if(el.localName==='select')text=Array.from(el.selectedOptions).map(o=>o.textContent).join('');
+                const colors={'background-color':style.backgroundColor};
+                // Ignore unused inherited text/border colors; descendants report their own actual text.
+                if(text)colors.color=style.color;
+                for(const side of ['top','right','bottom','left']) {
+                  if(!['none','hidden'].includes(style.getPropertyValue(`border-${side}-style`))&&parseFloat(style.getPropertyValue(`border-${side}-width`))>0)
+                    colors[`border-${side}-color`]=style.getPropertyValue(`border-${side}-color`);
+                }
+                if(style.outlineStyle!=='none'&&parseFloat(style.outlineWidth)>0)colors['outline-color']=style.outlineColor;
+                if(style.textDecorationLine!=='none'&&el.textContent?.trim())colors['text-decoration-color']=style.textDecorationColor;
+                if(style.columnRuleStyle!=='none'&&parseFloat(style.columnRuleWidth)>0)colors['column-rule-color']=style.columnRuleColor;
                 for(const key of ['box-shadow','text-shadow']) {const value=style.getPropertyValue(key);if(value!=='none') {const matches=value.match(/rgba?\([^)]*\)/g);if(!matches)unsupported.push('unresolved-shadow-color');else matches.forEach((c,i)=>colors[`${key}-${i}`]=c);}}
                 const background=style.backgroundImage;
                 if(background!=='none') {if(/gradient|image-set|paint\(/i.test(background))unsupported.push('unsupported-background-paint');for(const m of background.matchAll(/url\(["']?([^"')]+)["']?\)/g))media.add(m[1]);}
                 if(el.localName==='img') media.add(el.currentSrc||el.src);
-                let text=Array.from(el.childNodes).filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();
-                if(['input','textarea'].includes(el.localName))text=el.value||el.placeholder||text;
-                if(el.localName==='select')text=Array.from(el.selectedOptions).map(o=>o.textContent).join('');
                 nodes.push({selector:selector(el),colors,has_text:Boolean(text),font_family:style.fontFamily,text});
               }
               return {nodes,unsupported:[...new Set(unsupported)],media:[...media],overflow:document.documentElement.scrollWidth>innerWidth+1};
