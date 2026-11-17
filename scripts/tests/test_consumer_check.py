@@ -26,7 +26,7 @@ class ConsumerEvidenceTests(unittest.TestCase):
         self.manifest = {'schema': checker.SCHEMA, 'brand_commit': checker.BRAND_COMMIT,
                          'artifacts': self.artifacts,
                          'generated_tokens': [{'path': 'tokens.json', 'brand_source': 'design-system/src/tokens.json'}],
-                         'images': [], 'browser_records': []}
+                         'images': [], 'browser_records': [], 'pages': ['/']}
         self.fonts = {'complete': True, 'unsupported': [], 'nodes': [
             {'platform_fonts': [{'family': 'STK Bureau Sans', 'custom': True, 'glyph_count': 9}]}]}
         self.snapshots()
@@ -43,7 +43,7 @@ class ConsumerEvidenceTests(unittest.TestCase):
         self.manifest['browser_records'] = []
         for width in (1280, 390):
             record = {'schema': 'rasa-brand-browser-observation-v1', 'brand_commit': checker.BRAND_COMMIT,
-                      'complete': True, 'unsupported': [], 'viewport': {'width': width, 'height': 800},
+                      'complete': True, 'unsupported': [], 'page': '/', 'viewport': {'width': width, 'height': 800},
                       'artifacts': copy.deepcopy(self.artifacts), 'images': [],
                       'nodes': [{'has_text': True, 'font_family': self.token['font']['sans'],
                                  'colors': {'color': 'rgb(24, 18, 16)', 'background-color': '#FAF6F0'}}],
@@ -144,6 +144,10 @@ class ConsumerEvidenceTests(unittest.TestCase):
     def test_narrow_evidence_is_required(self):
         self.manifest['browser_records'].pop()
         self.assertFails('viewport-coverage')
+
+    def test_second_declared_page_cannot_borrow_first_page_viewports(self):
+        self.manifest['pages'].append('/missing/')
+        self.assertFails('per-page-viewport-coverage')
 
     def test_empty_artifacts_fail(self):
         self.manifest['artifacts'] = []

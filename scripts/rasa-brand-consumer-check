@@ -328,7 +328,12 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
 
     snapshots = manifest.get("browser_records", [])
     run("browser-coverage", "manifest", lambda: need(isinstance(snapshots, list) and snapshots, "no consumer browser records"))
+    pages = manifest.get("pages", [])
+    run("page-coverage", "manifest", lambda: need(isinstance(pages, list) and pages
+        and all(isinstance(p, str) and p.startswith("/") for p in pages)
+        and len(set(pages)) == len(pages), "explicit unique static page routes required"))
     sizes = set()
+    page_sizes = {}
     for binding in snapshots if isinstance(snapshots, list) else []:
         path = binding.get("path", "invalid") if isinstance(binding, dict) else "invalid"
         def browser(binding=binding):
@@ -337,10 +342,14 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
             need(record.get("complete") is True and record.get("unsupported") == [], "browser coverage incomplete")
             need(record.get("brand_commit") == BRAND_COMMIT, "stale browser brand binding")
             need(record.get("artifacts") == artifacts, "browser observation does not bind exact consumer bytes")
+            page = record.get("page")
+            need(page in pages, "browser page is missing from declared routes")
             viewport = record.get("viewport", {})
             need(type(viewport.get("width")) is int and type(viewport.get("height")) is int
                  and viewport["height"] > 0, "missing browser viewport")
-            sizes.add("narrow" if 0 < viewport["width"] <= 480 else "desktop" if viewport["width"] >= 1024 else "other")
+            size = "narrow" if 0 < viewport["width"] <= 480 else "desktop" if viewport["width"] >= 1024 else "other"
+            sizes.add(size)
+            page_sizes.setdefault(page, set()).add(size)
             need(record.get("nodes"), "empty computed-style observation")
             for node in record["nodes"]:
                 need(node.get("colors"), "missing computed colors")
@@ -358,6 +367,9 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
             bound_file(root, record.get("log"))
         run("consumer-browser", path, browser)
     run("viewport-coverage", "manifest", lambda: need({"desktop", "narrow"} <= sizes, "desktop and narrow observations both required"))
+    for page in pages if isinstance(pages, list) else []:
+        run("per-page-viewport-coverage", page, lambda page=page: need(
+            {"desktop", "narrow"} <= page_sizes.get(page, set()), "each declared page needs desktop and narrow observations"))
     return {"schema": "rasa-brand-consumer-result-v1", "brand_commit": BRAND_COMMIT,
             "machine_status": "FAIL" if findings else "PASS_EVIDENCE_ONLY", "findings": findings,
             "independent_generation": generation_receipt,

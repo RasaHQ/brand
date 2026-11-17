@@ -24,3 +24,34 @@ This candidate independently reproduces pinned tokens and validates retained evi
 At this stage the result is `PASS_EVIDENCE_ONLY` or `FAIL`, with `operator_visual_verdict: NOT_HELD` and `release_authorized: false` in both cases. `PASS_EVIDENCE_ONLY` means only that the declared evidence passed these mechanical checks. It must not appear as a consumer certification or release gate PASS. Exact source, dependency and state coverage, real producer receipts and independent review remain required. Email's documented font-stack adaptation and native third-party chrome treatment are not silently exempted by this web profile. Unsupported profiles fail or remain unqualified pending the explicit owner ruling.
 
 Run candidate fixtures on production-03 through zeoconnect. No software suite, browser render or design-system check runs on the Mac mini. Any final PR needs actual exact-head gate evidence and both readers. Operator inspection of the actual output remains the final verdict.
+
+## Capture retained static HTML with the existing browser route.
+
+The companion `scripts/collect-consumer-browser.mjs` extends the community's existing locked `playwright-core` 1.62.1 and `CHROMIUM_PATH` route. It starts an owned read-only loopback server serving only explicitly bound artifacts. It does not import application handlers, click submit, install dependencies or contact a live service. Every external/unbound request fails coverage. The source must already be a retained packet, with source/build identity established by the separate consumer build receipt.
+
+```sh
+node scripts/collect-consumer-browser.mjs \
+  --consumer-root /path/to/retained-packet \
+  --manifest /path/to/input-manifest.json \
+  --playwright-module /path/to/existing/node_modules/playwright-core/index.mjs \
+  --output-name capture-01
+```
+
+The manifest's nonempty `pages` lists explicit static directory routes. Every served artifact adds `url_path`; each route must map to a retained HTML artifact. Images use the same declared artifact map. Optional `font_resources` entries map public URL paths to STKBureau WOFF2 filenames; only the operator-provisioned `RASA_FONTS_DIR` supplies those faces at render time. Font binaries are served to the browser only, never copied into the packet, hashed into public records or committed. The invocation and raw private host provisioning remain with the executing owner.
+
+For each declared page, capture at 375, 768 and 1440px with JavaScript disabled, reduced motion and fresh browser contexts. Capture default plus visible enabled control hover/focus states, CSSOM-resolved paint colors, full declared font stack and actual CDP platform font/glyph use. Retain text hashes, screenshots and safe execution metadata. Recheck all artifact bytes after capture. Consumer verification requires desktop/narrow evidence for each page separately. It cannot borrow one page's coverage for another. Output folder must be new; no previous receipt is overwritten.
+
+Source route: [community browser check](https://github.com/RasaHQ/rasa-community/blob/38ea413e46d585ec229ebc3c639e8f5a8077f600/scripts/check-community-browser.mjs). Browser interfaces: [Playwright CDPSession](https://playwright.dev/docs/api/class-cdpsession) and [CDP platform font usage](https://chromedevtools.github.io/devtools-protocol/tot/CSS/#method-getPlatformFontsForNode).
+
+This new collector is authored and NOT_RUN. It has a 120-second browser-close deadline and caps at 60 snapshots, 100 controls and 2500 DOM elements per snapshot; executing owner must additionally supervise the process and cleanup. Truncated/over-limit scopes fail. It intentionally reports unsupported inline SVG, embedded frames/canvas/video, nontrivial compositing and generated pseudo text. Native disclosure-open state, unused CSS declaration scanning, source import graph proof, email profiles and independent capture provenance validation are still unfinished. JavaScript application behavior is outside this static profile and remains in the consumer's existing browser tests. Actual image/font receipts and operator inspection are still mandatory. Do not describe this prototype as the completed consumer check.
+
+Actual browser negative-control command (separate from offline core discovery):
+
+```sh
+RASA_CONSUMER_PLAYWRIGHT_MODULE=/existing/playwright-core/index.mjs \
+CHROMIUM_PATH=/existing/chromium \
+RASA_CONSUMER_BROWSER_RECEIPTS_DIR=/new-owned-receipts-parent \
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/tests/browser_consumer_integration.py -v
+```
+
+This intentionally provides no licensed fonts, captures real fallback glyph use and requires the checker to refuse it. It preserves original screenshots, observations and command outputs under the executing owner's receipt folder. It is a negative control, never a qualified positive render. No missing browser dependency is silently skipped or installed. Positive real-STK consumer qualification remains separately required.
