@@ -21,7 +21,7 @@ assert(/^[a-zA-Z0-9_-]+$/.test(outputName), 'output must be one new relative fol
 const hash = data => createHash('sha256').update(data).digest('hex');
 const protectedName = name => name.split('/').some(p => p === '.env' || p.startsWith('.env.'));
 function safeFile(name, {font = false, base = root} = {}) {
-  assert(typeof name === 'string' && /^[a-zA-Z0-9_./-]+$/.test(name), 'unsupported relative artifact path');
+  assert(typeof name === 'string' && name.length && !/[\x00-\x1f\x7f\\]/.test(name), 'unsupported relative artifact path');
   assert(!name.startsWith('/') && !name.split('/').includes('..') && !protectedName(name), 'unsafe artifact');
   assert(font ? /^STKBureau[A-Za-z0-9-]+\.woff2$/.test(name) : !/\.(woff2?|ttf|otf|key|pem)$/i.test(name), 'protected payload');
   let current = base;

@@ -27,7 +27,9 @@ class ActualBrowserNegativeControl(unittest.TestCase):
         def put(name, raw):
             if not isinstance(raw, bytes):
                 raw = raw.encode()
-            (packet / name).write_bytes(raw)
+            target = packet / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(raw)
             return {'path': name, 'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)}
         tokens = checker.git_blob(ROOT, 'design-system/src/tokens.json')
         css = checker.git_blob(ROOT, 'design-system/dist/tokens.css')
@@ -36,7 +38,8 @@ body { background:var(--rasa-bg); color:var(--rasa-fg); font-family:var(--rasa-f
 </style></head><body><p>Unprovisioned font negative fixture.</p></body></html>'''
         artifacts = [put('tokens.json', tokens),
                      {**put('tokens.css', css), 'url_path': '/tokens.css'},
-                     {**put('page.html', page), 'url_path': '/'}]
+                     {**put('page.html', page), 'url_path': '/'},
+                     put('licenses/JetBrains Mono/OFL.txt', b'SYNTHETIC retained license path with spaces')]
         manifest = {'schema': checker.SCHEMA, 'brand_commit': checker.BRAND_COMMIT,
                     'artifacts': artifacts, 'pages': ['/'], 'images': [], 'font_resources': [],
                     'generated_tokens': [{'path': 'tokens.json', 'brand_source': 'design-system/src/tokens.json'},
