@@ -205,7 +205,7 @@ def check_native_observation(root, observation, outputs):
     need(source_runs == [{"source_text_sha256": r.get("source_text_sha256"), "role": r.get("role")} for r in runs],
          "native source text/run coverage differs from composition")
     families = {"serif": "STK Bureau Serif", "sans": "STK Bureau Sans",
-                "sans-medium": "STK Bureau Sans Medium", "mono": "STK Bureau Sans Mono"}
+                "sans-medium": "STK Bureau Sans", "mono": "STK Bureau Sans Mono"}
     for run in runs:
         required = families.get(run.get("role"))
         need(required and run.get("required_family") == required and run.get("actual_family") == required,

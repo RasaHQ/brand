@@ -222,6 +222,24 @@ class NativeObservationTests(unittest.TestCase):
         with self.assertRaises(checker.Refusal):
             self.check()
 
+    def medium_run(self, family):
+        self.run.update(role='sans-medium', required_family=family, actual_family=family)
+        self.observation['source_text_runs'] = self.bind('medium-runs.json', [
+            {'source_text_sha256': 'a' * 64, 'role': 'sans-medium'}])
+        old = self.observation['producer_bindings']['provisioning_record']
+        record = json.loads((self.root / old['path']).read_text())
+        record['faces'][0].update(family=family, role='sans-medium')
+        self.observation['producer_bindings']['provisioning_record'] = self.bind('medium-provision.json', record)
+
+    def test_native_medium_role_uses_canonical_sans_family(self):
+        self.medium_run('STK Bureau Sans')
+        self.check()
+
+    def test_native_medium_role_rejects_slide_deck_family_alias(self):
+        self.medium_run('STK Bureau Sans Medium')
+        with self.assertRaises(checker.Refusal):
+            self.check()
+
     def test_native_output_must_match_parent_card(self):
         self.observation['outputs'] = []
         with self.assertRaises(checker.Refusal):
