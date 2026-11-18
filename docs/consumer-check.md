@@ -66,6 +66,18 @@ Catalog entries bind exact current asset IDs, upstream paths and hashes. Non-fon
 
 The receiver is authored and NOT_RUN. Seven new synthetic fixtures cover the settled exports, stale/missing metadata, changed static CSS, reference assets and attempted font-payload input. Intake metadata must not be presented as an application build, import-graph proof, browser result or visual approval.
 
+## Video phone legibility is a separate, unfinished profile.
+
+The November18 operator requirement covers every decoded video frame at a 390-pixel output width, with aspect ratio preserved. The current checker refuses declared `videos`, artifacts marked `kind: video`, and common video suffixes. Browser or still-image evidence cannot qualify moving media. This is a refusal guard, not an implemented video measurement collector; undeclared media discovery remains unfinished.
+
+Proposed calibration starts at **16 pixels of actual visible text height** after downscale, per text run, not CSS font size or a whole multiline block. This is a proposed extension, not an existing brand rule or an empirically established readability guarantee. At source width 1920 this requires at least 78.77 source pixels of visible glyph height; at 1080 it requires 44.31. Actual downscaled raster measurements decide, including clipping, transitions and scaling. Tiny punctuation must stay attached to its text run; it is not separately treated as a full-height glyph. Frames without text record no-text explicitly; missing or unreadable measurement evidence fails.
+
+The collector must bind the exact video bytes, decoder/version, ordered decoded frame count and timestamps, every frame hash, and all visible text-run bounds. No periodic sampling or OCR confidence omission may stand in for complete coverage. Producer text layers/masks must be checked against the composited frames; unavailable coverage is unqualified. Per-frame records include measured minimum height, failing run IDs and full-screen-card classification with its evidence. Both frame-count share and timestamp-duration share of full-screen cards are reported; variable frame rates cannot distort the latter. Proposed maximum card duration share is 25 percent, with unknown classifications failing. This cap needs operator acceptance and rejects a slide-only video even when its type is large.
+
+Qualification needs actual rejected overlays, corrected counterparts, and boundary examples at 15/16/17 pixels at 390 wide, plus transition/clipping, mixed run sizes, text-free frames, missing frames, unsupported/burned-in text, variable frame rates and an all-card deck. Retain phone-width frames and human dispositions alongside mechanical results. The minimum and cap remain proposed until this evidence is reviewed. Font provenance, visual approval and release authorization remain separate.
+
+Target: measurement implementation and retained calibration evidence November19 18:00Z; progress checkpoint November18 12:00Z. The November18 18:00Z candidate can include the refusal guard, not a claim of measured video compliance. No render, decoder, OCR or video suite was run on the Mac mini.
+
 ## Apply exactly two image proof classes.
 
 Operator ruling via the Architect, November17 18:48Z: an official brand file copied unchanged is proven by exact pinned catalog category, ID, path and SHA256; nothing was rendered, so no render receipt is invented. New generated cards, OG/share images, diagrams and headers still require a community-cards v2 receipt showing actual STK use and the operator's visual approval.

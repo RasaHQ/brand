@@ -354,6 +354,10 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
         need(manifest.get("schema") == SCHEMA, "unsupported consumer manifest schema")
         need(manifest.get("brand_commit") == BRAND_COMMIT, "consumer is not pinned to required brand revision")
     run("brand-identity", "manifest", identity)
+    # Browser/image evidence cannot establish measurements for moving media.
+    run("video-legibility", "manifest", lambda: need(
+        manifest.get("videos", []) == [],
+        "video requires qualified every-frame phone-legibility evidence; video profile is not implemented"))
     try:
         tokens = read_json(load_brand(brand_root, "design-system/src/tokens.json"))
         palette = {value.upper() for scale in tokens["color"].values() for value in scale.values()}
@@ -378,6 +382,9 @@ def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_
         path = item.get("path", "invalid") if isinstance(item, dict) else "invalid"
         def artifact(item=item, path=path):
             need(path not in artifact_map, "duplicate artifact path")
+            need(item.get("kind") != "video" and Path(path).suffix.lower() not in
+                 {".mp4", ".webm", ".mov", ".m4v", ".avi", ".mkv"},
+                 "video requires qualified every-frame phone-legibility evidence; video profile is not implemented")
             bound_file(root, item)
             artifact_map[path] = item
         run("artifact-binding", path, artifact)

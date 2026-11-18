@@ -76,6 +76,19 @@ class ConsumerEvidenceTests(unittest.TestCase):
         self.manifest['brand_commit'] = '0' * 40
         self.assertFails('brand-identity')
 
+    def test_video_declaration_cannot_borrow_browser_evidence(self):
+        self.manifest['videos'] = [{'path': 'unlisted.mp4'}]
+        self.assertFails('video-legibility')
+
+    def test_video_artifacts_cannot_pass_as_generic_files(self):
+        for name, kind in [('clip.mp4', 'file'), ('clip.WEBM', 'file'),
+                           ('clip.mov', 'file'), ('opaque.bin', 'video')]:
+            with self.subTest(name=name, kind=kind):
+                self.artifacts.append(dict(self.bind(name, b'SYNTHETIC VIDEO PLACEHOLDER'), kind=kind))
+                self.snapshots()
+                self.assertFails('artifact-binding')
+                self.artifacts.pop()
+
     def test_true_label_with_changed_token_bytes_fails(self):
         self.artifacts[0] = self.bind('tokens.json', b'{"stale":true}')
         self.snapshots()
