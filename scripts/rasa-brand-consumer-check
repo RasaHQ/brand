@@ -1,0 +1,501 @@
+#!/usr/bin/env python3
+"""Check exact consumer inputs and retained browser/card evidence; never publish."""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path, PurePosixPath
+import re
+import shutil
+import signal
+import subprocess
+import tempfile
+import sys
+
+BRAND_COMMIT = "f63584cd419e326eca4b7f74ff0b3bad4ab00c86"
+SCHEMA = "rasa-brand-consumer-manifest-v1"
+SHA = re.compile(r"^[0-9a-f]{64}$")
+GENERATED = {
+    "design-system/src/tokens.json", "design-system/dist/tokens.css",
+    "design-system/dist/tokens.mjs", "design-system/dist/tailwind-v3.cjs",
+    "design-system/dist/tailwind-v4.css",
+}
+COMMUNITY_EXPORTS = {
+    "design-system/src/tokens.json", "design-system/dist/tokens.css", "design-system/dist/tailwind-v4.css",
+    "design-system/src/components.css", "design-system/src/fonts.css",
+    "design-system/src/fallback-fonts.css", "design-system/rasa-brand-2026/fonts/fonts.lock.json",
+}
+BRAND_SOURCES = GENERATED | COMMUNITY_EXPORTS | {"assets/catalog.json"} | {"design-system/scripts/build.mjs", "scripts/sync-tokens-from-design-system.py", "design-system/rasa-brand-2026/tokens.json", "skills/rasa-community-cards/references/tokens.json", "evidence/brand-2026/artifact-files.json"}
+FONT_FAMILIES = {"STK Bureau Serif", "STK Bureau Sans", "STK Bureau Sans Medium", "STK Bureau Sans Mono"}
+
+
+class Refusal(ValueError):
+    pass
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def read_json(data):
+    def unique(pairs):
+        value = {}
+        for key, item in pairs:
+            if key in value:
+                raise Refusal("duplicate JSON member")
+            value[key] = item
+        return value
+    return json.loads(data, object_pairs_hook=unique,
+                      parse_constant=lambda _: (_ for _ in ()).throw(Refusal("non-finite JSON number")))
+
+
+def need(value, message):
+    if not value:
+        raise Refusal(message)
+
+
+def local_file(root, name):
+    need(isinstance(name, str) and name, "missing relative file path")
+    rel = PurePosixPath(name)
+    need(not rel.is_absolute() and ".." not in rel.parts and "\\" not in name,
+         "unsafe relative file path")
+    path = root / name
+    need(not any(p.is_symlink() for p in [path, *list(path.parents)[:len(rel.parts)-1]]),
+         "symlinked artifact is not retained evidence")
+    need(path.resolve().is_relative_to(root.resolve()) and path.is_file(), "missing retained artifact")
+    # Never open credential or licensed font payloads, even when a manifest asks.
+    need(not any(part == ".env" or part.startswith(".env.") for part in rel.parts)
+         and path.suffix.lower() not in {".woff", ".woff2", ".ttf", ".otf", ".pem", ".key"},
+         "protected payload is not a consumer evidence input")
+    return path
+
+
+def bound_file(root, binding):
+    need(isinstance(binding, dict), "file binding must be an object")
+    expected = binding.get("sha256")
+    need(isinstance(expected, str) and SHA.fullmatch(expected), "missing SHA256 binding")
+    raw = local_file(root, binding.get("path")).read_bytes()
+    need(digest(raw) == expected, "retained artifact SHA256 mismatch")
+    need(type(binding.get("bytes")) is int and binding["bytes"] == len(raw), "retained artifact size mismatch")
+    return raw
+
+
+def git_blob(root, path):
+    need(path in BRAND_SOURCES, "unsupported generated brand source")
+    result = subprocess.run(["git", "show", f"{BRAND_COMMIT}:{path}"], cwd=root,
+                            env={**os.environ, "GIT_NO_LAZY_FETCH": "1"},
+                            capture_output=True, timeout=15)
+    need(result.returncode == 0, "pinned brand object is unavailable locally")
+    return result.stdout
+
+
+def reproduce_tokens(brand_root, load_brand=git_blob):
+    """Run only the pinned pure generators in isolated scratch, with no inherited secrets."""
+    node = shutil.which("node")
+    need(node is not None, "existing Node runtime required; checker never installs it")
+    inputs = ("design-system/src/tokens.json", "design-system/rasa-brand-2026/tokens.json",
+              "skills/rasa-community-cards/references/tokens.json",
+              "evidence/brand-2026/artifact-files.json",
+              "scripts/sync-tokens-from-design-system.py", "design-system/scripts/build.mjs")
+    receipt = {"brand_commit": BRAND_COMMIT, "inputs": {}, "executions": [], "outputs": {}}
+    with tempfile.TemporaryDirectory(prefix="rasa-brand-reproduce-") as folder:
+        stage = Path(folder)
+        for name in inputs:
+            data = load_brand(brand_root, name)
+            target = stage / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
+            receipt["inputs"][name] = digest(data)
+        environment = {"PATH": os.defpath, "HOME": str(stage), "LANG": "C.UTF-8",
+                       "PYTHONDONTWRITEBYTECODE": "1", "PYTHONNOUSERSITE": "1"}
+        def execute(argv, label):
+            process = subprocess.Popen(argv, cwd=stage, env=environment, start_new_session=True,
+                                       stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            try:
+                stdout, stderr = process.communicate(timeout=30)
+            except BaseException:
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                process.communicate(timeout=3)
+                raise
+            need(process.returncode == 0, "pinned token generator failed")
+            receipt["executions"].append({"command": label, "exit": process.returncode,
+                                           "stdout_sha256": digest(stdout), "stderr_sha256": digest(stderr)})
+            return stdout
+        version = execute([node, "--version"], "node --version").decode("ascii").strip()
+        need(re.fullmatch(r"v[0-9]+\.[0-9]+\.[0-9]+", version), "unrecognized Node version")
+        receipt["node_version"] = version
+        execute([sys.executable, "-I", "scripts/sync-tokens-from-design-system.py", "--check"],
+                "python3 -I scripts/sync-tokens-from-design-system.py --check")
+        execute([node, "design-system/scripts/build.mjs"], "node design-system/scripts/build.mjs")
+        outputs = {}
+        for name in sorted(GENERATED):
+            data = (stage / name).read_bytes()
+            need(data == load_brand(brand_root, name), "pinned generated output is not reproducible")
+            outputs[name] = data
+            receipt["outputs"][name] = digest(data)
+    return outputs, receipt
+
+
+def canonical_stack(value):
+    need(isinstance(value, str), "font stack must be text")
+    return tuple(part.strip().strip("\"'").casefold() for part in value.split(","))
+
+
+def color_hex(value):
+    """Collector supplies CSSOM resolved colors; reject unsupported syntax, never guess."""
+    need(isinstance(value, str), "color observation must be text")
+    if value == "transparent":
+        return None
+    match = re.fullmatch(r"#([0-9a-fA-F]{6})", value)
+    if match:
+        return "#" + match[1].upper()
+    match = re.fullmatch(r"rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*(0|1|0?\.\d+))?\s*\)", value)
+    need(match is not None, "unresolved or unsupported computed color")
+    rgb = [int(match[n]) for n in (1, 2, 3)]
+    need(all(0 <= n <= 255 for n in rgb), "invalid computed color channel")
+    alpha = float(match[4]) if match[4] is not None else 1
+    need(alpha in (0, 1), "translucent color needs a separately reviewed compositing rule")
+    return None if alpha == 0 else "#" + "".join(f"{n:02X}" for n in rgb)
+
+
+def check_font_observation(observation):
+    need(isinstance(observation, dict), "missing actual font observation")
+    need(observation.get("complete") is True and observation.get("unsupported") == [],
+         "font text coverage is incomplete")
+    nodes = observation.get("nodes")
+    need(isinstance(nodes, list) and nodes, "empty font observation")
+    for node in nodes:
+        need(isinstance(node, dict), "invalid text node observation")
+        fonts = node.get("platform_fonts")
+        need(isinstance(fonts, list) and fonts, "missing actual platform fonts")
+        glyphs = 0
+        for font in fonts:
+            need(font.get("family") in FONT_FAMILIES and font.get("custom") is True,
+                 "non-STK or substituted actual font")
+            count = font.get("glyph_count")
+            need(type(count) is int and count > 0, "missing actual STK glyph use")
+            glyphs += count
+        need(glyphs > 0, "empty actual font coverage")
+
+
+def check_native_observation(root, observation, outputs):
+    need(observation.get("schema") == "rasa-native-outline-font-observation-v1",
+         "unsupported native font observation")
+    need(observation.get("complete") is True and observation.get("unsupported") == []
+         and observation.get("missing") == [], "native text coverage incomplete")
+    bindings = observation.get("producer_bindings", {})
+    for key in ("maker", "font_loader", "toolchain", "log", "provisioning_record"):
+        bound_file(root, bindings.get(key))
+    need(observation.get("outputs") == outputs, "native observation does not bind exact output images")
+    provision = read_json(bound_file(root, bindings["provisioning_record"]))
+    need(provision.get("schema") == "rasa-approved-font-face-map-v1"
+         and provision.get("approval_record"), "safe provisioning approval provenance missing")
+    bound_file(root, provision["approval_record"])
+    faces = provision.get("faces", [])
+    face_map = {face["face_id"]: face for face in faces}
+    need(len(face_map) == len(faces) and face_map, "empty or duplicate approved face identifiers")
+    source_runs = read_json(bound_file(root, observation.get("source_text_runs")))
+    runs = observation.get("text_runs", [])
+    need(type(runs) is list and runs, "empty native text observation")
+    need(source_runs == [{"source_text_sha256": r.get("source_text_sha256"), "role": r.get("role")} for r in runs],
+         "native source text/run coverage differs from composition")
+    families = {"serif": "STK Bureau Serif", "sans": "STK Bureau Sans",
+                "sans-medium": "STK Bureau Sans", "mono": "STK Bureau Sans Mono"}
+    for run in runs:
+        required = families.get(run.get("role"))
+        need(required and run.get("required_family") == required and run.get("actual_family") == required,
+             "native actual face family differs from required brand role")
+        need(SHA.fullmatch(run.get("source_text_sha256", "")) and run.get("coverage") is True
+             and run.get("missing") == [], "native glyph coverage missing")
+        need(run.get("face_id") == run.get("provisioning_face_id") and run.get("face_id") in face_map,
+             "native loaded face does not bind approved provisioned face")
+        face = face_map[run["face_id"]]
+        need(face.get("family") == required and face.get("role") == run["role"],
+             "native safe provisioning face map differs from actual use")
+
+
+def check_card(root, binding, image_path, image_sha):
+    record = read_json(bound_file(root, binding))
+    need(record.get("schema") == "rasa-community-cards-render-record-v2", "missing community-cards render record")
+    need(record.get("brand_commit") == BRAND_COMMIT, "stale card brand revision")
+    outputs = record.get("outputs", [])
+    need(any(o.get("path") == image_path and o.get("sha256") == image_sha for o in outputs),
+         "card receipt does not bind the actual consumer image")
+    for output in outputs:
+        bound_file(root, output)
+        need(type(output.get("width")) is int and output["width"] > 0
+             and type(output.get("height")) is int and output["height"] > 0,
+             "missing image dimensions")
+    producer = record.get("producer", {})
+    need(re.fullmatch(r"[0-9a-f]{40}", producer.get("commit", "")) is not None,
+         "missing exact maker revision")
+    need(producer.get("repository") and producer.get("renderer")
+         and SHA.fullmatch(producer.get("renderer_sha256", ""))
+         and producer.get("toolchain"), "missing maker source/toolchain binding")
+    inputs = record.get("inputs")
+    need(isinstance(inputs, list) and inputs, "empty card inputs")
+    for item in inputs:
+        bound_file(root, item)
+    fonts = record.get("font_evidence", {})
+    need(fonts.get("status") == "STK_BUREAU_ACTUAL_USE" and fonts.get("missing") == []
+         and fonts.get("fallback_note") is False, "card render used substitutes or lacks STK evidence")
+    need(set(fonts.get("families", [])) <= FONT_FAMILIES and fonts.get("families"),
+         "unsupported card font family")
+    observation = read_json(bound_file(root, fonts.get("observation")))
+    if fonts.get("observation_kind") == "browser-platform-fonts":
+        check_font_observation(observation)
+    elif fonts.get("observation_kind") == "native-outline-runs":
+        check_native_observation(root, observation, outputs)
+    else:
+        raise Refusal("missing actual font observation discriminator")
+    execution = record.get("execution", {})
+    need(type(execution.get("exit")) is int and execution["exit"] == 0
+         and execution.get("clean_before") is True and execution.get("clean_after") is True,
+         "card execution is incomplete or failed")
+    need(execution.get("started_at") and execution.get("finished_at") and execution.get("command"),
+         "missing card execution identity")
+    log = bound_file(root, execution.get("log")).decode("utf-8")
+    need("NOTE: STK Bureau not provisioned" not in log, "fallback NOTE disqualifies card")
+
+
+def check_image_proof(root, brand_root, image, artifact, load_brand=git_blob):
+    """Exactly two classes: unchanged official catalog image, or generated STK render."""
+    proof_class = image.get("proof_class", "generated")
+    if proof_class == "generated":
+        check_card(root, image.get("render_record"), image["path"], artifact["sha256"])
+        return {"class": "generated", "render_record_verified": True}
+    need(proof_class == "official-catalog", "unsupported image proof class")
+    claim = image.get("catalog", {})
+    catalog = read_json(load_brand(brand_root, "assets/catalog.json"))
+    entries = [item for item in catalog.get("assets", []) if item.get("id") == claim.get("id")]
+    need(len(entries) == 1, "official image identifier is missing or ambiguous in pinned catalog")
+    canonical = entries[0]
+    need(canonical.get("status") == "current" and isinstance(canonical.get("category"), str)
+         and canonical["category"], "only a current official catalog image can use unchanged source proof")
+    need(canonical.get("format") in {"svg", "png", "webp", "jpg", "jpeg", "gif", "avif"}
+         and Path(image["path"]).suffix.lower() == "." + canonical["format"],
+         "changed official image format requires generated render proof")
+    need(claim.get("category") == canonical["category"] and claim.get("path") == canonical["path"]
+         and claim.get("sha256") == canonical["sha256"], "official image catalog claim differs from pinned identity")
+    raw = bound_file(root, artifact)
+    need(digest(raw) == canonical["sha256"] and len(raw) == canonical["bytes"],
+         "official image bytes differ from pinned catalog")
+    return {"class": "official-catalog", "id": canonical["id"], "category": canonical["category"],
+            "render_record_required": False, "scope": "Unchanged official source asset; no render or font-use claim."}
+
+
+def check_community_source(root, brand_root, source_binding, artifact_map, load_brand=git_blob):
+    """Receive the site's settled source.json; font catalog metadata never opens payloads."""
+    need(source_binding.get("path") in artifact_map, "site source record omitted from artifact inventory")
+    source = read_json(bound_file(root, source_binding))
+    need(source.get("repository") == "RasaHQ/brand" and source.get("commit") == BRAND_COMMIT,
+         "site source record is not pinned to required upstream brand")
+    need(source.get("tokensSource") == "design-system/src/tokens.json"
+         and source.get("tokensSha256") == digest(load_brand(brand_root, "design-system/src/tokens.json")),
+         "site source token identity differs from pinned upstream")
+    exports = source.get("generatedOutputs")
+    need(isinstance(exports, list) and len(exports) == len(COMMUNITY_EXPORTS),
+         "site source record must bind all seven settled exports")
+    need({item["source"] for item in exports} == COMMUNITY_EXPORTS
+         and len({item["path"] for item in exports}) == len(exports),
+         "site source exports are missing or duplicated")
+    for item in exports:
+        need(item["path"] in artifact_map, "site export omitted from artifact inventory")
+        raw = bound_file(root, artifact_map[item["path"]])
+        canonical = load_brand(brand_root, item["source"])
+        need(digest(raw) == item.get("sha256") == digest(canonical) and raw == canonical,
+             "site export differs from exact pinned upstream bytes")
+    catalog = read_json(load_brand(brand_root, "assets/catalog.json"))
+    entries = catalog.get("assets", [])
+    catalog_map = {item["id"]: item for item in entries}
+    need(len(catalog_map) == len(entries), "duplicate upstream catalog identifier")
+    assets = source.get("assets")
+    need(isinstance(assets, list) and assets and len({a["id"] for a in assets}) == len(assets),
+         "missing or duplicate site catalog inventory")
+    unopened_fonts = []
+    verified_nonfonts = []
+    for item in assets:
+        need(item["id"] in catalog_map, "site asset is not in pinned upstream catalog")
+        canonical = catalog_map[item["id"]]
+        need(canonical.get("status") == "current", "site source uses a reference or retired catalog asset")
+        need(item.get("source") == canonical.get("path") and item.get("sha256") == canonical.get("sha256"),
+             "site catalog metadata differs from pinned upstream")
+        path = item["file"]
+        if Path(path).suffix.lower() in {".woff", ".woff2", ".ttf", ".otf"}:
+            need(path not in artifact_map, "font payload cannot be a retained source-check input")
+            unopened_fonts.append({"id": item["id"], "payload_verified": False})
+            continue
+        need(path in artifact_map, "non-font catalog asset omitted from artifact inventory")
+        raw = bound_file(root, artifact_map[path])
+        need(digest(raw) == canonical["sha256"] and len(raw) == canonical["bytes"],
+             "site asset bytes differ from pinned catalog")
+        verified_nonfonts.append(item["id"])
+    return {"profile": "rasa-community-source-v1", "exports_bound": len(exports),
+            "catalog_entries_bound": len(assets), "nonfont_assets_byte_bound": verified_nonfonts,
+            "font_metadata_only": unopened_fonts, "font_payloads_opened": 0,
+            "scope": "Source and catalog custody only; no font-use, image-render, import/build or visual certification."}
+
+
+def check(root, brand_root, manifest, load_brand=git_blob, regenerate=reproduce_tokens):
+    findings = []
+    def run(rule, path, action):
+        try:
+            action()
+        except (Refusal, ValueError, TypeError, KeyError, AttributeError, OSError, subprocess.SubprocessError) as exc:
+            # Never echo file contents, browser text, URLs or credentials in an error.
+            findings.append({"rule": rule, "path": path, "reason": str(exc) if isinstance(exc, Refusal) else "invalid or unavailable evidence"})
+
+    def identity():
+        need(manifest.get("schema") == SCHEMA, "unsupported consumer manifest schema")
+        need(manifest.get("brand_commit") == BRAND_COMMIT, "consumer is not pinned to required brand revision")
+    run("brand-identity", "manifest", identity)
+    # Browser/image evidence cannot establish measurements for moving media.
+    run("video-legibility", "manifest", lambda: need(
+        manifest.get("videos", []) == [],
+        "video requires qualified every-frame phone-legibility evidence; video profile is not implemented"))
+    try:
+        tokens = read_json(load_brand(brand_root, "design-system/src/tokens.json"))
+        palette = {value.upper() for scale in tokens["color"].values() for value in scale.values()}
+        stacks = {canonical_stack(value) for value in tokens["font"].values()}
+    except (Refusal, ValueError, TypeError, KeyError, OSError, subprocess.SubprocessError):
+        return {"schema": "rasa-brand-consumer-result-v1", "machine_status": "FAIL",
+                "findings": [{"rule": "brand-source", "path": "manifest", "reason": "pinned brand tokens unavailable"}],
+                "operator_visual_verdict": "NOT_HELD", "release_authorized": False}
+
+    reproduced = {}
+    generation_receipt = None
+    def generation():
+        nonlocal reproduced, generation_receipt
+        reproduced, generation_receipt = regenerate(brand_root)
+        need(isinstance(reproduced, dict) and GENERATED <= set(reproduced), "incomplete independent token generation")
+    run("independent-token-generation", "manifest", generation)
+
+    artifacts = manifest.get("artifacts", [])
+    run("artifact-coverage", "manifest", lambda: need(isinstance(artifacts, list) and artifacts, "empty consumer artifact inventory"))
+    artifact_map = {}
+    for item in artifacts if isinstance(artifacts, list) else []:
+        path = item.get("path", "invalid") if isinstance(item, dict) else "invalid"
+        def artifact(item=item, path=path):
+            need(path not in artifact_map, "duplicate artifact path")
+            need(item.get("kind") != "video" and Path(path).suffix.lower() not in
+                 {".mp4", ".webm", ".mov", ".m4v", ".avi", ".mkv"},
+                 "video requires qualified every-frame phone-legibility evidence; video profile is not implemented")
+            bound_file(root, item)
+            artifact_map[path] = item
+        run("artifact-binding", path, artifact)
+
+    source_receiving = None
+    if manifest.get("profile") == "rasa-community-source-v1":
+        def site_source():
+            nonlocal source_receiving
+            source_receiving = check_community_source(root, brand_root, manifest.get("source_record"), artifact_map, load_brand)
+        run("community-source-record", "manifest", site_source)
+    else:
+        run("source-profile", "manifest", lambda: need(
+            manifest.get("profile") in (None, "generic-retained-evidence-v1"), "unsupported consumer source profile"))
+
+    generated = manifest.get("generated_tokens", [])
+    run("generated-token-coverage", "manifest", lambda: need(isinstance(generated, list) and generated, "no generated token bindings"))
+    for item in generated if isinstance(generated, list) else []:
+        path = item.get("path", "invalid") if isinstance(item, dict) else "invalid"
+        def token(item=item, path=path):
+            need(path in artifact_map, "token output omitted from artifact inventory")
+            need(item.get("brand_source") in GENERATED, "unsupported generated token output")
+            need(item["brand_source"] in reproduced and bound_file(root, artifact_map[path]) == reproduced[item["brand_source"]],
+                 "consumer token bytes differ from pinned generated brand output")
+        run("generated-token-origin", path, token)
+
+    images = manifest.get("images", [])
+    run("image-inventory", "manifest", lambda: need(isinstance(images, list), "image inventory missing"))
+    image_map = {}
+    image_proofs = {}
+    for image in images if isinstance(images, list) else []:
+        path = image.get("path", "invalid") if isinstance(image, dict) else "invalid"
+        def media(image=image, path=path):
+            need(path in artifact_map and path not in image_map, "image missing or duplicated in artifact inventory")
+            image_proofs[path] = check_image_proof(root, brand_root, image, artifact_map[path], load_brand)
+            image_map[path] = image
+        run("image-stk-render", path, media)
+
+    for path, item in artifact_map.items():
+        if item.get("kind") == "image" or Path(path).suffix.lower() in {".png", ".webp", ".jpg", ".jpeg", ".svg", ".gif", ".avif"}:
+            run("image-artifact-coverage", path,
+                lambda path=path: need(path in image_map, "image artifact omitted from qualified image inventory"))
+
+    snapshots = manifest.get("browser_records", [])
+    run("browser-coverage", "manifest", lambda: need(isinstance(snapshots, list) and snapshots, "no consumer browser records"))
+    pages = manifest.get("pages", [])
+    run("page-coverage", "manifest", lambda: need(isinstance(pages, list) and pages
+        and all(isinstance(p, str) and p.startswith("/") for p in pages)
+        and len(set(pages)) == len(pages), "explicit unique static page routes required"))
+    sizes = set()
+    page_sizes = {}
+    for binding in snapshots if isinstance(snapshots, list) else []:
+        path = binding.get("path", "invalid") if isinstance(binding, dict) else "invalid"
+        def browser(binding=binding):
+            record = read_json(bound_file(root, binding))
+            need(record.get("schema") == "rasa-brand-browser-observation-v1", "unsupported browser observation")
+            need(record.get("complete") is True and record.get("unsupported") == [], "browser coverage incomplete")
+            need(record.get("brand_commit") == BRAND_COMMIT, "stale browser brand binding")
+            need(record.get("artifacts") == artifacts, "browser observation does not bind exact consumer bytes")
+            page = record.get("page")
+            need(page in pages, "browser page is missing from declared routes")
+            viewport = record.get("viewport", {})
+            need(type(viewport.get("width")) is int and type(viewport.get("height")) is int
+                 and viewport["height"] > 0, "missing browser viewport")
+            size = "narrow" if 0 < viewport["width"] <= 480 else "desktop" if viewport["width"] >= 1024 else "other"
+            sizes.add(size)
+            page_sizes.setdefault(page, set()).add(size)
+            need(record.get("nodes"), "empty computed-style observation")
+            for node in record["nodes"]:
+                need(node.get("colors"), "missing computed colors")
+                for value in node["colors"].values():
+                    normalized = color_hex(value)
+                    need(normalized is None or normalized in palette, "color outside the pinned 2026 palette")
+                if node.get("has_text"):
+                    need(canonical_stack(node.get("font_family")) in stacks, "font stack outside pinned brand stacks")
+            check_font_observation(record.get("font_observation"))
+            need(type(record.get("images")) is list, "missing rendered image coverage")
+            need(all(image in image_map for image in record["images"]), "rendered image lacks qualified STK card record")
+            need(record.get("unresolved_resources") == [], "unresolved browser resource")
+            need(record.get("unresolved_styles") == [], "unresolved computed style")
+            bound_file(root, record.get("screenshot"))
+            bound_file(root, record.get("log"))
+        run("consumer-browser", path, browser)
+    run("viewport-coverage", "manifest", lambda: need({"desktop", "narrow"} <= sizes, "desktop and narrow observations both required"))
+    for page in pages if isinstance(pages, list) else []:
+        run("per-page-viewport-coverage", page, lambda page=page: need(
+            {"desktop", "narrow"} <= page_sizes.get(page, set()), "each declared page needs desktop and narrow observations"))
+    return {"schema": "rasa-brand-consumer-result-v1", "brand_commit": BRAND_COMMIT,
+            "machine_status": "FAIL" if findings else "PASS_EVIDENCE_ONLY", "findings": findings,
+            "independent_generation": generation_receipt, "source_receiving": source_receiving,
+            "image_proofs": image_proofs,
+            "operator_visual_verdict": "NOT_HELD", "release_authorized": False,
+            "scope": "Retained evidence for declared artifacts and observed states; no whole-site or inbox certification."}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--consumer-root", type=Path, required=True)
+    parser.add_argument("--brand-root", type=Path, required=True)
+    parser.add_argument("--manifest", type=Path, required=True)
+    args = parser.parse_args()
+    try:
+        manifest = read_json(args.manifest.read_bytes())
+        need(isinstance(manifest, dict), "consumer manifest must be an object")
+        result = check(args.consumer_root.resolve(), args.brand_root.resolve(), manifest)
+    except (Refusal, ValueError, TypeError, OSError):
+        result = {"schema": "rasa-brand-consumer-result-v1", "machine_status": "FAIL",
+                  "findings": [{"rule": "manifest", "reason": "invalid or unavailable consumer manifest"}],
+                  "operator_visual_verdict": "NOT_HELD", "release_authorized": False}
+    print(json.dumps(result, indent=2))
+    return 0 if result["machine_status"] == "PASS_EVIDENCE_ONLY" else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
